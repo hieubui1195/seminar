@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Message;
+use App\Models\Seminar;
 
 class User extends Authenticatable
 {
@@ -33,6 +34,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function seminars()
+    {
+        $this->hasMany(Seminar::class);
+    }
 
     public function messages()
     {

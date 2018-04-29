@@ -35,7 +35,7 @@
 </div>
 
 <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             {!! Form::open([
                 'route' => 'user.store',
@@ -78,29 +78,6 @@
 
                     <div class="form-group row">
                         {!! Form::label(
-                            'description',
-                            Lang::get('custom.description'),
-                            [
-                                'class' => 'col-md-4 control-label'
-                            ]
-                        ) !!}
-
-                        <div class="col-md-8">
-                            {!! Form::textarea(
-                                'description',
-                                old('description'),
-                                [
-                                    'class' => 'form-control',
-                                    'required' => 'required',
-                                    'autofocus' => 'autofocus',
-                                    'rows' => '3',
-                                ]
-                            ) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        {!! Form::label(
                             'chairman',
                             Lang::get('custom.chairman'),
                             [
@@ -114,9 +91,11 @@
                                 $selectChairman,
                                 Auth::id(),
                                 [
+                                    'id' => 'select-chairman',
                                     'class' => 'form-control',
                                     'required' => 'required',
                                     'autofocus' => 'autofocus',
+                                    'style' => 'width: 100%',
                                 ]
                             ) !!}
                         </div>
@@ -171,9 +150,32 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        {!! Form::label(
+                            'description',
+                            Lang::get('custom.description'),
+                            [
+                                'class' => 'col-md-4 control-label'
+                            ]
+                        ) !!}
+
+                        <div class="col-md-8">
+                            {!! Form::textarea(
+                                'description',
+                                old('description'),
+                                [
+                                    'class' => 'form-control',
+                                    'required' => 'required',
+                                    'autofocus' => 'autofocus',
+                                    'rows' => '3',
+                                ]
+                            ) !!}
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    {!! Form::button(Lang::get('custom.save'), ['id' => 'btn-add', 'class' => 'btn btn-primary']) !!}
+                    {!! Form::submit(Lang::get('custom.save'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::button(Lang::get('custom.close'), ['class' => 'btn btn-secondary', 'data-dismiss' => 'modal']) !!}
                 </div>
             {!! Form::close() !!}
@@ -194,8 +196,10 @@
     {!! Html::script('assets/bootstrap-daterangepicker/daterangepicker.js') !!}
     {!! Html::script('assets/select2/dist/js/select2.min.js') !!}
     {!! Html::script('js/script.js') !!}
+    {!! Html::script('js/seminar.js') !!}
     <script type="text/javascript">
         var timerange = new timerange('#time');
+        var selectChairman = new multiselect('#select-chairman');
         var multiselect = new multiselect('#select-members');
 
         var seminar = new seminar();

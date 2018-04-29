@@ -11,9 +11,7 @@ use Lang;
 
 class UserController extends Controller
 {
-
-    use ExampleTrait;
-
+    
     protected $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepository)
@@ -31,7 +29,6 @@ class UserController extends Controller
     {
 
         $users = $this->userRepository->all();
-        $this->printThis();
 
         return view('user.index', compact('users'));
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CreateSeminarMail;
 
 class HomeController extends Controller
 {
@@ -33,5 +35,12 @@ class HomeController extends Controller
         return $language;
         
         return redirect()->back();
+    }
+
+    public function mail()
+    {
+        Mail::to('buihieubthc2rb@gmail.com')->send(new CreateSeminarMail(1, 1));
+
+        return 'Success';
     }
 }

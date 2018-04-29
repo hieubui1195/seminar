@@ -24,7 +24,12 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('seminar', 'SeminarController');
+    Route::resource('seminar', 'SeminarController')->except([
+        'create',
+        'edit',
+    ]);
+
+    Route::get('/mail', 'HomeController@mail');
     Route::resource('user', 'UserController');
 
     Route::resource('message', 'MessageController');
