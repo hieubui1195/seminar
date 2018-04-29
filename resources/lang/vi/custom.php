@@ -40,4 +40,9 @@ return [
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',
     'update_profile_success' => 'Hồ sơ đã được cập nhật',
+    'add_seminar_success' => 'Cuộc họp mới đã được thêm thành công',
+
+    'mail' => [
+        'subject_create_seminar' => 'Lời mời tham dự cuộc họp',
+    ],
 ];

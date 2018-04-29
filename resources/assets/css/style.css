@@ -1,0 +1,19 @@
+.page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: '';
+}
+
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_desc:after {
+    content: '';
+}
+
+.user-image {
+    width: 30px;
+    height: 30px;
+}
+
+#choose-avatar {
+    width: 100%;
+    text-align: center;
+}

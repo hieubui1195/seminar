@@ -40,4 +40,9 @@ return [
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',
     'update_profile_success' => 'Profile has been updated',
+    'add_seminar_success' => 'The seminar has been successfully added',
+
+    'mail' => [
+        'subject_create_seminar' => 'Invitation to attend the meeting',
+    ],
 ];
