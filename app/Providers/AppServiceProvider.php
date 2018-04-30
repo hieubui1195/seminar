@@ -30,13 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            SeminarRepositoryInterface::class,
-            SeminarRepository::class,
-            ParticipantRepositoryInterface::class,
-            ParticipantRepository::class,
-            UserRepositoryInterface::class,
-            UserRepository::class
-        );
+        //
     }
 }

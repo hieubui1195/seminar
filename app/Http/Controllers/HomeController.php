@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateSeminarMail;
+use App\Models\Seminar;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -39,7 +41,11 @@ class HomeController extends Controller
 
     public function mail()
     {
-        Mail::to('buihieubthc2rb@gmail.com')->send(new CreateSeminarMail(1, 1));
+        $seminarId = 1;
+        $userId = 1;
+
+        $email = User::find($userId)->email;
+        Mail::to($email)->send(new CreateSeminarMail($userId, $userId));
 
         return 'Success';
     }

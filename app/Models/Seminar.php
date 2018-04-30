@@ -29,6 +29,6 @@ class Seminar extends Model
 
     public function scopeWithUser($query, $id)
     {
-        return $this->find($id)->with('user');
+        return $this->where('id', $id)->with('user');
     }
 }

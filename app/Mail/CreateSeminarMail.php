@@ -37,8 +37,8 @@ class CreateSeminarMail extends Mailable
         return $this->subject(Lang::get('custom.mail.subject_create_seminar'))
                     ->markdown('emails.create-seminar')
                     ->with([
-                        'seminar' => 'seminar',
-                        'user' => 'user',
+                        'seminar' => $this->seminar,
+                        'user' => $this->user,
                     ]);
     }
 }
