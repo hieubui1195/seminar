@@ -36,6 +36,11 @@ return [
     'confirm_password' => 'Confirmation Password',
     'phone' => 'Phone',
     'logout' => 'Logout',
+    'seminar_name' => 'Seminar Name',
+    'chairman' => 'Chairman',
+    'time' => 'Time',
+    'members' => 'Members',
+    'description' => 'Description',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',
@@ -44,5 +49,8 @@ return [
 
     'mail' => [
         'subject_create_seminar' => 'Invitation to attend the meeting',
+        'invitation' => 'You are invited to attend the meeting :seminar from :start to :end. The meeting code is <b>:code</b>.',
+        'goto' => 'Go to Seminar',
+        'thanks' => 'Thanks',
     ],
 ];

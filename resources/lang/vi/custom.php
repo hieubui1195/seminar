@@ -36,6 +36,11 @@ return [
     'confirm_password' => 'Xác nhận mật khẩu',
     'phone' => 'Số điện thoại',
     'logout' => 'Đăng xuất',
+    'seminar_name' => 'Tên cuộc họp',
+    'chairman' => 'Chủ trì',
+    'time' => 'Thời gian',
+    'members' => 'Các thành viên',
+    'description' => 'Mô tả',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',
@@ -44,5 +49,8 @@ return [
 
     'mail' => [
         'subject_create_seminar' => 'Lời mời tham dự cuộc họp',
+        'invitation' => 'Bạn được mời tham dự cuộc họp :seminar từ :start đến :end. Mã cuộc họp là <b>:code</b>.',
+        'goto' => 'Đi đến cuộc họp',
+        'thanks' => 'Cảm ơn',
     ],
 ];

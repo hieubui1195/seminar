@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SeminarRequest;
-use App\Lang;
+use Lang;
 use App\Models\Participant;
 use App\Models\Seminar;
 use App\Models\User;
@@ -16,11 +16,13 @@ use App\Mail\CreateSeminarMail;
 class SeminarController extends Controller
 {
 
-    protected $seminarRepository;
+    protected $seminarRepository, $participantRepository;
 
 
-    public function __construct(SeminarRepositoryInterface $seminarRepository)
+    public function __construct(ParticipantRepositoryInterface $participantRepository,
+        SeminarRepositoryInterface $seminarRepository)
     {
+        $this->participantRepository = $participantRepository;
         $this->seminarRepository = $seminarRepository;
     }
 
@@ -60,16 +62,16 @@ class SeminarController extends Controller
             $dataMember['seminar_id'] = $seminar->id;
             $dataMember['user_id'] = $member;
 
-            Participant::create($dataMember);
+            $this->participantRepository->store($dataMember);
 
             $email = User::find($dataMember['user_id'])->email;
-
             Mail::to($email)->send(new CreateSeminarMail($dataMember['seminar_id'], $dataMember['user_id']));
         }
 
         return response()->json([
             'status' => 1,
             'msg' => Lang::get('custom.add_seminar_success'),
+            'id' => $seminar->id,
         ]);
     }
 
