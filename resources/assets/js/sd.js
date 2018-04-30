@@ -10,7 +10,7 @@ var seminar = function () {
         this.scrollTop();
         var seminarId = $('body input[name="seminarId"]').val();
         this.echo(seminarId);
-    }
+    };
 
     this.addEvent = function() {
         var current = this;
@@ -38,7 +38,7 @@ var seminar = function () {
                 };
             }
         });
-    }
+    };
 
     this.addSeminar = function(formType, name, chairman, description, time, members) {
         $.ajax({
@@ -99,7 +99,7 @@ var seminar = function () {
                 }
             }
         });
-    }
+    };
 
     this.sendMessage = function(seminarId, message) {
         var current = this,
@@ -156,38 +156,15 @@ var seminar = function () {
         if (message[0][0]['user_id'] != currentUser) {
             element = '<li class="clearfix"><div class="message-data align-right">'
                             + '<span class="message-data-time">' + message[0][0]['created_at'] + '</span> &nbsp; &nbsp;'
-                            + '<span class="message-data-name"><a href="/user/' + message[0][0]['user']['id'] + '">'
-                            + message[0][0]['user']['name'] + '</a></span> <i class="fa fa-circle me"></i></div>'
+                            + '<span class="message-data-name">' + message[0][0]['user']['name'] + '</span> <i class="fa fa-circle me"></i></div>'
                             + '<div class="message other-message float-right">' + message[0][0]['message'] + '</div></li>';
             $('body .chat-history ul').append(element);
         } else {
             element = '<li class="clearfix"><div class="message-data">'
                             + '<span class="message-data-time">' + message[0][0]['created_at'] + '</span> &nbsp; &nbsp;'
-                            + '<span class="message-data-name"><a href="/user/' + message[0][0]['user']['id'] + '">'
-                            + message[0][0]['user']['name'] + '</a></span> <i class="fa fa-circle online"></i></div>'
+                            + '<span class="message-data-name">' + message[0][0]['user']['name'] + '</span> <i class="fa fa-circle online"></i></div>'
                             + '<div class="message my-message">' + message[0][0]['message'] + '</div></li>';
             $('body .chat-history ul').append(element);
         }
-    };
-
-    this.echo = function (seminarId) {
-        var current = this;
-        const app = new Vue({
-            el: '#app',
-            created() {
-                Echo.private('message' + seminarId)
-                    .listen('MessageSentEvent', (e) => {
-                        console.log(e);
-                        this.$forceUpdate();
-                        var element = '<li class="clearfix"><div class="message-data">'
-                                        + '<span class="message-data-time">' + e['message']['created_at'] + '</span> &nbsp; &nbsp;'
-                                        + '<span class="message-data-name"><a href="/user/' + e['user']['id'] + '">'
-                                        + e['user']['name'] + '</a></span> <i class="fa fa-circle online"></i></div>'
-                                        + '<div class="message my-message">' + e['message']['message'] + '</div></li>';
-                        $('body .chat-history ul').append(element);
-                        current.scrollTop();
-                    });
-            }
-        });
     };
 }

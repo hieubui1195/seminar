@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Modes\Seminar;
 use App\Models\User;
 
 class Message extends Model
@@ -15,6 +16,17 @@ class Message extends Model
 
     public function user()
     {
-        return $this->belongsTo(Message::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function seminar()
+    {
+    	return $this->belongsTo(Seminar::class);
+    }
+
+    public function scopeGetMessageWithUser($query, $id)
+    {
+        return $query->where('id', $id)
+                    ->with('user');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use App\Models\Seminar;
+use Illuminate\Support\Facades\DB;
 
 class SeminarRepository extends BaseRepository implements SeminarRepositoryInterface
 {
@@ -34,5 +35,35 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
     public function update(array $data)
     {
         
+    }
+
+    public function listActive()
+    {
+        // return $this->model->;
+    }
+
+    public function listEarly()
+    {
+        # code...
+    }
+
+    public function listFinished()
+    {
+        # code...
+    }
+
+    public function getAllWithUser()
+    {
+        return $this->model->getAllWithUser();
+    }
+
+    public function getSeminarWithUser($id)
+    {
+        return $this->model->withUser($id);
+    }
+
+    public function getMessages($id)
+    {
+        return $this->model->find($id)->users;
     }
 }

@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SeminarRequest;
-use Lang;
+use App\Mail\CreateSeminarMail;
 use App\Models\Participant;
 use App\Models\Seminar;
 use App\Models\User;
 use App\Repositories\Contracts\ParticipantRepositoryInterface;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\CreateSeminarMail;
+use Illuminate\Support\Facades\Session;
+use Lang;
 
 class SeminarController extends Controller
 {
@@ -22,6 +25,7 @@ class SeminarController extends Controller
     public function __construct(ParticipantRepositoryInterface $participantRepository,
         SeminarRepositoryInterface $seminarRepository)
     {
+        $this->middleware('auth');
         $this->participantRepository = $participantRepository;
         $this->seminarRepository = $seminarRepository;
     }
@@ -33,9 +37,24 @@ class SeminarController extends Controller
      */
     public function index()
     {
+        $listActive = Seminar::listActive()->take(5)->get();
+        $listEarly  = Seminar::listEarly()->take(5)->get();
+        $listFinished = Seminar::listFinished()->take(5)->get();
+        $countActive = Seminar::listActive()->count();
+        $countEarly = Seminar::listEarly()->count();
+        $countFinished = Seminar::listFinished()->count();
+
         $selectChairman = User::orderUser()->pluck('name', 'id');
 
-        return view('seminar.index', compact('selectChairman'));
+        return view('seminar.index', compact(
+            'listActive',
+            'listEarly',
+            'listFinished',
+            'countActive',
+            'countEarly',
+            'countFinished',
+            'selectChairman'
+        ));
     }
 
 
@@ -83,7 +102,16 @@ class SeminarController extends Controller
      */
     public function show($id)
     {
-        //
+        $seminars = $this->seminarRepository->getAllWithUser();
+        $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get(); 
+        $messages = $this->seminarRepository->getMessages($id);
+
+        return view('seminar.show', compact(
+            'id',
+            'seminars',
+            'seminarUser',
+            'messages'
+        ));
     }
 
     /**
