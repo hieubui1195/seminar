@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\MessageRepositoryInterface;
+use App\Repositories\Eloquents\MessageRepository;
 use App\Repositories\Contracts\ParticipantRepositoryInterface;
 use App\Repositories\Eloquents\ParticipantRepository;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
@@ -13,6 +15,10 @@ use App\Repositories\Eloquents\UserRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected static $reporitories = [
+        'message' => [
+            MessageRepositoryInterface::class,
+            MessageRepository::class,
+        ],
         'participant' => [
             ParticipantRepositoryInterface::class,
             ParticipantRepository::class,

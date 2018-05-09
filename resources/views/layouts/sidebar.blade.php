@@ -8,7 +8,7 @@
                 </li>
                 <li> <a class="waves-effect waves-dark" href="{{ route('user.show', Auth::id()) }}" aria-expanded="false"><i class="fa fa-user-circle"></i><span class="hide-menu">@lang('custom.profile')</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="{{ route('seminar.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">@lang('custom.seminar')</span></a>
+                <li> <a class="waves-effect waves-dark @yield('seminar-active')" href="{{ route('seminar.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">@lang('custom.seminar')</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="{{ route('user.index') }}" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">@lang('custom.user')</span></a>
                 </li>

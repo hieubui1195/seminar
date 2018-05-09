@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Events\MessageSentEvent;
+use App\Repositories\Contracts\MessageRepositoryInterface;
 
 class MessageController extends Controller
 {
-    public function __construct()
+    protected $messageRepository;
+
+    public function __construct(MessageRepositoryInterface $messageRepository)
     {
-      $this->middleware('auth');
+        $this->middleware('auth');
+        $this->messageRepository = $messageRepository;
     }
 
     /**
@@ -45,16 +49,18 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-
-        $message = Message::create([
+        $data = [
             'user_id' => Auth::id(),
             'seminar_id' => $request->seminarId,
             'message' => $request->message,
-        ]);
-        event(new MessageSentEvent($user, $message));
+        ];
+
+        $message = $this->messageRepository->store($data);
+        event(new MessageSentEvent($user, $message, $request->seminarId));
         
         return response()->json([
             'status' => 1,
+            'id' => $message->id,
         ]);
     }
 
@@ -64,9 +70,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        return response()->json([
+            $this->messageRepository
+                ->getMessageWithUser($request->messageId)
+                ->get()
+        ]);
     }
 
     /**

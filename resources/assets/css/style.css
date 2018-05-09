@@ -1,3 +1,7 @@
+.fix-header .topbar {
+    top: 0px;
+}
+
 .page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
     content: '';
 }
@@ -16,4 +20,270 @@ table.dataTable thead .sorting_desc:after {
 #choose-avatar {
     width: 100%;
     text-align: center;
+}
+
+.title-center {
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+}
+
+.title-active {
+    color: #669900;
+}
+
+.title-early {
+    color: #20aee3;
+}
+
+.title-finished {
+    color: #ffc107;
+}
+
+.search {
+    padding: 0px 20px;
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+}
+
+.search input {
+    border-radius: 3px;
+    border: none;
+    padding: 14px;
+    width: 90%;
+    font-size: 14px;
+}
+
+.search .fa-search {
+    position: relative;
+    left: -25px;
+}
+
+.list {
+    padding-left: 0px;
+}
+
+.list ul {
+    padding: 20px;
+}
+
+.list li {
+    list-style: none;
+    padding: 20px;
+}
+
+.list img {
+    float: left;
+    width: 50px;
+    height: auto;
+}
+
+.about {
+    float: left;
+    margin-top: 8px;
+    padding-left: 8px;
+}
+
+.status {
+    color: #92959e;
+}
+
+.seminar-link {
+    color: #455a64;
+}
+
+.seminar-link :hover,
+.seminar-link :active,
+.seminar-link :visited {
+    text-decoration: underline;
+}
+
+.seminar-list,
+.seminar-content{
+    height: 950px
+}
+
+.seminar-list .list {
+    height: 850px;
+    overflow-y: scroll;
+}
+
+.chat {
+    width: 100%;
+    float: left;
+    background-color: #f2f5f8;
+    border-radius: 5px;
+    color: #434651;
+}
+
+.chat-header {
+    padding: 20px;
+    border-bottom: 2px solid white;
+}
+
+.chat-about {
+    float: left;
+    padding-left: 10px;
+    margin-top: 6px;
+}
+
+.chat-with {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.chat-num-messages {
+    color: $gray;
+}
+
+.chat-time {
+    float: right;
+    padding-right: 10px;
+    margin-top: 6px;
+}
+
+.fa-star {
+    float: right;
+    color: #d8dadf;
+    font-size: 20px;
+    margin-top: 12px;
+}
+
+.chat-history {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid white;
+    overflow-y: auto;
+    height: 575px;
+}
+
+.chat-history li {
+    list-style: none;
+}
+
+.message-data {
+    margin-bottom: 15px;
+}
+
+.message-data-time {
+    color: gray;
+    padding-left: 6px;
+}
+
+.message {
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    width: 90%;
+    position: relative;
+}
+
+.message::after {
+    bottom: 100%;
+    left: 7%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #86bb71;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.my-message {
+    background-color: #86bb71;
+}
+
+.other-message {
+    background-color: #94c2ed;
+}
+
+.other-message::after {
+    border-bottom-color: #94c2ed;
+    left: 93%;
+}
+
+.chat-message {
+    padding: 30px;
+}
+
+.chat-message textarea {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    font: 14px/22px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.chat-message .fa-file-o,
+.chat-message .fa-file-image-o {
+    font-size: 16px;
+    color: gray;
+    cursor: pointer;
+}
+
+.chat-message button {
+    float: right;
+    color: #94c2ed;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #f2f5f8;
+}
+
+.chat-message button:hover {
+    color: #75b1e8;
+}
+
+.online,
+.offline,
+.me {
+    margin-right: 3px;
+    font-size: 10px;
+}
+
+.online {
+    color: #86bb71;
+}
+
+.offline {
+    color: #e38968;
+}
+
+.me {
+    color: #94c2ed;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.current-seminar,
+.seminar-list .list li:hover {
+    background-color: #ccc;
 }
