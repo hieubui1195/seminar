@@ -56,7 +56,7 @@
                         </li>
                         @auth
                             <li>
-                                {!! Html::link('#home', Lang::get('custom.home')) !!}
+                                {!! Html::linkRoute('home', Lang::get('custom.home')) !!}
                             </li>
                         @else
                             <li>

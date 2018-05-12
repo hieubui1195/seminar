@@ -38,4 +38,9 @@ class MessageRepository extends BaseRepository implements MessageRepositoryInter
     {
         return $this->model->getMessageWithUser($id);
     }
+
+    public function getAllMessages($id)
+    {
+        return $this->model->where('seminar_id', $id)->get();
+    }
 }

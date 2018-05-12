@@ -11,6 +11,8 @@ use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Eloquents\SeminarRepository;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquents\UserRepository;
+use App\Repositories\Contracts\ReportRepositoryInterface;
+use App\Repositories\Eloquents\ReportRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'user' => [
             UserRepositoryInterface::class,
             UserRepository::class,
+        ],
+        'report' => [
+            ReportRepositoryInterface::class,
+            ReportRepository::class,
         ],
     ];
     /**

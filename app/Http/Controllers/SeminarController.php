@@ -10,24 +10,31 @@ use App\Models\Seminar;
 use App\Models\User;
 use App\Repositories\Contracts\ParticipantRepositoryInterface;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
+use App\Repositories\Contracts\MessageRepositoryInterface;
+use App\Repositories\Contracts\ReportRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Lang;
+use Auth;
 
 class SeminarController extends Controller
 {
 
-    protected $seminarRepository, $participantRepository;
+    protected $seminarRepository, $participantRepository, $messageRepository, $reportRepository;
 
 
     public function __construct(ParticipantRepositoryInterface $participantRepository,
-        SeminarRepositoryInterface $seminarRepository)
+        SeminarRepositoryInterface $seminarRepository,
+        MessageRepositoryInterface $messageRepository,
+        ReportRepositoryInterface $reportRepository)
     {
         $this->middleware('auth');
         $this->participantRepository = $participantRepository;
         $this->seminarRepository = $seminarRepository;
+        $this->messageRepository = $messageRepository;
+        $this->reportRepository = $reportRepository;
     }
 
     /**
@@ -135,6 +142,40 @@ class SeminarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getEditor(MessageRepositoryInterface $messageRepository,
+        SeminarRepositoryInterface $seminarRepository,
+        ReportRepositoryInterface $reportRepository,
+        $id)
+    {
+        $report = '';
+        $messages = '';
+        if (!$reportRepository->checkReported($id)) {
+            $messages = $messageRepository->getAllMessages($id);
+        } else {
+            $report = $reportRepository->checkReported($id)->report;
+        }
+        $seminar = $seminarRepository->find($id);
+
+        return view('seminar.editor', compact('id', 'messages', 'seminar', 'report'));
+    }
+
+    public function postEditor(ReportRepositoryInterface $reportRepository, Request $request, $id)
+    {
+        $data = $request->only('seminarId', 'report');
+        $data['userId'] = Auth::id();
+        if (!$reportRepository->checkReported($id)) {
+            $reportRepository->store($data);
+        } else {
+            $reportRepository->updateReport($id, $data);
+        }
+
+        return response()->json([
+            'status' => 1,
+            'msgTitle' => Lang::get('custom.success'),
+            'msgContent' => Lang::get('custom.report_success'),
+        ]);
     }
 
     public function createDate($string, $start, $end)
