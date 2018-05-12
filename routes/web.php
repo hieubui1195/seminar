@@ -28,6 +28,8 @@ Route::group(['middleware' => 'locale'], function() {
         'create',
         'edit',
     ]);
+    Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
+    Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
 
     Route::get('/mail', 'HomeController@mail');
     Route::resource('user', 'UserController');

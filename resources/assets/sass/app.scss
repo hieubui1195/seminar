@@ -6,4 +6,11 @@
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+// Font-awesome
+@import "~font-awesome/css/font-awesome.min.css";
+
+// Sweet Alert 2
+@import "~sweetalert2/dist/sweetalert2.min.css";
+

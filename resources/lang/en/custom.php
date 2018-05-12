@@ -53,6 +53,7 @@ return [
     'more_info' => 'More Informations',
     'timeout' => 'The seminar has been finished',
     'seminar_info' => 'Informations of this seminar',
+    'back' => 'Back',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

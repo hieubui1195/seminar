@@ -3,13 +3,13 @@ namespace App\Repositories\Contracts;
 
 use App\Repositories\Contracts\BaseRepositoryInterface;
 
-interface MessageRepositoryInterface extends BaseRepositoryInterface
+interface ReportRepositoryInterface extends BaseRepositoryInterface
 {
     public function store(array $data);
 
     public function update(array $data);
 
-    public function getMessageWithUser($id);
+    public function updateReport($id, array $data);
 
-    public function getAllMessages($id);
+    public function checkReported($reportId);
 }

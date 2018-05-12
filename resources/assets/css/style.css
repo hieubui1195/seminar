@@ -2,6 +2,10 @@
     top: 0px;
 }
 
+.topbar .top-navbar {
+    background-color: white;
+}
+
 .page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
     content: '';
 }
@@ -286,4 +290,8 @@ table.dataTable thead .sorting_desc:after {
 .current-seminar,
 .seminar-list .list li:hover {
     background-color: #ccc;
+}
+
+#editor {
+    height: 500px;
 }
