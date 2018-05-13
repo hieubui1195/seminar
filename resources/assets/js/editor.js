@@ -41,7 +41,7 @@ CKEDITOR.replace( 'editor', {
     // filebrowserUploadUrl: 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
     /*********************** File management support ***********************/
     // Make the editing area bigger than default.
-    height: 400,
+    height: 380,
     // An array of stylesheets to style the WYSIWYG area.
     // Note: it is recommended to keep your own styles in a separate file in order to make future updates painless.
     // contentsCss: [ 'https://cdn.ckeditor.com/4.8.0/full-all/contents.css', 'mystyles.css' ],

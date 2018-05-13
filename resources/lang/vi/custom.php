@@ -57,7 +57,14 @@ return [
     'report' => 'Báo cáo',
     'report_of' => 'Báo cáo của :Seminar',
     'show_report' => 'Xem báo cáo cuộc họp',
-    'publish report' => 'Xuất báo cáo',
+    'publish' => 'Xuất báo cáo',
+    'success' => 'Thành công',
+    'report_success' => 'Báo cáo đã được cập nhật',
+    'preview' => 'Xem trước',
+    'publish_success' => 'Báo cáo đã được xuất bản',
+    'download' => 'Tải về',
+    'send' => 'Gửi',
+
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

@@ -126,12 +126,16 @@
                             <i class="fa fa-file"></i> &nbsp;&nbsp;&nbsp;
                             <i class="fa fa-file-image"></i>
                             
-                            <button>Send</button>
+                            <button>@lang('custom.send')</button>
 
                         </div>
                     @else
                         <h3 class="text-center">@lang('custom.timeout')</h3>
-                        <a href="{{ route('seminar.report', $id) }}">@lang('custom.show_report')</a>
+                        @if ($checkPublished && $checkPublished != null)
+                            <h3 style="text-align: center;">
+                                <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">@lang('custom.show_report')</a>
+                            </h3>
+                        @endif
                     @endif
                 </div>
             </div>

@@ -23,7 +23,7 @@
                     <h3 style="float: left;">
                         @lang('custom.report_of', ['seminar' => $report[0]->name])
                     </h3>
-                    <a href="" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
+                    <a href="{{ route('seminar.download', $report[0]->id) }}" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
                 </div>
                 <div class="card-body">
                     <article>

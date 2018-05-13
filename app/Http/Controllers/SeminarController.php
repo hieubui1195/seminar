@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Lang;
 use Auth;
+use PDF;
 
 class SeminarController extends Controller
 {
@@ -113,13 +114,15 @@ class SeminarController extends Controller
         $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get(); 
         $messages = $this->seminarRepository->getMessages($id);
         $members = $this->seminarRepository->getAllMembers($id)->get();
+        $checkPublished = $this->reportRepository->checkPublished($id);
 
         return view('seminar.show', compact(
             'id',
             'seminars',
             'seminarUser',
             'messages',
-            'members'
+            'members',
+            'checkPublished'
         ));
     }
 
@@ -146,31 +149,29 @@ class SeminarController extends Controller
         //
     }
 
-    public function getEditor(MessageRepositoryInterface $messageRepository,
-        SeminarRepositoryInterface $seminarRepository,
-        ReportRepositoryInterface $reportRepository,
-        $id)
+    public function getEditor($id)
     {
         $report = '';
         $messages = '';
-        if (!$reportRepository->checkReported($id)) {
-            $messages = $messageRepository->getAllMessages($id);
+        if (!$this->reportRepository->checkReported($id)) {
+            $messages = $this->messageRepository->getAllMessages($id);
         } else {
-            $report = $reportRepository->checkReported($id)->report;
+            $report = $this->reportRepository->checkReported($id)->report;
         }
-        $seminar = $seminarRepository->find($id);
+        $seminar = $this->seminarRepository->find($id);
 
         return view('seminar.editor', compact('id', 'messages', 'seminar', 'report'));
     }
 
-    public function postEditor(ReportRepositoryInterface $reportRepository, Request $request, $id)
+    public function postEditor(Request $request, $id)
     {
         $data = $request->only('seminarId', 'report');
         $data['userId'] = Auth::id();
-        if (!$reportRepository->checkReported($id)) {
-            $reportRepository->store($data);
+        $data['filename'] = time() . '-' . str_slug($this->seminarRepository->find($request->seminarId)->name, '-') . '.pdf';
+        if (!$this->reportRepository->checkReported($id)) {
+            $this->reportRepository->store($data);
         } else {
-            $reportRepository->updateReport($id, $data);
+            $this->reportRepository->updateReport($id, $data);
         }
 
         return response()->json([
@@ -185,6 +186,32 @@ class SeminarController extends Controller
         $report = $this->seminarRepository->getReportOfSemianr($id)->get();
 
         return view('seminar.report', compact('report'));
+    }
+
+    public function previewReport($id)
+    {
+        $pdf = PDF::loadHTML($this->reportRepository->checkReported($id)->report);
+
+        return $pdf->stream();
+    }
+
+    public function postReport($id)
+    {
+        $this->reportRepository->publishReport($id);
+
+        return response()->json([
+            'status' => 1,
+            'msgTitle' => Lang::get('custom.success'),
+            'msgContent' => Lang::get('custom.publish_success'),
+        ]);
+    }
+
+    public function downloadReport($id)
+    {
+        $report = $this->reportRepository->checkReported($id);
+        $pdf = PDF::loadHTML($report->report);
+
+        return $pdf->download($report->filename);
     }
 
     public function createDate($string, $start, $end)
