@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+    {{ Html::style('bower/sweetalert2/dist/sweetalert2.min.css') }}
+@endsection
+
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
@@ -98,44 +102,62 @@
                         </div>
                     </div> 
                   
-                    <div class="chat-history">
-                        <ul>
-                            @foreach ($messages as $message)
-                                <li class="clearfix">
-                                    <div class="message-data {{ ($message->id == Auth::id()) ? 'align-right' : '' }}">
-                                        <span class="message-data-time" >
-                                            {{ $message->pivot->created_at }}
-                                        </span> &nbsp; &nbsp;
-                                        <span class="message-data-name" >
-                                            {{ Html::linkRoute('user.show', $message->name, $message->id)}}
-                                        </span> <i class="fa fa-circle {{ ($message->id == Auth::id()) ? 'me' : 'online' }}"></i>
-                                    </div>
-                                    <div class="message {{ ($message->id == Auth::id()) ? 'other-message float-right' : 'my-message' }}">
-                                        {{ $message->pivot->message }}
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    
-                    </div>
-
-                    @if (\Carbon\Carbon::parse($seminarUser[0]->end)->isPast() == false)
-                        <div class="chat-message clearfix">
-                            <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                                    
-                            <i class="fa fa-file"></i> &nbsp;&nbsp;&nbsp;
-                            <i class="fa fa-file-image"></i>
-                            
-                            <button>@lang('custom.send')</button>
-
+                    @if ($checkValidation)
+                        <div class="chat-history">
+                            <ul>
+                                @foreach ($messages as $message)
+                                    <li class="clearfix">
+                                        <div class="message-data {{ ($message->id == Auth::id()) ? 'align-right' : '' }}">
+                                            <span class="message-data-time" >
+                                                {{ $message->pivot->created_at }}
+                                            </span> &nbsp; &nbsp;
+                                            <span class="message-data-name" >
+                                                {{ Html::linkRoute('user.show', $message->name, $message->id)}}
+                                            </span> <i class="fa fa-circle {{ ($message->id == Auth::id()) ? 'me' : 'online' }}"></i>
+                                        </div>
+                                        <div class="message {{ ($message->id == Auth::id()) ? 'other-message float-right' : 'my-message' }}">
+                                            {{ $message->pivot->message }}
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        
                         </div>
-                    @else
-                        <h3 class="text-center">@lang('custom.timeout')</h3>
-                        @if ($checkPublished && $checkPublished != null)
-                            <h3 style="text-align: center;">
-                                <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">@lang('custom.show_report')</a>
-                            </h3>
+
+                        @if (\Carbon\Carbon::parse($seminarUser[0]->end)->isPast() == false)
+                            <div class="chat-message clearfix">
+                                <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                                        
+                                <i class="fa fa-file"></i> &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-file-image"></i>
+                                
+                                <button>@lang('custom.send')</button>
+
+                            </div>
+                        @else
+                            <h3 class="text-center">@lang('custom.timeout')</h3>
+                            @if ($checkPublished && $checkPublished != null)
+                                <h3 style="text-align: center;">
+                                    <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">@lang('custom.show_report')</a>
+                                </h3>
+                            @endif
                         @endif
+                    @else
+                        <h3 style="text-align: center;">
+                            @lang('custom.non_valid')
+                        </h3>
+                        <div class="row">
+                            <div  class="col-md-6 offset-md-3">
+                                <form id="form-validate">
+                                    <div class="form-group">
+                                        <input type="text" id="input-code" placeholder="@lang('custom.placeholder_valid')" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">@lang('custom.authentic')</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -205,9 +227,12 @@
 
 @section('script')
     {!! Html::script('js/app.js') !!}
+    {{ Html::script('bower/sweetalert2/dist/sweetalert2.min.js') }}
     {{ Html::script('js/seminar.js')}}
     <script type="text/javascript">
         var chatHistory = $('body .chat-history');
-        chatHistory.scrollTop(chatHistory[0].scrollHeight);
+        if (chatHistory.length) {
+            chatHistory.scrollTop(chatHistory[0].scrollHeight);
+        }
     </script>
 @endsection

@@ -25,6 +25,12 @@ $('body').on('click', '#btn-more-info', function(event) {
     $('#modal-seminar-info').modal('show');
 });
 
+$('body').on('submit', '#form-validate', function(event) {
+    event.preventDefault();
+    var inputCode = $('body #input-code').val();
+    validate(seminarId, inputCode);
+});
+
 function sendMessage(seminarId, message) {
     var userId = $('body input[name="userId"]');
     $.ajax({
@@ -53,7 +59,9 @@ function sendMessage(seminarId, message) {
 
 function scrollTop() {
     var chatHistory = $('body .chat-history');
-    chatHistory.scrollTop(chatHistory[0].scrollHeight);
+    if (chatHistory.length) {
+        chatHistory.scrollTop(chatHistory[0].scrollHeight);
+    }
 }
 
 function getMessage(messageId, currentUser) {
@@ -107,6 +115,42 @@ function echo(seminarId) {
                     $('body .chat-history ul').append(element);
                     scrollTop();
                 });
+        }
+    });
+}
+
+function validate(seminarId, inputCode) {
+    $.ajax({
+        url: '/seminar/validate/' + seminarId,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            seminarId: seminarId,
+            inputCode: inputCode
+        },
+        success: function(result) {
+            if (result.status == 1) {
+                location.reload();
+                swal(
+                    result.msgTitle,
+                    result.msgContent,
+                    'success'
+                );
+                scrollTop();
+            } else if (result.status == 0) {
+                swal(
+                    result.msgTitle,
+                    result.msgContent,
+                    'error'
+                );
+            }
+        },
+        error: function(result) {
+            swal(
+                'Error',
+                result.responseText,
+                'error'
+            )
         }
     });
 }

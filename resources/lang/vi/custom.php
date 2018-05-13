@@ -59,17 +59,23 @@ return [
     'show_report' => 'Xem báo cáo cuộc họp',
     'publish' => 'Xuất báo cáo',
     'success' => 'Thành công',
-    'report_success' => 'Báo cáo đã được cập nhật',
     'preview' => 'Xem trước',
-    'publish_success' => 'Báo cáo đã được xuất bản',
     'download' => 'Tải về',
     'send' => 'Gửi',
+    'non_valid' => 'Bạn chưa xác thực để tham gia cuộc họp. Xin hãy nhập mã để xác thực.',
+    'placeholder_valid' => 'Mã cuộc họp',
+    'authentic' => 'Xác thực',
+    'error' => 'Lỗi',
 
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',
     'update_profile_success' => 'Hồ sơ đã được cập nhật',
     'add_seminar_success' => 'Cuộc họp mới đã được thêm thành công',
+    'report_success' => 'Báo cáo đã được cập nhật',
+    'publish_success' => 'Báo cáo đã được xuất bản',
+    'validate_success' => 'Xác thực thành công',
+    'validate_error' => 'Xác thực lỗi',
 
     'mail' => [
         'subject_create_seminar' => 'Lời mời tham dự cuộc họp',

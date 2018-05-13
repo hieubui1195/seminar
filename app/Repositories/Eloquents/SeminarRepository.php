@@ -78,4 +78,12 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
     {
         return $this->model->getSeminarWithReport($id);
     }
+
+    public function checkCode($id, $inputCode)
+    {
+        return $this->model->where([
+            ['id', '=', $id],
+            ['code', '=', $inputCode],
+        ])->first();
+    }
 }
