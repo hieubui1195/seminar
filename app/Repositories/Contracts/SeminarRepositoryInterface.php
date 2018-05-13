@@ -20,4 +20,8 @@ interface SeminarRepositoryInterface extends BaseRepositoryInterface
     public function getSeminarWithUser($id);
 
     public function getMessages($id);
+
+    public function getAllMembers($id);
+
+    public function getReportOfSemianr($id);
 }

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'locale'], function() {
     ]);
     Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
     Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
+    Route::get('/seminar/report/{id}', 'SeminarController@getReport')->name('seminar.report');
 
     Route::get('/mail', 'HomeController@mail');
     Route::resource('user', 'UserController');

@@ -4,20 +4,22 @@ namespace App\Repositories\Eloquents;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use App\Models\Seminar;
+use App\Models\Participant;
 use Illuminate\Support\Facades\DB;
 
 class SeminarRepository extends BaseRepository implements SeminarRepositoryInterface
 {
 
-    protected $model;
+    protected $model, $participantModel;
   
     /**
      * ArticlesRepository constructor.
      * @param Article $article
      */
-    public function __construct(Seminar $seminar)
+    public function __construct(Seminar $seminar, Participant $participant)
     {
         $this->model = $seminar;
+        $this->participantModel = $participant;
     }
 
     public function store(array $data)
@@ -65,5 +67,15 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
     public function getMessages($id)
     {
         return $this->model->find($id)->users;
+    }
+
+    public function getAllMembers($id)
+    {
+        return $this->participantModel->getMembersInSeminar($id);
+    }
+
+    public function getReportOfSemianr($id)
+    {
+        return $this->model->getSeminarWithReport($id);
     }
 }

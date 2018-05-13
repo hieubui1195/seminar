@@ -8,11 +8,11 @@
         <meta name="author" content="">
 
         <!-- Bootstrap -->
-        {!! Html::style('assets/css/bootstrap.min.css') !!}
-        {!! Html::style('assets/Font-Awesome/web-fonts-with-css/css/fontawesome-all.min.css') !!}
-        {!! Html::style('assets/css/style.css') !!}
-        {!! Html::style('assets/css/nivo-lightbox/nivo-lightbox.css') !!}
-        {!! Html::style('assets/css/nivo-lightbox/default.css') !!}
+        {!! Html::style('css/bootstrap.css') !!}
+        {!! Html::style('bower/font-awesome/css/font-awesome.min.css') !!}
+        {!! Html::style('css/welcome.css') !!}
+        {!! Html::style('css/nivo-lightbox.css') !!}
+        {!! Html::style('css/default.css') !!}
         {!! Html::style('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300') !!}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -310,12 +310,12 @@
     </div>
 
 
-    {!! Html::script('assets/js/jquery.1.11.1.js') !!}
-    {!! Html::script('assets/js/bootstrap.min.js') !!}
-    {!! Html::script('assets/js/SmoothScroll.js') !!}
-    {!! Html::script('assets/js/nivo-lightbox.js') !!}
-    {!! Html::script('assets/js/jqBootstrapValidation.js') !!}
-    {!! Html::script('assets/js/contact_me.js') !!}
-    {!! Html::script('assets/js/main.js') !!}
+    {!! Html::script('bower/jquery/dist/jquery.min.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('bower/smooth-scroll/dist/js/smooth-scroll.min.js') !!}
+    {!! Html::script('js/nivo-lightbox.js') !!}
+    {!! Html::script('js/jqBootstrapValidation.js') !!}
+    {!! Html::script('js/contact_me.js') !!}
+    {!! Html::script('js/main.js') !!}
     </body>
 </html>

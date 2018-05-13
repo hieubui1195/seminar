@@ -54,6 +54,10 @@ return [
     'timeout' => 'The seminar has been finished',
     'seminar_info' => 'Informations of this seminar',
     'back' => 'Back',
+    'report' => 'Report',
+    'report_of' => 'Report of :Seminar',
+    'show_report' => 'Show report',
+    'publish' => 'Publish report',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

@@ -131,29 +131,71 @@
                         </div>
                     @else
                         <h3 class="text-center">@lang('custom.timeout')</h3>
+                        <a href="{{ route('seminar.report', $id) }}">@lang('custom.show_report')</a>
                     @endif
                 </div>
             </div>
         </div>
     </div>
     <div id="modal-seminar-info" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">@lang('custom.seminar_info')</h4>
-                                            <button class="close" data-dismiss="modal">
-                                                &times;
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Content
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">@lang('custom.close')</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@lang('custom.seminar_info')</h4>
+                    <button class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">@lang('custom.seminar')</dt>
+                        <dd class="col-sm-9">
+                            <b>
+                                {{ $seminarUser[0]->name }}
+                            </b>
+                        </dd>
+
+                        <dt class="col-sm-3">@lang('custom.chairman')</dt>
+                        <dd class="col-sm-9">
+                            <a href="{{ route('user.show', $seminarUser[0]->user_id) }}">
+                                {{ $seminarUser[0]->user->name }}
+                            </a>
+                        </dd>
+
+                        <dt class="col-sm-3">@lang('custom.description')</dt>
+                        <dd class="col-sm-9">{{ $seminarUser[0]->description }}</dd>
+
+                        <dt class="col-sm-3">@lang('custom.from')</dt>
+                        <dd class="col-sm-9">
+                            {{ \Carbon\Carbon::parse($seminarUser[0]->start)->format('d F\, Y H:i A') }}
+                        </dd>
+
+                        <dt class="col-sm-3">@lang('custom.to')</dt>
+                        <dd class="col-sm-9">
+                            {{ \Carbon\Carbon::parse($seminarUser[0]->end)->format('d F\, Y H:i A') }}
+                        </dd>
+
+                        <dt class="col-sm-3">@lang('custom.members')</dt>
+                        <dd class="col-sm-9">
+                            <ul style="padding-left: 10px">
+                                @foreach ($members as $member)
+                                    <li>
+                                        <a href="{{ route('user.show', $member->user->id) }}">
+                                            {{ $member->user->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </dd>
+
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">@lang('custom.close')</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

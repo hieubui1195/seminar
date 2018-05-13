@@ -23,4 +23,9 @@ class Participant extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeGetMembersInSeminar($query, $seminarId)
+    {
+        return $query->where('seminar_id', $seminarId)->with('user');
+    }
 }
