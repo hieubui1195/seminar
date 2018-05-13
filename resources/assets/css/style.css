@@ -305,3 +305,7 @@ table.dataTable thead .sorting_desc:after {
     max-height: 300px;
     overflow-x: auto;
 }
+
+#form-validate {
+    padding: 20px;
+}

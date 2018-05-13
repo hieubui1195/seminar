@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'locale' => \App\Http\Middleware\Locale::class,
         'checkReport' => \App\Http\Middleware\CheckReport::class,
         'checkPublished' => \App\Http\Middleware\CheckPublished::class,
+        'checkValidation' => \App\Http\Middleware\CheckValidation::class,
     ];
 }

@@ -31,4 +31,33 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
     {
         
     }
+
+    public function checkParticipant($seminarId, $userId)
+    {
+        return $this->model->where([
+            ['seminar_id', '=', $seminarId],
+            ['user_id', '=', $userId],
+        ])->first();
+    }
+
+    public function checkValidation($seminarId, $userId)
+    {
+        $check = $this->model->where([
+            ['seminar_id', '=', $seminarId],
+            ['user_id', '=', $userId],
+            ['status', '=', 1],
+        ])->first();
+
+        return $check;
+    }
+
+    public function updateValidation($seminarId, $userId)
+    {
+        return $this->model->where([
+            ['seminar_id', '=', $seminarId],
+            ['user_id', '=', $userId]
+        ])->update([
+            'status' => 1,
+        ]);
+    }
 }
