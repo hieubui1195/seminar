@@ -295,3 +295,13 @@ table.dataTable thead .sorting_desc:after {
 #editor {
     height: 500px;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #20aee3;
+}
+
+#modal-seminar-info .modal-body {
+    height: auto;
+    max-height: 300px;
+    overflow-x: auto;
+}

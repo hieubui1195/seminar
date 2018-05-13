@@ -53,6 +53,11 @@ return [
     'more_info' => 'Thêm thông tin',
     'timeout' => 'Cuộc họp đã kết thúc',
     'seminar_info' => 'Một số thông tin về cuộc họp này',
+    'back' => 'Trở lại',
+    'report' => 'Báo cáo',
+    'report_of' => 'Báo cáo của :Seminar',
+    'show_report' => 'Xem báo cáo cuộc họp',
+    'publish report' => 'Xuất báo cáo',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

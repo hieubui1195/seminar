@@ -28,6 +28,8 @@
     "bootstrap": "^4.1.1",
     "Waves": "https://github.com/fians/Waves.git#^0.7.6",
     "pusher-js": "https://github.com/pusher/pusher-js.git#^4.2.2",
-    "laravel-echo-bower": "https://github.com/applicazza/echo.git#^1.2.3"
+    "laravel-echo-bower": "https://github.com/applicazza/echo.git#^1.2.3",
+    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#^12.1.5",
+    "isotope-layout": "https://github.com/metafizzy/isotope.git#^3.0.6"
   }
 }

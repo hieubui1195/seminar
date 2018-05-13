@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Message;
 use App\Models\Participant;
 use App\Models\User;
+use App\Models\Report;
 
 class Seminar extends Model
 {
@@ -45,6 +46,11 @@ class Seminar extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function report()
+    {
+        return $this->hasOne(Report::class);
+    }
+
     public function scopeGetAllWithUser($query)
     {
         return $query->with('user')->get();
@@ -80,5 +86,10 @@ class Seminar extends Model
         return $query->where('end', '<', Carbon::now())
                     ->with('user')
                     ->orderBy('start', 'asc');
+    }
+
+    public function scopeGetSeminarWithReport($query, $id)
+    {
+        return $query->where('id', $id)->with('report');
     }
 }

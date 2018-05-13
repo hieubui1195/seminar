@@ -19,6 +19,9 @@
         </textarea>
         <div class="form-group" style="margin-top: 15px;">
             <button type="button" class="btn btn-success" id="btn-save-editor">@lang('custom.save')</button>
+            @if (Auth::id() == $seminar->id)
+                <button type="button" class="btn btn-info" id="btn-publish-report-file">@lang('custom.publish')</button>
+            @endif
             <a href="{{ route('seminar.show', $id) }}" class="btn btn-warning">@lang('custom.back')</a>
             <input type="hidden" id="seminar-id" value="{{ $id }}">
         </div>

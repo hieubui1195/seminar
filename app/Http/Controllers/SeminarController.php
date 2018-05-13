@@ -112,12 +112,14 @@ class SeminarController extends Controller
         $seminars = $this->seminarRepository->getAllWithUser();
         $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get(); 
         $messages = $this->seminarRepository->getMessages($id);
+        $members = $this->seminarRepository->getAllMembers($id)->get();
 
         return view('seminar.show', compact(
             'id',
             'seminars',
             'seminarUser',
-            'messages'
+            'messages',
+            'members'
         ));
     }
 
@@ -176,6 +178,13 @@ class SeminarController extends Controller
             'msgTitle' => Lang::get('custom.success'),
             'msgContent' => Lang::get('custom.report_success'),
         ]);
+    }
+
+    public function getReport($id)
+    {
+        $report = $this->seminarRepository->getReportOfSemianr($id)->get();
+
+        return view('seminar.report', compact('report'));
     }
 
     public function createDate($string, $start, $end)

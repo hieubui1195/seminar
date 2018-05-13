@@ -1,14 +1,8 @@
 @extends('layouts.app')
 
 @section('style')
-    {!! Html::style('assets/bootstrap-daterangepicker/daterangepicker.css') !!}
-    {!! Html::style('assets/select2/dist/css/select2.min.css') !!}
-
-    <style type="text/css">
-        .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #20aee3;
-        }
-    </style>
+    {!! Html::style('bower/bootstrap-daterangepicker/daterangepicker.css') !!}
+    {!! Html::style('bower/select2/dist/css/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -348,17 +342,9 @@
 @endsection
 
 @section('script')
-    {!! Html::script('assets/moment/moment.js') !!}
-    {!! Html::script('assets/bootstrap-daterangepicker/daterangepicker.js') !!}
-    {!! Html::script('assets/select2/dist/js/select2.min.js') !!}
+    {!! Html::script('bower/moment/moment.js') !!}
+    {!! Html::script('bower/bootstrap-daterangepicker/daterangepicker.js') !!}
+    {!! Html::script('bower/select2/dist/js/select2.min.js') !!}
     {!! Html::script('js/script.js') !!}
-    {!! Html::script('js/seminar.js') !!}
-    <script type="text/javascript">
-        var timerange = new timerange('#time');
-        var selectChairman = new multiselect('#select-chairman');
-        var multiselect = new multiselect('#select-members');
-
-        var seminar = new seminar();
-        seminar.init();
-    </script>
+    {!! Html::script('js/seminar-index.js') !!}
 @endsection
