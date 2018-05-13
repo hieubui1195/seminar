@@ -30,7 +30,18 @@ Route::group(['middleware' => 'locale'], function() {
     ]);
     Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
     Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
-    Route::get('/seminar/report/{id}', 'SeminarController@getReport')->name('seminar.report');
+    Route::group(['middleware' => 'checkReport'], function() {
+        Route::get('/seminar/report/{id}', 'SeminarController@getReport')
+                ->name('seminar.report');
+        Route::get('/seminar/report/preview/{id}', 'SeminarController@previewReport')
+                ->name('seminar.preview');
+        Route::post('/seminar/report/publish/{id}','SeminarController@postReport');
+        Route::get('/seminar/report/download/{id}', [
+            'uses' => 'SeminarController@downloadReport',
+            'as' => 'seminar.download',
+            'middleware' => 'checkPublished',
+        ]);
+    });
 
     Route::get('/mail', 'HomeController@mail');
     Route::resource('user', 'UserController');

@@ -11,5 +11,9 @@ interface ReportRepositoryInterface extends BaseRepositoryInterface
 
     public function updateReport($id, array $data);
 
-    public function checkReported($reportId);
+    public function checkReported($seminarId);
+
+    public function publishReport($seminarId);
+
+    public function checkPublished($seminarId);
 }

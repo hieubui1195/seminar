@@ -19,10 +19,11 @@
         </textarea>
         <div class="form-group" style="margin-top: 15px;">
             <button type="button" class="btn btn-success" id="btn-save-editor">@lang('custom.save')</button>
+            <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info">@lang('custom.preview')</a>
             @if (Auth::id() == $seminar->id)
-                <button type="button" class="btn btn-info" id="btn-publish-report-file">@lang('custom.publish')</button>
+                <button type="button" class="btn btn-warning" id="btn-publish-report">@lang('custom.publish')</button>
             @endif
-            <a href="{{ route('seminar.show', $id) }}" class="btn btn-warning">@lang('custom.back')</a>
+            <a href="{{ route('seminar.show', $id) }}" class="btn btn-danger">@lang('custom.back')</a>
             <input type="hidden" id="seminar-id" value="{{ $id }}">
         </div>
             

@@ -25,6 +25,7 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
             'user_id' => $data['userId'],
             'seminar_id' => $data['seminarId'],
             'report' => $data['report'],
+            'filename' => $data['filename'],
         ]);
     }
 
@@ -35,15 +36,33 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
 
     public function updateReport($id, array $data)
     {
-        return $this->model->find($id)->update([
+        return $this->model->where('seminar_id', $id)->update([
             'user_id' => $data['userId'],
             'report' => $data['report'],
+            'filename' => $data['filename'],
         ]);
     }
 
-    public function checkReported($reportId)
+    public function checkReported($seminarId)
     {
-        $check = $this->model->find($reportId);
+        $check = $this->model->where('seminar_id', $seminarId)->first();
+
+        return $check;
+    }
+
+    public function publishReport($seminarId)
+    {
+        return $this->model->where('seminar_id', $seminarId)->update([
+            'status' => 1,
+        ]);
+    }
+
+    public function checkPublished($seminarId)
+    {
+        $check = $this->model->where([
+            ['seminar_id', '=', $seminarId],
+            ['status', '=', 1],
+        ])->first();
 
         return $check;
     }
