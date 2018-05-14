@@ -66,6 +66,8 @@ return [
     'placeholder_valid' => 'Mã cuộc họp',
     'authentic' => 'Xác thực',
     'error' => 'Lỗi',
+    'edit_seminar' => 'Cập nhật thông tin cuộc họp',
+    'cancel' => 'Hủy',
 
 
     'add_user_success' => 'Người dùng đã được thêm thành công',

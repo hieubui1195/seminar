@@ -12,6 +12,7 @@ use App\Repositories\Contracts\ParticipantRepositoryInterface;
 use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Contracts\MessageRepositoryInterface;
 use App\Repositories\Contracts\ReportRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -23,19 +24,22 @@ use PDF;
 class SeminarController extends Controller
 {
 
-    protected $seminarRepository, $participantRepository, $messageRepository, $reportRepository;
+    protected $seminarRepository, $participantRepository, $messageRepository, $reportRepository, $userRepository;
 
 
-    public function __construct(ParticipantRepositoryInterface $participantRepository,
+    public function __construct(
+        ParticipantRepositoryInterface $participantRepository,
         SeminarRepositoryInterface $seminarRepository,
         MessageRepositoryInterface $messageRepository,
-        ReportRepositoryInterface $reportRepository)
+        ReportRepositoryInterface $reportRepository,
+        UserRepositoryInterface $userRepository)
     {
         $this->middleware('auth');
         $this->participantRepository = $participantRepository;
         $this->seminarRepository = $seminarRepository;
         $this->messageRepository = $messageRepository;
         $this->reportRepository = $reportRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -112,10 +116,11 @@ class SeminarController extends Controller
     {
         $checkValidation = $this->participantRepository->checkValidation($id, Auth::id());
         $seminars = $this->seminarRepository->getAllWithUser();
-        $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get(); 
+        $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get();
         $messages = $this->seminarRepository->getMessages($id);
         $members = $this->seminarRepository->getAllMembers($id)->get();
         $checkPublished = $this->reportRepository->checkPublished($id);
+        $users = $this->userRepository->getNameAndId();
 
         return view('seminar.show', compact(
             'id',
@@ -124,8 +129,24 @@ class SeminarController extends Controller
             'seminarUser',
             'messages',
             'members',
-            'checkPublished'
+            'checkPublished',
+            'users'
         ));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $seminar = $this->seminarRepository->find($id);
+        $users = $this->userRepository->getNameAndId();
+        $participants = $this->participantRepository->getMembersId($id);
+
+        return view('seminar.edit', compact('seminar', 'users', 'participants'));
     }
 
     /**
@@ -135,9 +156,18 @@ class SeminarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SeminarRequest $request, $id)
     {
-        //
+        $start = $this->createDate($request->time, 0, 19); 
+        $end = $this->createDate($request->time, 21, 30);
+        $data = $request->only('name', 'chairman', 'description');
+        $data['id'] = $id;
+        $data['start'] = $start;
+        $data['end'] = $end;
+
+        $this->seminarRepository->update($data);
+
+        return redirect()->route('seminar.show', $id);
     }
 
     /**

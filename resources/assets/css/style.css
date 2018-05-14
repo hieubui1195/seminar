@@ -73,7 +73,7 @@ table.dataTable thead .sorting_desc:after {
 
 .list li {
     list-style: none;
-    padding: 20px;
+    padding: 20px 5px;
 }
 
 .list img {
@@ -86,6 +86,10 @@ table.dataTable thead .sorting_desc:after {
     float: left;
     margin-top: 8px;
     padding-left: 8px;
+}
+
+.seminar-option {
+    float: right;
 }
 
 .status {
@@ -307,5 +311,10 @@ table.dataTable thead .sorting_desc:after {
 }
 
 #form-validate {
+    padding: 20px;
+}
+
+.form-title {
+    text-align: center;
     padding: 20px;
 }

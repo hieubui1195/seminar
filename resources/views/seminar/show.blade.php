@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('style')
-    {{ Html::style('bower/sweetalert2/dist/sweetalert2.min.css') }}
-@endsection
-
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
@@ -23,10 +19,7 @@
         <div class="card seminar-list">
             <div class="card-title">
                 <div class="search">
-                    {!! Form::open([
-                        'method' => 'POST',
-                        'id' => 'search-early',
-                    ]) !!}
+                    {!! Form::open(['method' => 'POST', 'id' => 'search-early']) !!}
                         {!! Form::text('keySeminar', null, ['placeholder' => Lang::get('custom.search')]) !!}
                         <i class="fa fa-search"></i>
                     {!! Form::close() !!}
@@ -34,37 +27,38 @@
             </div>
             <div class="card-body">
                 <ul class="list">
-                    @foreach ($seminars as $element)
-                        <li class="clearfix {{ ($element->id == $id) ? 'current-seminar' : '' }}">
-                            {!! Html::image(config('custom.path_avatar') . $element->user->avatar, 'Avatar', ['class' => 'img img-circle']) !!}
+                    @foreach ($seminars as $seminar)
+                        <li class="clearfix {{ ($seminar->id == $id) ? 'current-seminar' : '' }}">
+                            {!! Html::image(config('custom.path_avatar') . $seminar->user->avatar, 'Avatar', ['class' => 'img img-circle']) !!}
                             <div class="about">
                                 <div class="name">
                                     <h4>
-                                        {{ Html::linkRoute(
-                                            'seminar.show',
-                                            $element->name,
-                                            $element->id,
-                                            [
-                                                'class' => 'seminar-link',
-                                                'title' => Lang::get('custom.detail'),
-                                            ]
-                                        ) }}
+                                        {{ Html::linkRoute('seminar.show', $seminar->name, $seminar->id, ['class' => 'seminar-link', 'title' => Lang::get('custom.detail')]) }}
                                     </h4>
                                 </div>
                                 <div class="name">
-                                    {{ Html::linkRoute('user.show', $element->user->name, $element->user->id, ['title' => Lang::get('custom.detail')]) }}
+                                    {{ Html::linkRoute('user.show', $seminar->user->name, $seminar->user->id, ['title' => Lang::get('custom.detail')]) }}
                                 </div>
                                 <div class="status">
-                                    @if (\Carbon\Carbon::parse($element->start)->isFuture())
+                                    @if (\Carbon\Carbon::parse($seminar->start)->isFuture())
                                         <i class="fa fa-circle early"></i> @lang('custom.early')
-                                    @elseif (\Carbon\Carbon::parse($element->end)->isPast())
+                                    @elseif (\Carbon\Carbon::parse($seminar->end)->isPast())
                                         <i class="fa fa-circle offline"></i> @lang('custom.finished')
                                     @else
                                         <i class="fa fa-circle online"></i> @lang('custom.active')
                                     @endif
                                 </div>
                             </div>
+                            <div class="seminar-option">
+                                <a class="btn btn-info btn-edit-seminar" href="{{ route('seminar.edit', $seminar->id) }}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <button class="btn btn-danger btn-delete-seminar" data-id="{{ $seminar->id }}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
                         </li>
+                        
                     @endforeach
                 </ul>
             </div>
@@ -143,7 +137,7 @@
                             @endif
                         @endif
                     @else
-                        <h3 style="text-align: center;">
+                        <h3 style="text-align: center; padding: 20px;">
                             @lang('custom.non_valid')
                         </h3>
                         <div class="row">
@@ -226,8 +220,7 @@
 @endsection
 
 @section('script')
-    {!! Html::script('js/app.js') !!}
-    {{ Html::script('bower/sweetalert2/dist/sweetalert2.min.js') }}
+    {{ Html::script('js/app.js') }}
     {{ Html::script('js/seminar.js')}}
     <script type="text/javascript">
         var chatHistory = $('body .chat-history');

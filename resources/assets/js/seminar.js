@@ -150,7 +150,28 @@ function validate(seminarId, inputCode) {
                 'Error',
                 result.responseText,
                 'error'
-            )
+            );
+        }
+    });
+}
+
+function getSeminarInfo(seminarId) {
+    $.ajax({
+        url: '/seminar/info/' + seminarId,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            seminarId: seminarId
+        },
+        success: function(result) {
+            console.log(result);
+        },
+        error: function(result) {
+            swal(
+                'Error',
+                result.responseText,
+                'error'
+            );
         }
     });
 }

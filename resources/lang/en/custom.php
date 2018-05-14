@@ -66,6 +66,8 @@ return [
     'placeholder_valid' => 'Seminar Code',
     'authentic' => 'Authentic',
     'error' => 'Error',
+    'edit_seminar' => 'Edit Seminar',
+    'cancel' => 'Cancel',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',
