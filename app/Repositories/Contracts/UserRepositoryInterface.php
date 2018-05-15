@@ -8,4 +8,6 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
     public function store(array $data);
 
     public function update(array $data);
+
+    public function getNameAndId();
 }

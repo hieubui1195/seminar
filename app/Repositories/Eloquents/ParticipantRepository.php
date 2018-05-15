@@ -42,13 +42,11 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
 
     public function checkValidation($seminarId, $userId)
     {
-        $check = $this->model->where([
+        return $this->model->where([
             ['seminar_id', '=', $seminarId],
             ['user_id', '=', $userId],
             ['status', '=', 1],
         ])->first();
-
-        return $check;
     }
 
     public function updateValidation($seminarId, $userId)
@@ -59,5 +57,27 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
         ])->update([
             'status' => 1,
         ]);
+    }
+
+    public function getMembersId($seminarId)
+    {
+        return $this->model->where('seminar_id', $seminarId)->pluck('id');
+    }
+
+    public function updateParticipants($participants, $seminarId)
+    {
+        foreach ($participants as $participant) {
+            $data = [
+                'seminar_id' => $seminarId,
+                'user_id' => $participant,
+            ];
+
+            $this->store($data);
+        }
+    }
+
+    public function deleteParticipants($seminarId)
+    {
+        return $this->model->where('seminar_id', $seminarId)->delete();
     }
 }

@@ -14,4 +14,10 @@ interface ParticipantRepositoryInterface extends BaseRepositoryInterface
     public function checkValidation($seminarId, $userId);
 
     public function updateValidation($seminarId, $userId);
+
+    public function getMembersId($seminarId);
+
+    public function updateParticipants(array $participants, $seminarId);
+
+    public function deleteParticipants($seminarId);
 }

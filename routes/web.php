@@ -24,30 +24,33 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('seminar', 'SeminarController')->except([
-        'create',
-        'edit',
-    ]);
+    Route::resource('seminar', 'SeminarController')->except(['create']);
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
     Route::group(['middleware' => 'checkValidation'], function() {
         Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
         Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
-        Route::group(['middleware' => 'checkReport'], function() {
-            Route::get('/seminar/report/{id}', 'SeminarController@getReport')
-                    ->name('seminar.report');
-            Route::get('/seminar/report/preview/{id}', 'SeminarController@previewReport')
-                    ->name('seminar.preview');
-            Route::post('/seminar/report/publish/{id}','SeminarController@postReport');
-            Route::get('/seminar/report/download/{id}', [
-                'uses' => 'SeminarController@downloadReport',
-                'as' => 'seminar.download',
-                'middleware' => 'checkPublished',
-            ]);
-        });
+    });
+    Route::group(['middleware' => 'checkReport'], function() {
+        Route::get('/seminar/report/{id}', 'SeminarController@getReport')
+                ->name('seminar.report');
+        Route::get('/seminar/report/preview/{id}', 'SeminarController@previewReport')
+                ->name('seminar.preview');
+        Route::post('/seminar/report/publish/{id}','SeminarController@postReport');
+        Route::get('/seminar/report/download/{id}', [
+            'uses' => 'SeminarController@downloadReport',
+            'as' => 'seminar.download',
+            'middleware' => 'checkPublished',
+        ]);
     });
 
     Route::resource('user', 'UserController');
 
-    Route::resource('message', 'MessageController');    
+    Route::resource('message', 'MessageController');   
+
+    Route::get('/', "VideoRoomsController@index");
+    Route::prefix('room')->middleware('auth')->group(function() {
+       Route::get('join/{roomName}', 'VideoRoomsController@joinRoom');
+       Route::post('create', 'VideoRoomsController@createRoom');
+    }); 
 });
 

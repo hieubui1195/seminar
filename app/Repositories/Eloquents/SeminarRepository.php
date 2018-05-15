@@ -36,7 +36,13 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     public function update(array $data)
     {
-        
+        return $this->model->find($data['id'])->update([
+            'name' => $data['name'],
+            'user_id' => $data['chairman'],
+            'description' => $data['description'],
+            'start' => $data['start'],
+            'end' => $data['end'],
+        ]);
     }
 
     public function listActive()

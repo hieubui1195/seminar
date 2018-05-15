@@ -55,33 +55,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         ]);
     }
 
-    // public function store(array $data)
-    // {
-    //     return User::create([
-    //         'email' => $data['email'],
-    //         'name' => $data['name'],
-    //         'password' => bcrypt(config('custom.defaultPassword')),
-    //         'level' => $data['level'],
-    //     ]);
-    // }
-
-    // public function update(array $data)
-    // {
-    //     if ($data['password']) {
-    //         User::find($data['id'])->update([
-    //             'password' => bcrypt($data['password']),
-    //         ]);
-    //     }
-
-    //     // if ($data['avatar']) {
-    //     //     User::find($data['id'])->update([
-    //     //         'avatar' => bcrypt($data['avatar']),
-    //     //     ]);
-    //     // }
-
-    //     return User::find($data['id'])->update([
-    //         'name' => $data['name'],
-    //         'phone' => $data['phone'],
-    //     ]);
-    // }
+    public function getNameAndId()
+    {
+        return $this->model->pluck('name', 'id');
+    }
 }
