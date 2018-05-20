@@ -6,7 +6,8 @@ $.ajaxSetup({
 
 scrollTop();
 var seminarId = $('body input[name="seminarId"]').val();
-echo(seminarId);
+var userId = $('body input[name="userId"]').val();
+echo(seminarId, userId);
 
 $('body').on('keyup', '#message-to-send', function(event) {
     if (event.keyCode === 13) {
@@ -100,20 +101,21 @@ function addMessageElement(currentUser, message) {
     }
 }
 
-function echo(seminarId) {
+function echo(seminarId, userId) {
     const app = new Vue({
         el: '#app',
         created() {
             Echo.private('message' + seminarId)
                 .listen('MessageSentEvent', (e) => {
-                    console.log(e);
-                    var element = '<li class="clearfix"><div class="message-data">'
-                                    + '<span class="message-data-time">' + e['message']['created_at'] + '</span> &nbsp; &nbsp;'
-                                    + '<span class="message-data-name"><a href="/user/' + e['user']['id'] + '">'
-                                    + e['user']['name'] + '</a></span> <i class="fa fa-circle online"></i></div>'
-                                    + '<div class="message my-message">' + e['message']['message'] + '</div></li>';
-                    $('body .chat-history ul').append(element);
-                    scrollTop();
+                    if (userId != e['message']['user_id']) {
+                        var element = '<li class="clearfix"><div class="message-data">'
+                                        + '<span class="message-data-time">' + e['message']['created_at'] + '</span> &nbsp; &nbsp;'
+                                        + '<span class="message-data-name"><a href="/user/' + e['user']['id'] + '">'
+                                        + e['user']['name'] + '</a></span> <i class="fa fa-circle online"></i></div>'
+                                        + '<div class="message my-message">' + e['message']['message'] + '</div></li>';
+                        $('body .chat-history ul').append(element);
+                        scrollTop();
+                    }
                 });
         }
     });

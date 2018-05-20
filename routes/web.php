@@ -26,7 +26,7 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::resource('seminar', 'SeminarController')->except(['create']);
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
-    Route::group(['middleware' => 'checkValidation'], function() {
+    Route::group(['middleware' => 'checkChairman'], function() {
         Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
         Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
     });
@@ -44,13 +44,17 @@ Route::group(['middleware' => 'locale'], function() {
     });
 
     Route::resource('user', 'UserController');
+    Route::get('/user/video/{id}', 'UserController@callVideo');
+    Route::post('/user/call-noti/{callerId}/{receiverId}', 'UserController@notifyCall');
+
+    Route::post('/create-call', 'CallController@createCall');
+    Route::post('/update-call', 'CallController@updateCall');
+    Route::post('/call/get', 'CallController@getCall');
+    Route::post('/call/publish', 'CallController@publishReport');
 
     Route::resource('message', 'MessageController');   
 
-    Route::get('/', "VideoRoomsController@index");
-    Route::prefix('room')->middleware('auth')->group(function() {
-       Route::get('join/{roomName}', 'VideoRoomsController@joinRoom');
-       Route::post('create', 'VideoRoomsController@createRoom');
-    }); 
+    Route::get('/video', "VideoRoomsController@index");
+    
 });
 

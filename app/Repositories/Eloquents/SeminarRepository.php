@@ -5,21 +5,23 @@ use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use App\Models\Seminar;
 use App\Models\Participant;
+use App\Models\Report;
 use Illuminate\Support\Facades\DB;
 
 class SeminarRepository extends BaseRepository implements SeminarRepositoryInterface
 {
 
-    protected $model, $participantModel;
+    protected $model, $participantModel, $reportModel;
   
     /**
      * ArticlesRepository constructor.
      * @param Article $article
      */
-    public function __construct(Seminar $seminar, Participant $participant)
+    public function __construct(Seminar $seminar, Participant $participant, Report $reportModel)
     {
         $this->model = $seminar;
         $this->participantModel = $participant;
+        $this->reportModel = $reportModel;
     }
 
     public function store(array $data)
@@ -80,9 +82,12 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
         return $this->participantModel->getMembersInSeminar($id);
     }
 
-    public function getReportOfSemianr($id)
+    public function getReportOfSeminar($id)
     {
-        return $this->model->getSeminarWithReport($id);
+        return $this->reportModel->where([
+            ['report_id', $id],
+            ['report_type', config('custom.seminar')]
+        ])->first();
     }
 
     public function checkCode($id, $inputCode)
@@ -90,6 +95,14 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
         return $this->model->where([
             ['id', '=', $id],
             ['code', '=', $inputCode],
+        ])->first();
+    }
+
+    public function checkChairman($id, $userId)
+    {
+        return $this->model->where([
+            ['id', $id],
+            ['user_id', $userId]
         ])->first();
     }
 }

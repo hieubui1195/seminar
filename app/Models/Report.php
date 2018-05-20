@@ -9,7 +9,8 @@ use App\Models\User;
 class Report extends Model
 {
     protected $fillable = [
-        'seminar_id',
+        'report_id',
+        'report_type',
         'user_id',
         'report',
         'status',

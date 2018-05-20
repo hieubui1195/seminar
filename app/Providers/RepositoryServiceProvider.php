@@ -13,6 +13,10 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquents\UserRepository;
 use App\Repositories\Contracts\ReportRepositoryInterface;
 use App\Repositories\Eloquents\ReportRepository;
+use App\Repositories\Contracts\NotificationRepositoryInterface;
+use App\Repositories\Eloquents\NotificationRepository;
+use App\Repositories\Contracts\CallRepositoryInterface;
+use App\Repositories\Eloquents\CallRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -36,6 +40,14 @@ class RepositoryServiceProvider extends ServiceProvider
         'report' => [
             ReportRepositoryInterface::class,
             ReportRepository::class,
+        ],
+        'notification' => [
+            NotificationRepositoryInterface::class,
+            NotificationRepository::class,
+        ],
+        'call' => [
+            CallRepositoryInterface::class,
+            CallRepository::class,
         ],
     ];
     /**

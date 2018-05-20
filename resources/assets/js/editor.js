@@ -1,4 +1,4 @@
-CKEDITOR.replace( 'editor', {
+CKEDITOR.replace('editor', {
     // Define the toolbar: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_toolbar
     // The full preset from CDN which we used as a base provides more features than we need.
     // Also by default it comes with a 3-line toolbar. Here we put all buttons in a single row.
@@ -28,10 +28,10 @@ CKEDITOR.replace( 'editor', {
     //  - About Advanced Content Filter: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter
     //  - About Disallowed Content: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_disallowed_content
     //  - About Allowed Content: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_allowed_content_rules
-    disallowedContent: 'img{width,height,float}',
-    extraAllowedContent: 'img[width,height,align]',
-    // Enabling extra plugins, available in the full-all preset: http://ckeditor.com/presets-all
-    extraPlugins: 'tableresize,uploadimage,uploadfile',
+    // disallowedContent: 'img{width,height,float}',
+    // extraAllowedContent: 'img[width,height,align]',
+    // // Enabling extra plugins, available in the full-all preset: http://ckeditor.com/presets-all
+    // extraPlugins: 'tableresize,uploadimage,uploadfile',
     /*********************** File management support ***********************/
     // In order to turn on support for file uploads, CKEditor has to be configured to use some server side
     // solution with file upload/management capabilities, like for example CKFinder.
@@ -50,7 +50,7 @@ CKEDITOR.replace( 'editor', {
     // Reduce the list of block elements listed in the Format dropdown to the most commonly used.
     format_tags: 'p;h1;h2;h3;pre',
     // Simplify the Image and Link dialog windows. The "Advanced" tab is not needed in most cases.
-    removeDialogTabs: 'image:advanced;link:advanced',
+    // removeDialogTabs: 'image:advanced;link:advanced',
     // Define the list of styles which should be available in the Styles dropdown list.
     // If the "class" attribute is used to style an element, make sure to define the style for the class in "mystyles.css"
     // (and on your website so that it rendered in the same way).

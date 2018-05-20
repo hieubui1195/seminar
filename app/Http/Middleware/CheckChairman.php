@@ -3,16 +3,19 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Repositories\Contracts\ReportRepositoryInterface;
+use App\Repositories\Contracts\SeminarRepositoryInterface;
+use Auth;
 
-class CheckReport
+class CheckChairman
 {
-    protected $reportRepository;
 
-    public function __construct(ReportRepositoryInterface $reportRepository)
+    protected $seminarRepository;
+
+    public function __construct(SeminarRepositoryInterface $seminarRepository)
     {
-        $this->reportRepository = $reportRepository;
+        $this->seminarRepository = $seminarRepository;
     }
+
     /**
      * Handle an incoming request.
      *
@@ -22,7 +25,7 @@ class CheckReport
      */
     public function handle($request, Closure $next)
     {
-        if ($this->reportRepository->checkReported($request->id, 'seminar')) {
+        if ($this->seminarRepository->checkChairman($request->id, Auth::id())) {
             return $next($request);
         } else {
             return redirect()->back();

@@ -200,6 +200,7 @@
 @endsection
 
 @section('script')
+    {{ Html::script('js/app.js') }}
     {!! Html::script('js/user.js') !!}
     <script type="text/javascript">
         var user = new user();

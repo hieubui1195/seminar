@@ -318,3 +318,32 @@ table.dataTable thead .sorting_desc:after {
     text-align: center;
     padding: 20px;
 }
+
+.video-box {
+    width: 100%;
+    height: auto;
+}
+
+#your-video,
+#friends-video {
+    width: 100%;
+    border-radius: 7px;
+}
+
+/*
+
+#friends-video {
+    display: none;
+}
+
+.in-call {
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+}
+
+.in-receiver {
+    z-index: 0;
+    width: 80%;
+    border-radius: 7px;
+}*/

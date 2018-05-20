@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('style')
-    {{ Html::style('bower/sweetalert2/dist/sweetalert2.min.css') }}
-@endsection
-
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -20,7 +16,7 @@
         <div class="form-group" style="margin-top: 15px;">
             <button type="button" class="btn btn-success" id="btn-save-editor">@lang('custom.save')</button>
             <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info">@lang('custom.preview')</a>
-            @if (Auth::id() == $seminar->id)
+            @if (Auth::id() == $seminar->user_id)
                 <button type="button" class="btn btn-warning" id="btn-publish-report">@lang('custom.publish')</button>
             @endif
             <a href="{{ route('seminar.show', $id) }}" class="btn btn-danger">@lang('custom.back')</a>
@@ -32,7 +28,6 @@
 @endsection
 
 @section('script')
-    {{ Html::script('bower/sweetalert2/dist/sweetalert2.min.js') }}
     {{ Html::script('bower/ckeditor/ckeditor.js') }}
     {{ Html::script('js/editor.js') }}
     {{ Html::script('js/saveEditor.js') }}
