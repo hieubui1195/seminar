@@ -89,3 +89,7 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    {{ Html::script('js/app.js') }}
+@endsection

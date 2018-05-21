@@ -55,7 +55,7 @@ return [
     'seminar_info' => 'Informations of this seminar',
     'back' => 'Back',
     'report' => 'Report',
-    'report_of' => 'Report of :Seminar',
+    'report_of' => 'Report of: <b>:Seminar</b>',
     'show_report' => 'Show Report',
     'publish' => 'Publish Report',
     'success' => 'Success',
@@ -68,6 +68,8 @@ return [
     'error' => 'Error',
     'edit_seminar' => 'Edit Seminar',
     'cancel' => 'Cancel',
+    'call' => 'Call',
+    'finish' => 'Finish',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

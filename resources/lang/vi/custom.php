@@ -55,7 +55,7 @@ return [
     'seminar_info' => 'Một số thông tin về cuộc họp này',
     'back' => 'Trở lại',
     'report' => 'Báo cáo',
-    'report_of' => 'Báo cáo của :Seminar',
+    'report_of' => 'Báo cáo của: :<b>Seminar</b>',
     'show_report' => 'Xem báo cáo cuộc họp',
     'publish' => 'Xuất báo cáo',
     'success' => 'Thành công',
@@ -68,6 +68,8 @@ return [
     'error' => 'Lỗi',
     'edit_seminar' => 'Cập nhật thông tin cuộc họp',
     'cancel' => 'Hủy',
+    'call' => 'Gọi',
+    'finish' => 'Kết thúc',
 
 
     'add_user_success' => 'Người dùng đã được thêm thành công',

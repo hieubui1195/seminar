@@ -10,4 +10,6 @@ return [
     'create' => 'create',
     'update' => 'update',
     'null' => NULL,
+    'seminar' => 'seminar',
+    'call' => 'call',
 ];

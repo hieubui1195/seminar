@@ -115,6 +115,7 @@
 @endsection
 
 @section('script')
+    {{ Html::script('js/app.js') }}
     {!! Html::script('assets/datatables.net/js/jquery.dataTables.min.js') !!}
     {!! Html::script('js/script.js') !!}
     {!! Html::script('js/user.js') !!}

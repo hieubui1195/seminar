@@ -9,7 +9,7 @@
                     <a href="{{ route('home') }}">@lang('custom.home')</a><i class="fa fa-angle-right"></i>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('seminar.show', $report[0]->id) }}">@lang('custom.seminar')</a><i class="fa fa-angle-right"></i>
+                    <a href="{{ route('seminar.show', $report->id) }}">@lang('custom.seminar')</a><i class="fa fa-angle-right"></i>
                 </li>
                 <li class="breadcrumb-item active">@lang('custom.report')</li>
             </ol>
@@ -21,16 +21,20 @@
             <div class="card">
                 <div class="card-body">
                     <h3 style="float: left;">
-                        @lang('custom.report_of', ['seminar' => $report[0]->name])
+                        @lang('custom.report_of', ['seminar' => $seminar->name])
                     </h3>
-                    <a href="{{ route('seminar.download', $report[0]->id) }}" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
+                    <a href="{{ route('seminar.download', $report->id) }}" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
                 </div>
                 <div class="card-body">
                     <article>
-                        {!! $report[0]->report->report !!}
+                        {!! $report->report !!}
                     </article>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {{ Html::script('js/app.js') }}
 @endsection

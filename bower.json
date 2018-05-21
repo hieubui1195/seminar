@@ -20,8 +20,6 @@
     "Modernizr": "https://github.com/Modernizr/Modernizr.git#^3.6.0",
     "popper.js": "https://github.com/FezVrasta/popper.js.git#^1.12.9",
     "bootstrap-daterangepicker": "https://github.com/dangrossman/bootstrap-daterangepicker.git#^2.1.27",
-    "multiselect": "https://github.com/lou/multi-select.git#^0.9.12",
-    "ultraselect": "https://github.com/ultraleettech/ultraselect.git#^1.3.1",
     "requirejs": "https://github.com/requirejs/requirejs-bower.git#^2.3.5",
     "font-awesome": "4.7",
     "ckeditor": "^4.9.2",
@@ -30,6 +28,8 @@
     "pusher-js": "https://github.com/pusher/pusher-js.git#^4.2.2",
     "laravel-echo-bower": "https://github.com/applicazza/echo.git#^1.2.3",
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#^12.1.5",
-    "isotope-layout": "https://github.com/metafizzy/isotope.git#^3.0.6"
+    "isotope-layout": "https://github.com/metafizzy/isotope.git#^3.0.6",
+    "firebase": "^5.0.1",
+    "JQuery-Session-Plugin": "https://github.com/AlexChittock/JQuery-Session-Plugin.git"
   }
 }

@@ -4,19 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\NotificationRepositoryInterface;
 use App\Http\Requests\UserRequest;
-use App\Models\User;
-use App\Traits\ExampleTrait;
+use App\Events\NotifyCallEvent;
 use Lang;
+use Auth;
 
 class UserController extends Controller
 {
     
-    protected $userRepository;
+    protected $userRepository, $notificationRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository,
+        NotificationRepositoryInterface $notificationRepository)
     {
+        $this->middleware('auth');
         $this->userRepository = $userRepository;
+        $this->notificationRepository = $notificationRepository;
     }
 
     /**
@@ -115,5 +119,29 @@ class UserController extends Controller
             'status' => 1,
             'msg' => Lang::get('custom.delete_user_success'),
         ]);
+    }
+
+    public function callVideo($id)
+    {
+        $caller = Auth::user();
+        $receiver = $this->userRepository->find($id);
+
+        return view('user.video', compact('caller', 'receiver'));
+    }
+
+    public function notifyCall(Request $request)
+    {
+        $callerId = $request->callerId;
+        $receiverId = $request->receiverId;
+        $caller = $this->userRepository->find($callerId);
+        event(new NotifyCallEvent($caller, $receiverId));
+
+        $data['user_send_id'] = $callerId;
+        $data['user_receive_id'] = $receiverId;
+        $data['target_id'] = $receiverId;
+        $data['type'] = 'call';
+        $this->notificationRepository->store($data);
+
+        return response()->json($request->all());
     }
 }

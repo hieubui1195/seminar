@@ -23,9 +23,11 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
     {
         return $this->model->create([
             'user_id' => $data['userId'],
-            'seminar_id' => $data['seminarId'],
+            'report_id' => $data['reportId'],
+            'report_type' => $data['reportType'],
             'report' => $data['report'],
             'filename' => $data['filename'],
+            'status' => $data['status'],
         ]);
     }
 
@@ -34,36 +36,38 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
         # code...
     }
 
-    public function updateReport($id, array $data)
+    public function updateReport($id, $reportType, array $data)
     {
-        return $this->model->where('seminar_id', $id)->update([
+        return $this->model->where('report_id', $id)
+            ->where('report_type', $reportType)->update([
             'user_id' => $data['userId'],
             'report' => $data['report'],
             'filename' => $data['filename'],
         ]);
     }
 
-    public function checkReported($seminarId)
+    public function checkReported($reportId, $reportType)
     {
-        $check = $this->model->where('seminar_id', $seminarId)->first();
-
-        return $check;
+        return $this->model->where('report_id', $reportId)
+            ->where('report_type', $reportType)
+            ->first();
     }
 
-    public function publishReport($seminarId)
+    public function publishReport($reportId, $reportType)
     {
-        return $this->model->where('seminar_id', $seminarId)->update([
+        return $this->model->where('report_id', $reportId)
+            ->where('report_type', $reportType)
+            ->update([
             'status' => 1,
         ]);
     }
 
-    public function checkPublished($seminarId)
+    public function checkPublished($reportId, $reportType)
     {
-        $check = $this->model->where([
-            ['seminar_id', '=', $seminarId],
+        return $this->model->where([
+            ['report_id', '=', $reportId],
+            ['report_type', '=', $reportType],
             ['status', '=', 1],
         ])->first();
-
-        return $check;
     }
 }
