@@ -70,7 +70,7 @@ return [
     'cancel' => 'Hủy',
     'call' => 'Gọi',
     'finish' => 'Kết thúc',
-
+    'participants' => 'Người tham gia',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

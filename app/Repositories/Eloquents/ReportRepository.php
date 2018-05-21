@@ -57,9 +57,7 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
     {
         return $this->model->where('report_id', $reportId)
             ->where('report_type', $reportType)
-            ->update([
-            'status' => 1,
-        ]);
+            ->update(['status' => 1]);
     }
 
     public function checkPublished($reportId, $reportType)
