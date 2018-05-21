@@ -58,7 +58,7 @@ function publishReport(seminarId) {
                     result.msgTitle,
                     result.msgContent,
                     'success'
-                )
+                );
             }
         },
         error: function(result) {
@@ -66,7 +66,7 @@ function publishReport(seminarId) {
                 'Error',
                 result.responseText,
                 'error'
-            )
+            );
         }
     });
 }

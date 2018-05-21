@@ -69,7 +69,7 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     public function getSeminarWithUser($id)
     {
-        return $this->model->withUser($id);
+        return $this->model->withUser($id)->first();
     }
 
     public function getMessages($id)
@@ -79,7 +79,7 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     public function getAllMembers($id)
     {
-        return $this->participantModel->getMembersInSeminar($id);
+        return $this->participantModel->getMembersInSeminar($id)->get();
     }
 
     public function getReportOfSeminar($id)

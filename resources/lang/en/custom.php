@@ -70,6 +70,7 @@ return [
     'cancel' => 'Cancel',
     'call' => 'Call',
     'finish' => 'Finish',
+    'participants' => 'Participants',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

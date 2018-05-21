@@ -6,8 +6,15 @@
         <textarea id="editor" style="text-align: justify;">
             @if ($report == null)
                 <h2 style="text-align: center;">{{ $seminar->name }}</h2>
-                @foreach ($messages as $element)
-                    {!! $element->message !!}<br>
+                <h3>@lang('custom.chairman'): <b>{{ $seminar->user->name }}</b></h3>
+                <h3>@lang('custom.participants'):</h3>
+                <ol>
+                    @foreach ($participants as $participant)
+                        {{ $participant->user->name }}
+                    @endforeach
+                </ol>
+                @foreach ($messages as $message)
+                    {!! $message->message !!}<br>
                 @endforeach
             @else
                 {!! $report !!}
@@ -15,7 +22,9 @@
         </textarea>
         <div class="form-group" style="margin-top: 15px;">
             <button type="button" class="btn btn-success" id="btn-save-editor">@lang('custom.save')</button>
-            <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info">@lang('custom.preview')</a>
+            @if ($checkReported != null)
+                <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info">@lang('custom.preview')</a>
+            @endif
             @if (Auth::id() == $seminar->user_id)
                 <button type="button" class="btn btn-warning" id="btn-publish-report">@lang('custom.publish')</button>
             @endif
@@ -29,6 +38,7 @@
 
 @section('script')
     {{ Html::script('bower/ckeditor/ckeditor.js') }}
+    {{ Html::script('bower/jquery/dist/jquery.min.js') }}
     {{ Html::script('js/editor.js') }}
     {{ Html::script('js/saveEditor.js') }}
 @endsection

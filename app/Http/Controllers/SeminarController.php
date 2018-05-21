@@ -185,14 +185,16 @@ class SeminarController extends Controller
     {
         $report = '';
         $messages = '';
-        if (!$this->reportRepository->checkReported($id, config('custom.seminar'))) {
+        $checkReported = $this->reportRepository->checkReported($id, config('custom.seminar'));
+        if (!$checkReported) {
             $messages = $this->messageRepository->getAllMessages($id);
         } else {
-            $report = $this->reportRepository->checkReported($id, config('custom.seminar'))->report;
+            $report = $checkReported->report;
         }
-        $seminar = $this->seminarRepository->find($id);
+        $seminar = $this->seminarRepository->getSeminarWithUser($id);
+        $participants = $this->seminarRepository->getAllMembers($id);
 
-        return view('seminar.editor', compact('id', 'messages', 'seminar', 'report'));
+        return view('seminar.editor', compact('id', 'messages', 'seminar', 'report', 'participants', 'checkReported'));
     }
 
     public function postEditor(Request $request, $id)
@@ -226,7 +228,7 @@ class SeminarController extends Controller
 
     public function previewReport($id)
     {
-        $pdf = PDF::loadHTML($this->reportRepository->checkReported($id, $data['reportType'])->report);
+        $pdf = PDF::loadHTML($this->reportRepository->checkReported($id, config('custom.seminar'))->report);
 
         return $pdf->stream();
     }
