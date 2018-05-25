@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\NotificationRepositoryInterface;
+use App\Repositories\Contracts\CallRepositoryInterface;
 use App\Http\Requests\UserRequest;
 use App\Events\NotifyCallEvent;
+use App\Models\Call;
 use Lang;
 use Auth;
 
 class UserController extends Controller
 {
     
-    protected $userRepository, $notificationRepository;
+    protected $userRepository, $notificationRepository, $callRepository;
 
     public function __construct(UserRepositoryInterface $userRepository,
-        NotificationRepositoryInterface $notificationRepository)
+        NotificationRepositoryInterface $notificationRepository,
+        CallRepositoryInterface $callRepository)
     {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
@@ -69,9 +72,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $user = $this->userRepository->find($id);
+
+        if ($request->ajax()) {
+            return response()->json($this->userRepository->find($id));
+        }
 
         return view('user.show', compact('user'));
     }
@@ -84,7 +91,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -96,13 +105,12 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $data = $request->only('id', 'name', 'password', 'phone');
+        $data = $request->only('name', 'password', 'phone');
+        $data['id'] = $id;
         $this->userRepository->update($data);
 
-        return response()->json([
-            'status' => 1,
-            'msg' => Lang::get('custom.update_profile_success'),
-        ]);
+        return redirect()->route('user.show', $id)
+            ->with('msg', Lang::get('custom.update_profile_success'));
     }
 
     /**
@@ -131,17 +139,33 @@ class UserController extends Controller
 
     public function notifyCall(Request $request)
     {
-        $callerId = $request->callerId;
-        $receiverId = $request->receiverId;
-        $caller = $this->userRepository->find($callerId);
-        event(new NotifyCallEvent($caller, $receiverId));
+        $caller = $this->userRepository->find($request->callerId);
 
-        $data['user_send_id'] = $callerId;
-        $data['user_receive_id'] = $receiverId;
-        $data['target_id'] = $receiverId;
-        $data['type'] = 'call';
+        $dataCall['callerId'] = $request->callerId;
+        $dataCall['receiverId'] = $request->receiverId;
+        $call = Call::create([
+            'caller' => $request->callerId,
+            'receiver' => $request->receiverId,
+            'status' => 0,
+        ]);
+
+        event(new NotifyCallEvent($caller, $request->receiverId));
+
+        $data['user_send_id'] = $request->callerId;
+        $data['user_receive_id'] = $request->receiverId;
+        $data['target_id'] = $request->receiverId;
+        $data['notification_type'] = 'call';
+        $data['notification_id'] = $call->id;
         $this->notificationRepository->store($data);
 
         return response()->json($request->all());
+    }
+
+    public function getNotifications()
+    {
+        $userId = Auth::id();
+        $notifications = $this->notificationRepository->getNotifications(2);
+
+        return view('user.notifications', compact('notifications'));
     }
 }

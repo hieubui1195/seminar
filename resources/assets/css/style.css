@@ -330,20 +330,6 @@ table.dataTable thead .sorting_desc:after {
     border-radius: 7px;
 }
 
-/*
-
-#friends-video {
-    display: none;
+.mailbox .message-center {
+    overflow-y: auto !important; 
 }
-
-.in-call {
-    z-index: 1;
-    right: 0;
-    bottom: 0;
-}
-
-.in-receiver {
-    z-index: 0;
-    width: 80%;
-    border-radius: 7px;
-}*/

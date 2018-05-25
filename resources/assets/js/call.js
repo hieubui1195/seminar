@@ -7,13 +7,14 @@ var config = {
     messagingSenderId: "915525042957"
 };
 firebase.initializeApp(config);
+
 document.getElementsByTagName('body').onload = showMyFace();
 var callerId = $('#current-user').val(),
     receiverId = $('#receiver-id').val();
 var callId;
 var database = firebase.database().ref();
-var yourVideo = document.getElementById("your-video");
-var friendsVideo = document.getElementById("friends-video");
+var yourVideo = document.getElementById('your-video');
+var friendsVideo = document.getElementById('friends-video');
 var yourId = $('#current-user').val();
 var servers = {'iceServers': [
     {'urls': 'stun:stun.services.mozilla.com'},
@@ -43,8 +44,15 @@ $('body').on('click', '#btn-call', function(event) {
 
 $('body').on('click', '#btn-publish-report-call', function(event) {
     event.preventDefault();
-    publishReport();
-})
+    var report = CKEDITOR.instances['editor'].getData();
+    publishReport(report);
+});
+
+$('body').on('click', '#btn-finish', function(event) {
+    event.preventDefault();
+    pc.close();
+    location.href = '/home';
+});
 
 function readMessage(data) {
     var msg = JSON.parse(data.val().message);
@@ -52,7 +60,7 @@ function readMessage(data) {
     if (sender != yourId) {
         if (msg.ice != undefined) {
             pc.addIceCandidate(new RTCIceCandidate(msg.ice));
-        } else if (msg.sdp.type == "offer") {                        
+        } else if (msg.sdp.type == 'offer') {                        
             swal({
                 title: 'Call notification?',
                 text: 'You have a call to come from ' + sender + '. Do you want to accept?',
@@ -77,7 +85,7 @@ function readMessage(data) {
                     
                 }
             });
-        } else if (msg.sdp.type == "answer") {
+        } else if (msg.sdp.type == 'answer') {
             pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
         }
     }
@@ -103,7 +111,7 @@ var fetchData = function(dataURL) {
 
 function showFriendsFace(callerId, receiverId) {
     var ajaxCall = fetchData('/user/call-noti/' + callerId + '/' + receiverId);
-    ajaxCall.fail(function(result) {
+    ajaxCall.fail(function() {
         swal(
             'Error!',
             'Some errors have occurred.',
@@ -138,13 +146,43 @@ function getURLParameter(sParam) {
     }
 }
 
-
-function publishReport() {
+function publishReport(report) {
     var callerId = getURLParameter('caller'),
         receiverId = getURLParameter('receiver');
     var ajaxGetCallId = fetchData('/call/get');
 
-    ajaxGetCallId.done(function(result) {
-        console.log(result);
+    var ajaxPublishReport = ajaxGetCallId.then(function(data) {
+        return $.ajax({
+            url: '/call/publish',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                reportId: data.id,
+                report: report
+            }
+        });
+    });
+
+    ajaxPublishReport.done(function(data) {
+        if (data.status == 1) {
+            swal(
+                data.msgTitle,
+                data.msgContent,
+                'success'
+            );
+        }
+    });
+}
+
+function getSender(userId) {
+    var ajaxGetSender = $.ajax({
+        url: '/user/' + userId,
+        type: 'GET',
+        dataType: 'JSON',
+        data: { userId: userId }
+    });
+
+    ajaxGetSender.done(function(data) {
+        return data;
     });
 }

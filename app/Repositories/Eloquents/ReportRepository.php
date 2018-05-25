@@ -68,4 +68,16 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
             ['status', '=', 1],
         ])->first();
     }
+
+    // public function storeCallReport(array $data)
+    // {
+    //     return $this->model->create([
+    //         'user_id' => $data['userId'],
+    //         'report_id' => $data['reportId'],
+    //         'report_type' => $data['reportType'],
+    //         'report' => $data['report'],
+    //         'filename' => $data['filename'],
+    //         'status' => $data['status'],
+    //     ]);
+    // }
 }

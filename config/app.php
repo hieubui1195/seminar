@@ -169,7 +169,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        PhpJunior\LaravelVideoChat\LaravelVideoChatServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
 
         /*
          * Application Service Providers...

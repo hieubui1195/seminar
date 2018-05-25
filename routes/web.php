@@ -24,7 +24,7 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('seminar', 'SeminarController')->except(['create']);
+    Route::resource('seminar', 'SeminarController');
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
     Route::group(['middleware' => 'checkChairman'], function() {
         Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
@@ -46,6 +46,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::resource('user', 'UserController');
     Route::get('/user/video/{id}', 'UserController@callVideo');
     Route::post('/user/call-noti/{callerId}/{receiverId}', 'UserController@notifyCall');
+    Route::get('/notifications', 'UserController@getNotifications')->name('notifications');
 
     Route::post('/create-call', 'CallController@createCall');
     Route::post('/update-call', 'CallController@updateCall');
@@ -53,6 +54,8 @@ Route::group(['middleware' => 'locale'], function() {
     Route::post('/call/publish', 'CallController@publishReport');
 
     Route::resource('message', 'MessageController');   
+
+    Route::get('/search/{key}', 'HomeController@search');
 
     Route::get('/video', "VideoRoomsController@index");
     
