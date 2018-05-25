@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Carbon\Carbon;
 use App\Models\Message;
 use App\Models\Participant;
@@ -11,6 +12,8 @@ use App\Models\Report;
 
 class Seminar extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'name',
         'user_id',
@@ -23,6 +26,11 @@ class Seminar extends Model
     protected $hidden = [
         'code',
     ];
+
+    public function searchableAs()
+    {
+        return 'search_application';
+    }
 
     public function user()
     {

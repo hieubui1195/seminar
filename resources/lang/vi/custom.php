@@ -71,6 +71,9 @@ return [
     'call' => 'Gọi',
     'finish' => 'Kết thúc',
     'participants' => 'Người tham gia',
+    'notifications' => 'Thông báo',
+    'noty_call_with' => 'Bạn có một cuộc gọi với :User',
+    'noty_seminar' => 'Bạn có lịch tham dự cuộc họp :Seminar',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

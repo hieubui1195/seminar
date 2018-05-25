@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    {!! Html::style('assets/datatables.net-dt/css/jquery.dataTables.min.css') !!}
+    {!! Html::style('bower/datatables.net-dt/css/jquery.dataTables.min.css') !!}
 @endsection
 
 @section('content')
@@ -115,14 +115,13 @@
 @endsection
 
 @section('script')
-    {{ Html::script('js/app.js') }}
-    {!! Html::script('assets/datatables.net/js/jquery.dataTables.min.js') !!}
-    {!! Html::script('js/script.js') !!}
+    {!! Html::script('bower/datatables.net/js/jquery.dataTables.min.js') !!}
+    {{-- {{ Html::script('js/app.js') }} --}}
+    {{-- {!! Html::script('js/script.js') !!} --}}
     {!! Html::script('js/user.js') !!}
     <script type="text/javascript">
-        var user = new user();
-        user.init();
-
-        var dataTable = new dataTable('#table-users');
+        if ($('table').length) {
+            $('table').DataTable();
+        }
     </script>
 @endsection

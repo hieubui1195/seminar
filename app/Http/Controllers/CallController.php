@@ -10,12 +10,15 @@ use Auth;
 
 class CallController extends Controller
 {
-    protected $repository;
+    protected $repository, $reportRepository;
 
-    public function __construct(CallRepositoryInterface $repository)
+    public function __construct(CallRepositoryInterface $repository,
+        ReportRepositoryInterface $reportRepository)
     {
         $this->middleware('auth');
         $this->repository = $repository;
+        $this->reportRepository = $reportRepository;
+
     }
 
     public function createCall(Request $request)
@@ -33,6 +36,7 @@ class CallController extends Controller
         $receiverId = $request->receiverId;
         
         $this->repository->approveCall($callerId, $receiverId);
+        
     }
 
     public function getCall(Request $request)
@@ -42,18 +46,26 @@ class CallController extends Controller
         return response()->json($dataCall);
     }
 
-    public function publishReport(Request $request, ReportRepositoryInterface $reportRepository)
+    public function publishReport(Request $request)
     {
-        $data['report_id'] = $request->reportId;
-        $data['report_type'] = config('custom.call');
-        $data['user_id'] = Auth::id();
+        $data['reportId'] = $request->reportId;
+        $data['reportType'] = config('custom.call');
+        $data['userId'] = Auth::id();
         $data['report'] = $request->report;
         $data['filename'] = time() . '-call-' . $request->reportId . '.pdf';
+        $data['status'] = 1;
 
-        if (!$this->reportRepository->checkReported($id, $data['reportType'])) {
+        $checkReported = $this->reportRepository->checkReported($request->reportId, $data['reportType']);
+        if (!$checkReported) {
             $this->reportRepository->store($data);
         } else {
-            $this->reportRepository->updateReport($id, $data['reportType'], $data);
+            $this->reportRepository->updateReport($request->reportId, $data['reportType'], $data);
         }
+
+        return response()->json([
+            'status' => 1,
+            'msgTitle' => Lang::get('custom.success'),
+            'msgContent' => Lang::get('custom.publish_success'),
+        ]);
     }
 }

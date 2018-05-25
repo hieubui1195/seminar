@@ -71,6 +71,9 @@ return [
     'call' => 'Call',
     'finish' => 'Finish',
     'participants' => 'Participants',
+    'notifications' => 'Notifications',
+    'noty_call_with' => 'You have a call with :User',
+    'noty_seminar' => 'You have a meeting schedule :Seminar',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

@@ -12,7 +12,8 @@ class Notification extends Model
         'user_receive_id',
         'target_id',
         'viewed',
-        'type',
+        'notification_type',
+        'notification_id',
         'status'
     ];
 

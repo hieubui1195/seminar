@@ -8,4 +8,6 @@ interface NotificationRepositoryInterface extends BaseRepositoryInterface
     public function store(array $data);
 
     public function update(array $data);
+
+    public function getNotifications($receiveId);
 }

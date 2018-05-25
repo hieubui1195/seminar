@@ -45,7 +45,7 @@ class CallRepository extends BaseRepository implements CallRepositoryInterface
     {
         return $this->model->where('caller', $callerId)
             ->where('receiver', $receiverId)
-            ->latest()
-            ->first();
+            ->orderBy('created_at', 'desc')
+            ->limit(1);
     }
 }

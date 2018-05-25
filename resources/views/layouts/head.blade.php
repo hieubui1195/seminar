@@ -9,10 +9,10 @@
     <title>@lang('custom.title')</title>
     {{ Html::style('bower/bootstrap/dist/css/bootstrap.min.css' )}}
     {{ Html::style('bower/font-awesome/css/font-awesome.min.css' )}}
-    {{ Html::style('bower/Waves/dist/waves.css' )}}
-    {{ Html::style('bower/select2/dist/css/select2.min.css') }}
+    {{-- {{ Html::style('bower/Waves/dist/waves.css' )}} --}}
+    {{-- {{ Html::style('bower/select2/dist/css/select2.min.css') }} --}}
     {{ Html::style('bower/sweetalert2/dist/sweetalert2.min.css') }}
-    {{ Html::style('bower/bootstrap-daterangepicker/daterangepicker.css') }}
+    {{-- {{ Html::style('bower/bootstrap-daterangepicker/daterangepicker.css') }} --}}
     {!! Html::style('css/main.css') !!}
     {!! Html::style('css/style.css') !!}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateSeminarMail;
 use App\Models\Seminar;
 use App\Models\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -39,14 +40,10 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function mail()
+    public function search($key)
     {
-        $seminarId = 1;
-        $userId = 1;
+        $seminars = Seminar::search($key)->get();
 
-        $email = User::find($userId)->email;
-        Mail::to($email)->send(new CreateSeminarMail($userId, $userId));
-
-        return 'Success';
+        return $seminars;
     }
 }

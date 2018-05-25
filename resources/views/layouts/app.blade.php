@@ -7,6 +7,7 @@
 
     <body class="fix-header fix-sidebar card-no-border">
         <div id="app">
+        </div>
             <input type="hidden" id="current-user-id" value="{{ Auth::id() }}">
             <div class="preloader">
                 <div class="loader">
@@ -28,7 +29,6 @@
                     @include('layouts.footer')
                 </div>
             </div>
-        </div>
         
         @include('layouts.script')
         @section('script')

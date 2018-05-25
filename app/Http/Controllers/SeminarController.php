@@ -69,6 +69,17 @@ class SeminarController extends Controller
         ));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $selectChairman = User::orderUser()->pluck('name', 'id');
+
+        return view('seminar.create', compact('selectChairman'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -76,34 +87,36 @@ class SeminarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SeminarRequest $request)
+    public function store(Request $request)
     {
-        $start = $this->createDate($request->time, 0, 19); 
-        $end = $this->createDate($request->time, 21, 30);
-        $code = str_random(10);
+        return '11';
+        // return $request->all();
+        // $start = $this->createDate($request->time, 0, 19); 
+        // $end = $this->createDate($request->time, 21, 30);
+        // $code = str_random(10);
 
-        $data = $request->only('name', 'chairman', 'description');
-        $data['start'] = $start;
-        $data['end'] = $end;
-        $data['code'] = $code;
+        // $data = $request->only('name', 'chairman', 'description');
+        // $data['start'] = $start;
+        // $data['end'] = $end;
+        // $data['code'] = $code;
 
-        $seminar = $this->seminarRepository->store($data);
+        // $seminar = $this->seminarRepository->store($data);
 
-        foreach ($request->members as $member) {
-            $dataMember['seminar_id'] = $seminar->id;
-            $dataMember['user_id'] = $member;
+        // foreach ($request->members as $member) {
+        //     $dataMember['seminar_id'] = $seminar->id;
+        //     $dataMember['user_id'] = $member;
 
-            $this->participantRepository->store($dataMember);
+        //     $this->participantRepository->store($dataMember);
 
-            $email = User::find($dataMember['user_id'])->email;
-            Mail::to($email)->send(new CreateSeminarMail($dataMember['seminar_id'], $dataMember['user_id']));
-        }
+        //     $email = User::find($dataMember['user_id'])->email;
+        //     Mail::to($email)->send(new CreateSeminarMail($dataMember['seminar_id'], $dataMember['user_id']));
+        // }
 
-        return response()->json([
-            'status' => 1,
-            'msg' => Lang::get('custom.add_seminar_success'),
-            'id' => $seminar->id,
-        ]);
+        // return response()->json([
+        //     'status' => 1,
+        //     'msg' => Lang::get('custom.add_seminar_success'),
+        //     'id' => $seminar->id,
+        // ]);
     }
 
     /**
@@ -118,7 +131,7 @@ class SeminarController extends Controller
         $seminars = $this->seminarRepository->getAllWithUser();
         $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get();
         $messages = $this->seminarRepository->getMessages($id);
-        $members = $this->seminarRepository->getAllMembers($id)->get();
+        $members = $this->seminarRepository->getAllMembers($id);
         $checkPublished = $this->reportRepository->checkPublished($id, config('custom.seminar'));
         $users = $this->userRepository->getNameAndId();
 
