@@ -40,10 +40,8 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function search($key)
+    public function search()
     {
-        $seminars = Seminar::search($key)->get();
-
-        return $seminars;
+        return view('search');
     }
 }

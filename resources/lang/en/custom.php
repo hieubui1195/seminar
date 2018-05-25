@@ -74,6 +74,7 @@ return [
     'notifications' => 'Notifications',
     'noty_call_with' => 'You have a call with :User',
     'noty_seminar' => 'You have a meeting schedule :Seminar',
+    'search' => 'Search',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

@@ -20,6 +20,9 @@
                     <a class="waves-effect waves-dark" href="{{ route('user.index') }}" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">@lang('custom.user')</span></a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('search') }}" aria-expanded="false"><i class="fa fa-search"></i><span class="hide-menu">@lang('custom.search')</span></a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark logout" href="{{ route('logout') }}" aria-expanded="false"><i class="fa fa-sign-out"></i><span class="hide-menu">@lang('custom.logout')</span></a>
                 </li>
                 {!! Form::open([

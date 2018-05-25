@@ -55,9 +55,6 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::resource('message', 'MessageController');   
 
-    Route::get('/search/{key}', 'HomeController@search');
-
-    Route::get('/video', "VideoRoomsController@index");
-    
+    Route::get('/search', 'HomeController@search')->name('search');   
 });
 
