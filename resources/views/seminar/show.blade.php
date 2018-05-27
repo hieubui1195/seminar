@@ -20,13 +20,13 @@
             <div class="card-title">
                 <div class="search">
                     {!! Form::open(['method' => 'POST', 'id' => 'search-early']) !!}
-                        {!! Form::text('keySeminar', null, ['placeholder' => Lang::get('custom.search')]) !!}
+                        {!! Form::text('keySeminar', null, ['placeholder' => Lang::get('custom.search'), 'id' => 'search-seminar']) !!}
                         <i class="fa fa-search"></i>
                     {!! Form::close() !!}
                 </div>
             </div>
             <div class="card-body">
-                <ul class="list">
+                <ul class="list" id="hits">
                     @foreach ($seminars as $seminar)
                         <li class="clearfix {{ ($seminar->id == $id) ? 'current-seminar' : '' }}">
                             {!! Html::image(config('custom.path_avatar') . $seminar->user->avatar, 'Avatar', ['class' => 'img img-circle']) !!}
@@ -84,11 +84,12 @@
                             <div class="chat-num-messages">{{ $messages->count() }} @lang('custom.messages')</div>
                         </div>
                         <div class="chat-time">
-                            <h4>
+                            <h5>
                                 @lang('custom.from') {{ \Carbon\Carbon::parse($seminarUser->start)->format('d F\, Y H:i A') }}
-                                <br>
+                            </h5>
+                            <h5>
                                 @lang('custom.to') {{ \Carbon\Carbon::parse($seminarUser->end)->format('d F\, Y H:i A') }}
-                            </h4>
+                            </h5>
                             <button type="button" class="btn btn-primary" id="btn-more-info">@lang('custom.more_info')</button>
                             
                         </div>
@@ -219,10 +220,5 @@
 
 @section('script')
     {{ Html::script('js/seminar.js')}}
-    <script type="text/javascript">
-        var chatHistory = $('body .chat-history');
-        if (chatHistory.length) {
-            chatHistory.scrollTop(chatHistory[0].scrollHeight);
-        }
     </script>
 @endsection

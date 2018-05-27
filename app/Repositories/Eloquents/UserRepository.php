@@ -33,22 +33,19 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             ]);
         }
 
-        // if ($data['avatar']) {
-        //     User::find($data['id'])->update([
-        //         'avatar' => bcrypt($data['avatar']),
-        //     ]);
-        // }
-        // 
+        if ($data['avatar']) {
+            $data['avatar']->move(config('custom.path_avatar'), $data['avatar']->getClientOriginalName());
+            $filename = $data['avatar']->getClientOriginalName();
+            $this->model->find($data['id'])->update([
+                'avatar' => $filename,
+            ]);
+        }
+        
         if ($data['phone']) {
             $this->model->find($data['id'])->update([
                 'phone' => $data['phone'],
             ]);
         }
-
-        return $this->model->find($data['id'])->update([
-            'name' => $data['name'],
-            //'phone' => $data['phone'],
-        ]);
     }
 
     public function getNameAndId()
