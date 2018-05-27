@@ -18,7 +18,7 @@
                 <li class="nav-item dropdown u-pro">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if (Auth::check())
-                            {!! Html::image(config('custom.path_avatar') . Auth::user()->avatar, 'User') !!} <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span> </a>
+                            {!! Html::image(config('custom.path_avatar') . Auth::user()->avatar, 'User', ['class' => 'user-image']) !!} <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span> </a>
                         @endif
                 </li>
             </ul>

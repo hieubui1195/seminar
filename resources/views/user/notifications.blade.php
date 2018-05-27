@@ -11,29 +11,20 @@
     </div>
 </div>
 <div class="row">
-    <!-- Column -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card card-body mailbox">
-                <h5 class="card-title">Notification</h5>
-                <div class="message-center ps ps--theme_default ps--active-y">
-                    @foreach ($notifications as $notification)
-                        {{$notification['user_send']}}
-                        <a href="#">
-                            @if ($notification->notification_type == config('custom.call'))
-                                <div class="btn btn-danger btn-circle"><i class="fa fa-phone"></i></div>
-                                <div class="mail-contnet">
-                                    <h5>{{ config('custom.call') }}</h5> 
-                                <span class="mail-desc"></span> @lang('custom.noty_call_with', ['User' => $notification->user_send])<span class="time">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span> </div>
-                            @elseif ($notification->notification_type == config('custom.seminar'))
-                                <div class="btn btn-warning btn-circle"><i class="fa fa-comment"></i></div>
-                                <div class="mail-contnet">
-                                    <h5>{{ config('custom.seminar') }}</h5> 
-                                <span class="mail-desc"></span> @lang('custom.noty_seminar', ['Seminar' => 'Hi'])<span class="time">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span> </div>
-                            @endif
-                                
-                        </a>
-                    @endforeach
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5 class="card-title" style="float: left;">@lang('custom.notifications')</h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="card-title" id="marked-all" style="float: right;" data-id={{ Auth::id() }}>@lang('custom.marked_all')</a>
+                    </div>
+                </div>
+                
+                <div class="message-center ps ps--theme_default ps--active-y" id="notification-list">
+                    @include('partials.notifications', ['notifications' => $notifications])
                 </div>
             </div>
         </div>
@@ -42,5 +33,5 @@
 @endsection
 
 @section('script')
-    {{ Html::script('js/app.js') }}
+    {{ Html::script('js/notification.js') }}
 @endsection

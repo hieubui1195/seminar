@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 use App\Repositories\Contracts\NotificationRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use App\Models\Notification;
+use Auth;
 
 class NotificationRepository extends BaseRepository implements NotificationRepositoryInterface
 {
@@ -30,11 +31,21 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
     {
     }
 
-    public function getNotifications($receiveId)
+    public function getNotifications($receiverId)
     {
-        return $this->model->where('user_receive_id', $receiveId)
-            ->with(['userSend', 'userReceive'])
+        return $this->model->where('user_receive_id', $receiverId)
+            ->with(['notification', 'userSend'])
             ->orderBy('created_at', 'desc')
             ->get();
+    }
+
+    public function changeViewed($id)
+    {
+        return $this->model->find($id)->update(['viewed' => 1]);
+    }
+
+    public function markedAll()
+    {
+        return $this->model->where('user_receive_id', Auth::id())->update(['viewed' => 1]);
     }
 }

@@ -47,6 +47,8 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/user/video/{id}', 'UserController@callVideo');
     Route::post('/user/call-noti/{callerId}/{receiverId}', 'UserController@notifyCall');
     Route::get('/notifications', 'UserController@getNotifications')->name('notifications');
+    Route::post('/notification/view', 'UserController@changeViewed');
+    Route::post('/notification/marked', 'UserController@markedAll');
 
     Route::post('/create-call', 'CallController@createCall');
     Route::post('/update-call', 'CallController@updateCall');

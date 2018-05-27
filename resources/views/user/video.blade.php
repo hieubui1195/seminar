@@ -50,6 +50,6 @@
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/editor.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/call.js') }}"></script>
-        
     </body>
+
 </html>

@@ -76,6 +76,7 @@ return [
     'noty_seminar' => 'Bạn có lịch tham dự cuộc họp :Seminar',
     'search' => 'Tìm kiếm',
     'browse' => 'Chọn ảnh',
+    'marked_all' => 'Đánh dấu tất cả đã đọc',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

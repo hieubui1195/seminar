@@ -9,6 +9,7 @@ use App\Models\Message;
 use App\Models\Participant;
 use App\Models\User;
 use App\Models\Report;
+use App\Models\Notification;
 
 class Seminar extends Model
 {
@@ -57,6 +58,11 @@ class Seminar extends Model
     public function report()
     {
         return $this->hasOne(Report::class);
+    }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notification');
     }
 
     public function scopeGetAllWithUser($query)
