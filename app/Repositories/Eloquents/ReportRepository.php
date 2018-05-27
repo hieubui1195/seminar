@@ -10,10 +10,6 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
 
     protected $model;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Report $report)
     {
         $this->model = $report;

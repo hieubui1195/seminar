@@ -10,10 +10,6 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
 
     protected $model;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Notification $notification)
     {
         $this->model = $notification;

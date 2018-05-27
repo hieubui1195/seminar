@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e632f712584c6fcde736e5c595b0bc8c",
-    "content-hash": "f98666d9259a4e020bc9fc982acae60f",
+    "hash": "4ad21be08e6f336de9581cf9eda29d09",
+    "content-hash": "688af8dd6744224f170798eb51e1b873",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -112,61 +112,6 @@
                 "pdf"
             ],
             "time": "2018-02-07 17:43:25"
-        },
-        {
-            "name": "dflydev/apache-mime-types",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dflydev/dflydev-apache-mime-types.git",
-                "reference": "f30a57e59b7476e4c5270b6a0727d79c9c0eb861"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-apache-mime-types/zipball/f30a57e59b7476e4c5270b6a0727d79c9c0eb861",
-                "reference": "f30a57e59b7476e4c5270b6a0727d79c9c0eb861",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "twig/twig": "1.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Dflydev\\ApacheMimeTypes": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dragonfly Development Inc.",
-                    "email": "info@dflydev.com",
-                    "homepage": "http://dflydev.com"
-                },
-                {
-                    "name": "Beau Simensen",
-                    "email": "beau@dflydev.com",
-                    "homepage": "http://beausimensen.com"
-                }
-            ],
-            "description": "Apache MIME Types",
-            "keywords": [
-                "apache",
-                "mime",
-                "mimetypes"
-            ],
-            "time": "2013-05-14 02:02:01"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1749,122 +1694,6 @@
             "time": "2017-05-24 10:07:27"
         },
         {
-            "name": "php-junior/laravel-video-chat",
-            "version": "v1.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPJunior/laravel-video-chat.git",
-                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPJunior/laravel-video-chat/zipball/39fd18fdcc6a7247d05645165fe04c755819e5f6",
-                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/apache-mime-types": "^1.0",
-                "illuminate/contracts": "^5.5",
-                "illuminate/database": "^5.5",
-                "illuminate/support": "^5.5",
-                "php": ">=7.0",
-                "predis/predis": "^1.1"
-            },
-            "require-dev": {
-                "graham-campbell/testbench": "^4.0",
-                "phpunit/phpunit": "^6.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "PhpJunior\\LaravelVideoChat\\LaravelVideoChatServiceProvider"
-                    ],
-                    "aliases": {
-                        "Chat": "PhpJunior\\LaravelVideoChat\\Facades\\Chat"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpJunior\\LaravelVideoChat\\": "src/"
-                },
-                "files": [
-                    "helper/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nyi Nyi Lwin",
-                    "email": "nyinyilwin1992@hotmail.com"
-                }
-            ],
-            "description": "Laravel Video Chat using Socket.IO and WebRTC",
-            "keywords": [
-                "Socket.io",
-                "WebRTC",
-                "chat",
-                "laravel",
-                "realtime",
-                "video-chat"
-            ],
-            "time": "2017-12-02 15:50:31"
-        },
-        {
-            "name": "predis/predis",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "suggest": {
-                "ext-curl": "Allows access to Webdis when paired with phpiredis",
-                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Predis\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniele Alessandri",
-                    "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net"
-                }
-            ],
-            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
-            "homepage": "http://github.com/nrk/predis",
-            "keywords": [
-                "nosql",
-                "predis",
-                "redis"
-            ],
-            "time": "2016-06-16 16:22:20"
-        },
-        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -3226,6 +3055,61 @@
     ],
     "packages-dev": [
         {
+            "name": "dflydev/apache-mime-types",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-apache-mime-types.git",
+                "reference": "f30a57e59b7476e4c5270b6a0727d79c9c0eb861"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-apache-mime-types/zipball/f30a57e59b7476e4c5270b6a0727d79c9c0eb861",
+                "reference": "f30a57e59b7476e4c5270b6a0727d79c9c0eb861",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "twig/twig": "1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Dflydev\\ApacheMimeTypes": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dragonfly Development Inc.",
+                    "email": "info@dflydev.com",
+                    "homepage": "http://dflydev.com"
+                },
+                {
+                    "name": "Beau Simensen",
+                    "email": "beau@dflydev.com",
+                    "homepage": "http://beausimensen.com"
+                }
+            ],
+            "description": "Apache MIME Types",
+            "keywords": [
+                "apache",
+                "mime",
+                "mimetypes"
+            ],
+            "time": "2013-05-14 02:02:01"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
@@ -3650,6 +3534,72 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2017-03-05 17:38:23"
+        },
+        {
+            "name": "php-junior/laravel-video-chat",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPJunior/laravel-video-chat.git",
+                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPJunior/laravel-video-chat/zipball/39fd18fdcc6a7247d05645165fe04c755819e5f6",
+                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6",
+                "shasum": ""
+            },
+            "require": {
+                "dflydev/apache-mime-types": "^1.0",
+                "illuminate/contracts": "^5.5",
+                "illuminate/database": "^5.5",
+                "illuminate/support": "^5.5",
+                "php": ">=7.0",
+                "predis/predis": "^1.1"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^4.0",
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PhpJunior\\LaravelVideoChat\\LaravelVideoChatServiceProvider"
+                    ],
+                    "aliases": {
+                        "Chat": "PhpJunior\\LaravelVideoChat\\Facades\\Chat"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpJunior\\LaravelVideoChat\\": "src/"
+                },
+                "files": [
+                    "helper/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nyi Nyi Lwin",
+                    "email": "nyinyilwin1992@hotmail.com"
+                }
+            ],
+            "description": "Laravel Video Chat using Socket.IO and WebRTC",
+            "keywords": [
+                "Socket.io",
+                "WebRTC",
+                "chat",
+                "laravel",
+                "realtime",
+                "video-chat"
+            ],
+            "time": "2017-12-02 15:50:31"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4257,6 +4207,56 @@
                 "xunit"
             ],
             "time": "2018-01-06 05:45:45"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16 16:22:20"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

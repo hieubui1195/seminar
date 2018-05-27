@@ -300,10 +300,6 @@ table.dataTable thead .sorting_desc:after {
     height: 500px;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #20aee3;
-}
-
 #modal-seminar-info .modal-body {
     height: auto;
     max-height: 300px;
@@ -332,4 +328,12 @@ table.dataTable thead .sorting_desc:after {
 
 .mailbox .message-center {
     overflow-y: auto !important; 
+}
+.btn-edit-seminar {
+    color: black;
+}
+.btn-delete-seminar {
+    background: none;
+    border: none;
+    cursor: pointer;
 }

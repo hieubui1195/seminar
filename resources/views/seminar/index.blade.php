@@ -19,22 +19,21 @@
     </div>
 
     <div class="row">
-        <!-- Column -->
+        <div class="col-lg-12">
+            @if (session('msg'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{ session('msg') }}</strong>
+                </div>
+            @endif
+        </div>
+
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-title">
                     <h3 class="title-center title-active">
                         <i class="fa fa-circle"></i> @lang('custom.active')
                     </h3>
-                    <div class="search">
-                        {!! Form::open([
-                            'method' => 'POST',
-                            'id' => 'search-active',
-                        ]) !!}
-                            {!! Form::text('keyActive', null, ['placeholder' => Lang::get('custom.search')]) !!}
-                            <i class="fa fa-search"></i>
-                        {!! Form::close() !!}
-                    </div>
                 </div>
                 <div class="card-body">
                     <ul class="list">
@@ -65,7 +64,7 @@
                         @if ($countActive > 5)
                             <li class="clearfix">
                                 {!! html_entity_decode(
-                                    Html::link('', Lang::get('custom.more') . '<i class="fas fa-angle-double-right"></i>')
+                                    Html::linkRoute('seminar.show', Lang::get('custom.more') . '<i class="fa fa-angle-double-right"></i>', $listActive[0]->id)
                                 ) !!}
                             </li>
                         @endif
@@ -73,21 +72,13 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-title">
                     <h3 class="title-center title-early">
                         <i class="fa fa-circle"></i> @lang('custom.early')
                     </h3>
-                    <div class="search">
-                        {!! Form::open([
-                            'method' => 'POST',
-                            'id' => 'search-early',
-                        ]) !!}
-                            {!! Form::text('keyEarly', null, ['placeholder' => Lang::get('custom.search')]) !!}
-                            <i class="fa fa-search"></i>
-                        {!! Form::close() !!}
-                    </div>
                 </div>
                 <div class="card-body">
                     <ul class="list">
@@ -118,7 +109,7 @@
                         @if ($countEarly > 5)
                             <li class="clearfix">
                                 {!! html_entity_decode(
-                                    Html::link('', Lang::get('custom.more') . '<i class="fas fa-angle-double-right"></i>')
+                                    Html::linkRoute('seminar.show', Lang::get('custom.more') . '<i class="fa fa-angle-double-right"></i>', $listEarly[0]->id)
                                 ) !!}
                             </li>
                         @endif
@@ -126,21 +117,13 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-title">
                     <h3 class="title-center title-finished">
                         <i class="fa fa-circle"></i> @lang('custom.finished')
                     </h3>
-                    <div class="search">
-                        {!! Form::open([
-                            'method' => 'POST',
-                            'id' => 'search-finished',
-                        ]) !!}
-                            {!! Form::text('keyEarly', null, ['placeholder' => Lang::get('custom.search')]) !!}
-                            <i class="fa fa-search"></i>
-                        {!! Form::close() !!}
-                    </div>
                 </div>
                 <div class="card-body">
                     <ul class="list">
@@ -171,7 +154,7 @@
                         @if ($countFinished > 5)
                             <li class="clearfix">
                                 {!! html_entity_decode(
-                                    Html::link('', Lang::get('custom.more') . '<i class="fas fa-angle-double-right"></i>')
+                                    Html::linkRoute('seminar.show', Lang::get('custom.more') . '<i class="fa fa-angle-double-right"></i>', $listFinished[0]->id)
                                 ) !!}
                             </li>
                         @endif

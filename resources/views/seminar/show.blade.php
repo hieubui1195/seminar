@@ -49,16 +49,14 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="seminar-option">
-                                <a class="btn btn-info btn-edit-seminar" href="{{ route('seminar.edit', $seminar->id) }}">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <button class="btn btn-danger btn-delete-seminar" data-id="{{ $seminar->id }}">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </div>
+                            @if (($seminar->user_id == Auth::id()) || (Auth::user()->level == 2))
+                                <div class="seminar-option">
+                                    <a class="btn-edit-seminar" href="{{ route('seminar.edit', $seminar->id) }}" data-id="{{ $seminar->id }}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </div>
+                            @endif
                         </li>
-                        
                     @endforeach
                 </ul>
             </div>
@@ -71,13 +69,13 @@
                 {!! Form::hidden('userId', Auth::id()) !!}
                 <div class="chat" id="chat">
                     <div class="chat-header clearfix">
-                        {{ Html::image(config('custom.path_avatar') . $seminarUser[0]->user->avatar, 'Avatar', ['width' => 55, 'height' => 55])}}
+                        {{ Html::image(config('custom.path_avatar') . $seminarUser->user->avatar, 'Avatar', ['width' => 55, 'height' => 55])}}
                         <div class="chat-about">
-                            <div class="chat-with">{{ $seminarUser[0]->name }}</div>
+                            <div class="chat-with">{{ $seminarUser->name }}</div>
                             <div class="status">
-                                @if (\Carbon\Carbon::parse($seminarUser[0]->start)->isFuture())
+                                @if (\Carbon\Carbon::parse($seminarUser->start)->isFuture())
                                     <i class="fa fa-circle early"></i> @lang('custom.early')
-                                @elseif (\Carbon\Carbon::parse($seminarUser[0]->end)->isPast())
+                                @elseif (\Carbon\Carbon::parse($seminarUser->end)->isPast())
                                     <i class="fa fa-circle offline"></i> @lang('custom.finished')
                                 @else
                                     <i class="fa fa-circle online"></i> @lang('custom.active')
@@ -87,9 +85,9 @@
                         </div>
                         <div class="chat-time">
                             <h4>
-                                @lang('custom.from') {{ \Carbon\Carbon::parse($seminarUser[0]->start)->format('d F\, Y H:i A') }}
+                                @lang('custom.from') {{ \Carbon\Carbon::parse($seminarUser->start)->format('d F\, Y H:i A') }}
                                 <br>
-                                @lang('custom.to') {{ \Carbon\Carbon::parse($seminarUser[0]->end)->format('d F\, Y H:i A') }}
+                                @lang('custom.to') {{ \Carbon\Carbon::parse($seminarUser->end)->format('d F\, Y H:i A') }}
                             </h4>
                             <button type="button" class="btn btn-primary" id="btn-more-info">@lang('custom.more_info')</button>
                             
@@ -118,7 +116,7 @@
                         
                         </div>
 
-                        @if (\Carbon\Carbon::parse($seminarUser[0]->end)->isPast() == false)
+                        @if (\Carbon\Carbon::parse($seminarUser->end)->isPast() == false)
                             <div class="chat-message clearfix">
                                 <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
                                         
@@ -171,28 +169,28 @@
                         <dt class="col-sm-3">@lang('custom.seminar')</dt>
                         <dd class="col-sm-9">
                             <b>
-                                {{ $seminarUser[0]->name }}
+                                {{ $seminarUser->name }}
                             </b>
                         </dd>
 
                         <dt class="col-sm-3">@lang('custom.chairman')</dt>
                         <dd class="col-sm-9">
-                            <a href="{{ route('user.show', $seminarUser[0]->user_id) }}">
-                                {{ $seminarUser[0]->user->name }}
+                            <a href="{{ route('user.show', $seminarUser->user_id) }}">
+                                {{ $seminarUser->user->name }}
                             </a>
                         </dd>
 
                         <dt class="col-sm-3">@lang('custom.description')</dt>
-                        <dd class="col-sm-9">{{ $seminarUser[0]->description }}</dd>
+                        <dd class="col-sm-9">{{ $seminarUser->description }}</dd>
 
                         <dt class="col-sm-3">@lang('custom.from')</dt>
                         <dd class="col-sm-9">
-                            {{ \Carbon\Carbon::parse($seminarUser[0]->start)->format('d F\, Y H:i A') }}
+                            {{ \Carbon\Carbon::parse($seminarUser->start)->format('d F\, Y H:i A') }}
                         </dd>
 
                         <dt class="col-sm-3">@lang('custom.to')</dt>
                         <dd class="col-sm-9">
-                            {{ \Carbon\Carbon::parse($seminarUser[0]->end)->format('d F\, Y H:i A') }}
+                            {{ \Carbon\Carbon::parse($seminarUser->end)->format('d F\, Y H:i A') }}
                         </dd>
 
                         <dt class="col-sm-3">@lang('custom.members')</dt>
@@ -220,7 +218,6 @@
 @endsection
 
 @section('script')
-    {{ Html::script('js/app.js') }}
     {{ Html::script('js/seminar.js')}}
     <script type="text/javascript">
         var chatHistory = $('body .chat-history');
