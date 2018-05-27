@@ -75,6 +75,7 @@ return [
     'noty_call_with' => 'Bạn có một cuộc gọi với :User',
     'noty_seminar' => 'Bạn có lịch tham dự cuộc họp :Seminar',
     'search' => 'Tìm kiếm',
+    'browse' => 'Chọn ảnh',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

@@ -29,7 +29,6 @@
     "laravel-echo-bower": "https://github.com/applicazza/echo.git#^1.2.3",
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#^12.1.5",
     "isotope-layout": "https://github.com/metafizzy/isotope.git#^3.0.6",
-    "firebase": "^5.0.1",
-    "JQuery-Session-Plugin": "https://github.com/AlexChittock/JQuery-Session-Plugin.git"
+    "firebase": "^5.0.1"
   }
 }

@@ -166,6 +166,5 @@
 @endsection
 
 @section('script')
-    {{ Html::script('js/app.js') }}
     {!! Html::script('js/seminar-index.js') !!}
 @endsection

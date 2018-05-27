@@ -27,9 +27,11 @@ search.addWidget(
                 if(data.email) {
                     return '<p><div class="btn btn-danger btn-circle"><i class="fa fa-user"></i></div>' 
                         + '<a href="/user/' + data.id + '">&nbsp;&nbsp;&nbsp;&nbsp;' + data._highlightResult.name.value + '</a></p>'
+                        + '<article>' + data._highlightResult.email.value + '</article>'
                 } else {
                     return '<p><div class="btn btn-warning btn-circle"><i class="fa fa-comment"></i></div><a href="/seminar/' 
                         + data.id + '">&nbsp;&nbsp;&nbsp;&nbsp;' + data._highlightResult.name.value + '</a></p>'
+                        + '<article>' + data._highlightResult.description.value + '</article>'
                 }
             }
         }
