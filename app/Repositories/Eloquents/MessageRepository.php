@@ -10,10 +10,6 @@ class MessageRepository extends BaseRepository implements MessageRepositoryInter
 
     protected $model;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Message $message)
     {
         $this->model = $message;

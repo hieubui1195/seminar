@@ -10,10 +10,6 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
 
     protected $model;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Participant $participant)
     {
         $this->model = $participant;
@@ -61,23 +57,14 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
 
     public function getMembersId($seminarId)
     {
-        return $this->model->where('seminar_id', $seminarId)->pluck('id');
+        return $this->model->where('seminar_id', $seminarId)->pluck('user_id');
     }
 
-    public function updateParticipants($participants, $seminarId)
+    public function deleteOneParticipant($seminarId, $userId)
     {
-        foreach ($participants as $participant) {
-            $data = [
-                'seminar_id' => $seminarId,
-                'user_id' => $participant,
-            ];
-
-            $this->store($data);
-        }
-    }
-
-    public function deleteParticipants($seminarId)
-    {
-        return $this->model->where('seminar_id', $seminarId)->delete();
+        return $this->model->where([
+            ['seminar_id', $seminarId],
+            ['user_id', $userId],
+        ])->delete();
     }
 }

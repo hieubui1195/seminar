@@ -17,7 +17,5 @@ interface ParticipantRepositoryInterface extends BaseRepositoryInterface
 
     public function getMembersId($seminarId);
 
-    public function updateParticipants(array $participants, $seminarId);
-
-    public function deleteParticipants($seminarId);
+    public function deleteOneParticipant($seminarId, $userId);
 }

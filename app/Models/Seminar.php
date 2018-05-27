@@ -61,7 +61,7 @@ class Seminar extends Model
 
     public function scopeGetAllWithUser($query)
     {
-        return $query->with('user')->get();
+        return $query->orderBy('created_at', 'desc')->with('user')->get();
     }
 
     public function scopeWithUser($query, $id)
@@ -79,21 +79,21 @@ class Seminar extends Model
         return $query->where('start', '<=', Carbon::now())
                     ->where('end', '>=', Carbon::now())
                     ->with('user')
-                    ->orderBy('start', 'asc');
+                    ->orderBy('created_at', 'desc');
     }
 
     public function scopeListEarly($query)
     {
         return $query->where('start', '>', Carbon::now())
                     ->with('user')
-                    ->orderBy('start', 'asc');
+                    ->orderBy('created_at', 'desc');
     }
 
     public function scopeListFinished($query)
     {
         return $query->where('end', '<', Carbon::now())
                     ->with('user')
-                    ->orderBy('start', 'asc');
+                    ->orderBy('created_at', 'desc');
     }
 
     public function scopeGetSeminarWithReport($query, $id)

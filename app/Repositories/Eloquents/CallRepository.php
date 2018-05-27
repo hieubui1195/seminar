@@ -10,10 +10,6 @@ class CallRepository extends BaseRepository implements CallRepositoryInterface
 
     protected $model;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Call $call)
     {
         $this->model = $call;

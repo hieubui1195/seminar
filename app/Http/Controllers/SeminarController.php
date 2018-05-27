@@ -13,10 +13,9 @@ use App\Repositories\Contracts\SeminarRepositoryInterface;
 use App\Repositories\Contracts\MessageRepositoryInterface;
 use App\Repositories\Contracts\ReportRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
-use Carbon\Carbon;
+use App\Repositories\Contracts\NotificationRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Lang;
 use Auth;
 use PDF;
@@ -24,7 +23,12 @@ use PDF;
 class SeminarController extends Controller
 {
 
-    protected $seminarRepository, $participantRepository, $messageRepository, $reportRepository, $userRepository;
+    protected $seminarRepository,
+        $participantRepository,
+        $messageRepository,
+        $reportRepository,
+        $userRepository,
+        $notificationRepository;
 
 
     public function __construct(
@@ -32,7 +36,8 @@ class SeminarController extends Controller
         SeminarRepositoryInterface $seminarRepository,
         MessageRepositoryInterface $messageRepository,
         ReportRepositoryInterface $reportRepository,
-        UserRepositoryInterface $userRepository)
+        UserRepositoryInterface $userRepository,
+        NotificationRepositoryInterface $notificationRepository)
     {
         $this->middleware('auth');
         $this->participantRepository = $participantRepository;
@@ -40,6 +45,7 @@ class SeminarController extends Controller
         $this->messageRepository = $messageRepository;
         $this->reportRepository = $reportRepository;
         $this->userRepository = $userRepository;
+        $this->notificationRepository = $notificationRepository;
     }
 
     /**
@@ -49,9 +55,9 @@ class SeminarController extends Controller
      */
     public function index()
     {
-        $listActive = Seminar::listActive()->take(5)->get();
-        $listEarly  = Seminar::listEarly()->take(5)->get();
-        $listFinished = Seminar::listFinished()->take(5)->get();
+        $listActive = $this->seminarRepository->listActive();
+        $listEarly  = $this->seminarRepository->listEarly();
+        $listFinished = $this->seminarRepository->listFinished();
         $countActive = Seminar::listActive()->count();
         $countEarly = Seminar::listEarly()->count();
         $countFinished = Seminar::listFinished()->count();
@@ -87,36 +93,38 @@ class SeminarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeminarRequest $request)
     {
-        return '11';
-        // return $request->all();
-        // $start = $this->createDate($request->time, 0, 19); 
-        // $end = $this->createDate($request->time, 21, 30);
-        // $code = str_random(10);
+        $start = $this->createDate($request->time, 0, 19); 
+        $end = $this->createDate($request->time, 21, 30);
+        $code = str_random(10);
 
-        // $data = $request->only('name', 'chairman', 'description');
-        // $data['start'] = $start;
-        // $data['end'] = $end;
-        // $data['code'] = $code;
+        $data = $request->only('name', 'chairman', 'description');
+        $data['start'] = $start;
+        $data['end'] = $end;
+        $data['code'] = $code;
 
-        // $seminar = $this->seminarRepository->store($data);
+        $seminar = $this->seminarRepository->store($data);
 
-        // foreach ($request->members as $member) {
-        //     $dataMember['seminar_id'] = $seminar->id;
-        //     $dataMember['user_id'] = $member;
+        foreach ($request->members as $member) {
+            $dataMember['seminar_id'] = $seminar->id;
+            $dataMember['user_id'] = $member;
 
-        //     $this->participantRepository->store($dataMember);
+            $this->participantRepository->store($dataMember);
 
-        //     $email = User::find($dataMember['user_id'])->email;
-        //     Mail::to($email)->send(new CreateSeminarMail($dataMember['seminar_id'], $dataMember['user_id']));
-        // }
+            $email = User::find($dataMember['user_id'])->email;
+            Mail::to($email)->send(new CreateSeminarMail($dataMember['seminar_id'], $dataMember['user_id']));
 
-        // return response()->json([
-        //     'status' => 1,
-        //     'msg' => Lang::get('custom.add_seminar_success'),
-        //     'id' => $seminar->id,
-        // ]);
+            $dataNotification['user_send_id'] = $request->chairman;
+            $dataNotification['user_receive_id'] = $member;
+            $dataNotification['target_id'] = $member;
+            $dataNotification['notification_type'] = config('custom.seminar');
+            $dataNotification['notification_id'] = $seminar->id;
+            $this->notificationRepository->store($dataNotification);
+        }
+
+        return redirect()->route('seminar.index')
+            ->with('msg', Lang::get('custom.add_seminar_success'));
     }
 
     /**
@@ -129,7 +137,7 @@ class SeminarController extends Controller
     {
         $checkValidation = $this->participantRepository->checkValidation($id, Auth::id());
         $seminars = $this->seminarRepository->getAllWithUser();
-        $seminarUser = $this->seminarRepository->getSeminarWithUser($id)->get();
+        $seminarUser = $this->seminarRepository->getSeminarWithUser($id);
         $messages = $this->seminarRepository->getMessages($id);
         $members = $this->seminarRepository->getAllMembers($id);
         $checkPublished = $this->reportRepository->checkPublished($id, config('custom.seminar'));
@@ -180,18 +188,27 @@ class SeminarController extends Controller
 
         $this->seminarRepository->update($data);
 
-        return redirect()->route('seminar.show', $id);
-    }
+        $currentParticipants = $this->participantRepository->getMembersId($id);
+        $editParticipants = $request->members;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        foreach ($editParticipants as $value) {
+            if (!in_array($value, $currentParticipants->toArray())) {
+                $dataMember['seminar_id'] = $id;
+                $dataMember['user_id'] = $value;
+
+                $this->participantRepository->store($dataMember);
+                $email = User::find($value)->email;
+                Mail::to($email)->send(new CreateSeminarMail($id, $value));
+            }
+        }
+
+        foreach ($currentParticipants as $value) {
+            if (!in_array($value, $editParticipants)) {
+                $this->participantRepository->deleteOneParticipant($id, $value);
+            }
+        }
+
+        return redirect()->route('seminar.show', $id);
     }
 
     public function getEditor($id)

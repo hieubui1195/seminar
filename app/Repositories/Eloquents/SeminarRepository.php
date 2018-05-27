@@ -13,10 +13,6 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     protected $model, $participantModel, $reportModel;
   
-    /**
-     * ArticlesRepository constructor.
-     * @param Article $article
-     */
     public function __construct(Seminar $seminar, Participant $participant, Report $reportModel)
     {
         $this->model = $seminar;
@@ -49,17 +45,17 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     public function listActive()
     {
-        // return $this->model->;
+        return $this->model->listActive()->take(5)->get();
     }
 
     public function listEarly()
     {
-        # code...
+        return $this->model->listEarly()->take(5)->get();
     }
 
     public function listFinished()
     {
-        # code...
+        return $this->model->listFinished()->take(5)->get();
     }
 
     public function getAllWithUser()
@@ -69,7 +65,7 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
 
     public function getSeminarWithUser($id)
     {
-        return $this->model->withUser($id)->first();
+        return $this->model->where('id', $id)->withUser($id)->first();
     }
 
     public function getMessages($id)
