@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Events\NotifyCallEvent;
 use App\Models\Call;
 use App\Models\Notification;
+use Carbon\Carbon;
 use Lang;
 use Auth;
 
@@ -25,6 +26,7 @@ class UserController extends Controller
         $this->middleware('auth');
         $this->userRepository = $userRepository;
         $this->notificationRepository = $notificationRepository;
+        $this->callRepository = $callRepository;
     }
 
     /**
@@ -145,6 +147,7 @@ class UserController extends Controller
             'caller' => $request->callerId,
             'receiver' => $request->receiverId,
             'status' => 0,
+            'start' => Carbon::now(),
         ]);
 
         event(new NotifyCallEvent($caller, $request->receiverId));

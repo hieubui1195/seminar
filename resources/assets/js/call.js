@@ -21,7 +21,7 @@ var servers = {'iceServers': [
     {'urls': 'stun:stun.l.google.com:19302'}
 ]};
 var pc = new RTCPeerConnection(servers);
-pc.onicecandidate = (event => event.candidate?sendMessage(yourId, JSON.stringify({'ice': event.candidate})):console.log("Sent All Ice") );
+pc.onicecandidate = (event => event.candidate ? sendMessage(yourId, JSON.stringify({'ice': event.candidate})) : console.log('Sent All Ice') );
 pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
 
 function sendMessage(senderId, data) {
@@ -39,18 +39,25 @@ $.ajaxSetup({
 
 $('body').on('click', '#btn-call', function(event) {
     event.preventDefault();
+    var callerId = getURLParameter('caller'),
+        receiverId = getURLParameter('receiver');
     showFriendsFace(callerId, receiverId);
 });
 
 $('body').on('click', '#btn-publish-report-call', function(event) {
     event.preventDefault();
+    var callerId = getURLParameter('caller'),
+        receiverId = getURLParameter('receiver');
     var report = CKEDITOR.instances['editor'].getData();
-    publishReport(report);
+    publishReport(callerId, receiverId, report);
 });
 
 $('body').on('click', '#btn-finish', function(event) {
+    var callerId = getURLParameter('caller'),
+        receiverId = getURLParameter('receiver');
     event.preventDefault();
     pc.close();
+    finishCall(callerId, receiverId);
     location.href = '/home';
 });
 
@@ -82,7 +89,6 @@ function readMessage(data) {
                         'Rejected the call.',
                         'error'
                     );
-                    
                 }
             });
         } else if (msg.sdp.type == 'answer') {
@@ -110,16 +116,28 @@ var fetchData = function(dataURL) {
 }
 
 function showFriendsFace(callerId, receiverId) {
-    var ajaxCall = fetchData('/user/call-noti/' + callerId + '/' + receiverId);
+    var ajaxCall = $.ajax({
+        url: '/user/call-noti/' + callerId + '/' + receiverId,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            callerId: callerId,
+            receiverId: receiverId
+        },
+    });
     ajaxCall.fail(function() {
-        swal(
-            'Error!',
-            'Some errors have occurred.',
-            'error'
-        );
+        swal('Error!', 'Some errors have occurred.', 'error');
     });
 
-    var ajaxCreateCall = fetchData('/create-call');
+    var ajaxCreateCall = $.ajax({
+        url: '/create-call',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            callerId: callerId,
+            receiverId: receiverId
+        },
+    });
 
     $.when(ajaxCall, ajaxCreateCall).done(function(result1, result2) {
         pc.createOffer()
@@ -131,7 +149,15 @@ function showFriendsFace(callerId, receiverId) {
 function approveCall() {
     var callerId = getURLParameter('caller'),
         receiverId = getURLParameter('receiver');
-    fetchData('/update-call')
+    $.ajax({
+        url: '/update-call',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            callerId: callerId,
+            receiverId: receiverId
+        },
+    });
 }
 
 function getURLParameter(sParam) {
@@ -146,10 +172,16 @@ function getURLParameter(sParam) {
     }
 }
 
-function publishReport(report) {
-    var callerId = getURLParameter('caller'),
-        receiverId = getURLParameter('receiver');
-    var ajaxGetCallId = fetchData('/call/get');
+function publishReport(callerId, receiverId, report) {
+    var ajaxGetCallId = $.ajax({
+        url: '/call/get',
+        type: 'GET',
+        dataType: 'JSON',
+        data: {
+            callerId: callerId,
+            receiverId: receiverId
+        },
+    });
 
     var ajaxPublishReport = ajaxGetCallId.then(function(data) {
         return $.ajax({
@@ -184,5 +216,17 @@ function getSender(userId) {
 
     ajaxGetSender.done(function(data) {
         return data;
+    });
+}
+
+function finishCall(callerId, receiverId) {
+    var ajaxFinishCall = $.ajax({
+        url: '/call/finish',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            callerId: callerId,
+            receiverId: receiverId
+        }
     });
 }

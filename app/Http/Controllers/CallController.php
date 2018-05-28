@@ -7,6 +7,7 @@ use App\Repositories\Contracts\CallRepositoryInterface;
 use App\Repositories\Contracts\ReportRepositoryInterface;
 use App\Models\Call;
 use Auth;
+use Lang;
 
 class CallController extends Controller
 {
@@ -23,20 +24,19 @@ class CallController extends Controller
 
     public function createCall(Request $request)
     {
-        $data = $request->only('callerId', 'receiverId');
-
-        $callInfo = $this->repository->store($data);
+        $callInfo = $this->repository->createCall($request->callerId, $request->receiverId);
 
         return response()->json($callInfo);
     }
 
     public function updateCall(Request $request)
+    {        
+        $this->repository->approveCall($request->callerId, $request->receiverId);
+    }
+
+    public function finishCall(Request $request)
     {
-        $callerId = $request->callerId;
-        $receiverId = $request->receiverId;
-        
-        $this->repository->approveCall($callerId, $receiverId);
-        
+        $this->repository->finishCall($request->callerId, $request->receiverId);
     }
 
     public function getCall(Request $request)

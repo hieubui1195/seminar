@@ -69,7 +69,7 @@
                 {!! Form::hidden('userId', Auth::id()) !!}
                 <div class="chat" id="chat">
                     <div class="chat-header clearfix">
-                        {{ Html::image(config('custom.path_avatar') . $seminarUser->user->avatar, 'Avatar', ['width' => 55, 'height' => 55])}}
+                        {{ Html::image(config('custom.path_avatar') . $seminarUser->user->avatar, 'Avatar', ['class' => 'img img-circle'])}}
                         <div class="chat-about">
                             <div class="chat-with">{{ $seminarUser->name }}</div>
                             <div class="status">

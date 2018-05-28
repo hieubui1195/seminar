@@ -11,6 +11,8 @@ class Call extends Model
         'caller',
         'receiver',
         'status',
+        'start',
+        'end',
     ];
 
     public function notifications()
