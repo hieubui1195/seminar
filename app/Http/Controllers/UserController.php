@@ -9,6 +9,7 @@ use App\Repositories\Contracts\CallRepositoryInterface;
 use App\Http\Requests\UserRequest;
 use App\Events\NotifyCallEvent;
 use App\Models\Call;
+use App\Models\Notification;
 use Lang;
 use Auth;
 
@@ -46,7 +47,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -60,10 +61,7 @@ class UserController extends Controller
         $data = $request->only('email', 'name', 'level');
         $this->userRepository->store($data);
 
-        return response()->json([
-            'status' => 1,
-            'msg' => Lang::get('custom.add_user_success'),
-        ]);
+        return redirect()->route('user.index')->with('msg', Lang::get('custom.add_user_success'));
     }
 
     /**
@@ -163,9 +161,23 @@ class UserController extends Controller
 
     public function getNotifications()
     {
-        $userId = Auth::id();
-        $notifications = $this->notificationRepository->getNotifications(2);
+        $notifications = $this->notificationRepository->getNotifications(Auth::id());
 
         return view('user.notifications', compact('notifications'));
+    }
+
+    public function changeViewed(Request $request)
+    {
+        $this->notificationRepository->changeViewed($request->id);
+
+        return response()->json($request->all());
+    }
+
+    public function markedAll(Request $request)
+    {
+        $this->notificationRepository->markedAll();
+        $notifications = $this->notificationRepository->getNotifications(Auth::id());
+
+        return view('partials.notifications', compact('notifications'));
     }
 }

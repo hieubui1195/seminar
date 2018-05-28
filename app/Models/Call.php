@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Notification;
 
 class Call extends Model
 {
@@ -11,4 +12,9 @@ class Call extends Model
         'receiver',
         'status',
     ];
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notification');
+    }
 }

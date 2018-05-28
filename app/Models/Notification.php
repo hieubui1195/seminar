@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\Relation;
+
+Relation::morphMap([
+    'call' => 'App\Models\Call',
+    'seminar' => 'App\Models\Seminar',
+]);
 
 class Notification extends Model
 {
@@ -25,5 +31,10 @@ class Notification extends Model
     public function userReceive()
     {
         return $this->belongsTo(User::class, 'user_receive_id');
+    }
+
+    public function notification()
+    {
+        return $this->morphTo();
     }
 }

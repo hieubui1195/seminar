@@ -135,12 +135,13 @@ table.dataTable thead .sorting_desc:after {
 .chat-header img {
     float: left;
     width: 20%;
-    height: auto;
+    /*height: auto;*/
+    margin: 5%;
 }
 
 .chat-about {
     float: left;
-    width: 40%;
+    width: 35%;
     margin-top: 6px;
 }
 
@@ -150,12 +151,12 @@ table.dataTable thead .sorting_desc:after {
 }
 
 .chat-num-messages {
-    color: $gray;
+    color: #434651;
 }
 
 .chat-time {
     float: right;
-    width: 40%;
+    width: 35%;
     margin-top: 6px;
 }
 
@@ -350,4 +351,32 @@ table.dataTable thead .sorting_desc:after {
     background: none;
     border: none;
     cursor: pointer;
+}
+.not-viewed {
+    background: #e9edf2;
+}
+#marked-all {
+    cursor: pointer;
+}
+#marked-all:hover {
+    text-decoration: underline !important;
+}
+#image-preview {
+    width: 200px;
+    height: 200px;
+}
+#image-preview img {
+    width: 100%;
+    height: 100%;
+}
+.user-image {
+    width: 30px;
+    height: 30px;
+}
+.user-profile {
+    width: 150px;
+    height: 150px;
+}
+.mail-contnet .time {
+    float: right;
 }

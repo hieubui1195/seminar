@@ -16,10 +16,16 @@
     </div>
     @if (Auth::id() == $user->id)
         <div class="col-md-7 align-self-center">
-            <a href="{{ route('user.edit', Auth::id()) }}" class="btn waves-effect waves-light btn-info pull-right hidden-sm-down">
+            <a href="{{ route('user.edit', Auth::id()) }}" class="btn waves-effect waves-light btn-success pull-right hidden-sm-down">
                 @lang('custom.update_profile')
             </a>
         </div>
+    @else
+    <div class="col-md-7 align-self-center">
+        <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn waves-effect waves-light btn-info pull-right hidden-sm-down">
+            <i class="fa fa-phone"></i>
+        </a>
+    </div>
     @endif
 </div>
 
@@ -28,7 +34,7 @@
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-body">
-                <center class="m-t-30"> {!! Html::image(config('custom.path_avatar') . $user->avatar, 'User image', ['class' => 'img-circle', 'width' => '150']) !!}
+                <center class="m-t-30"> {!! Html::image(config('custom.path_avatar') . $user->avatar, 'User image', ['class' => 'img-circle user-profile', 'width' => '150']) !!}
                     <h4 class="card-title m-t-10 profile-title">{{ $user->name }}</h4>
                     <h6>
                         @if ($user->level == config('custom.admin'))
