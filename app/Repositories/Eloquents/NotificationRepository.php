@@ -41,11 +41,13 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
 
     public function changeViewed($id)
     {
-        return $this->model->find($id)->update(['viewed' => 1]);
+        return $this->model->find($id)
+            ->update(['viewed' => 1]);
     }
 
     public function markedAll()
     {
-        return $this->model->where('user_receive_id', Auth::id())->update(['viewed' => 1]);
+        return $this->model->where('user_receive_id', Auth::id())
+            ->update(['viewed' => 1]);
     }
 }
