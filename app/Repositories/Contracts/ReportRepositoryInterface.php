@@ -16,4 +16,8 @@ interface ReportRepositoryInterface extends BaseRepositoryInterface
     public function publishReport($reportId, $reportType);
 
     public function checkPublished($reportId, $reportType);
+
+    public function getAllReports();
+
+    public function getReportByReportId($reportId);
 }

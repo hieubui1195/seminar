@@ -65,15 +65,18 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
         ])->first();
     }
 
-    // public function storeCallReport(array $data)
-    // {
-    //     return $this->model->create([
-    //         'user_id' => $data['userId'],
-    //         'report_id' => $data['reportId'],
-    //         'report_type' => $data['reportType'],
-    //         'report' => $data['report'],
-    //         'filename' => $data['filename'],
-    //         'status' => $data['status'],
-    //     ]);
-    // }
+    public function getAllReports()
+    {
+        return $this->model->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->with('user')
+            ->get();
+    }
+
+    public function getReportByReportId($reportId)
+    {
+        return $this->model->where('report_id', $reportId)
+            ->where('status', 1)
+            ->first();
+    }
 }

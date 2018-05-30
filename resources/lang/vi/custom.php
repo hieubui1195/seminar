@@ -86,6 +86,7 @@ return [
     'publish_success' => 'Báo cáo đã được xuất bản',
     'validate_success' => 'Xác thực thành công',
     'validate_error' => 'Xác thực lỗi',
+    'back_home' => 'Trở về Trang chủ',
 
     'mail' => [
         'subject_create_seminar' => 'Lời mời tham dự cuộc họp',

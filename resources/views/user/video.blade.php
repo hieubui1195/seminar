@@ -37,6 +37,8 @@
                 <div class="col-md-2">
                     <div class="box-button-report-call">
                         <button class="btn btn-info" id="btn-publish-report-call">@lang('custom.publish')</button>
+                        <br>
+                        <a href="{{ route('home') }}" class="btn btn-warning" style="margin-top: 20px;">@lang('custom.back_home')</a>
                     </div>
                 </div>
             </div>
