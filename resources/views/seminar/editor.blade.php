@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('style')
+    <style type="text/css">
+
+        /*body {
+            font-family: DejaVu Sans !important;
+        }*/
+    </style>
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-body">

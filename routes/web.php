@@ -58,6 +58,9 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::resource('message', 'MessageController');   
 
-    Route::get('/search', 'HomeController@search')->name('search');   
+    Route::get('/search', 'HomeController@search')->name('search');
+
+    Route::get('/report', 'HomeController@report')->name('report');
+    Route::get('/report/preview/{id}', 'HomeController@previewReport')->name('report.preview');
 });
 
