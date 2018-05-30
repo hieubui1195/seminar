@@ -135,7 +135,11 @@ class SeminarController extends Controller
      */
     public function show($id)
     {
-        $checkValidation = $this->participantRepository->checkValidation($id, Auth::id());
+        if ($this->seminarRepository->checkChairman($id, Auth::id())) {
+            $checkValidation = true;
+        } else {
+            $checkValidation = $this->participantRepository->checkValidation($id, Auth::id());
+        }
         $seminars = $this->seminarRepository->getAllWithUser();
         $seminarUser = $this->seminarRepository->getSeminarWithUser($id);
         $messages = $this->seminarRepository->getMessages($id);

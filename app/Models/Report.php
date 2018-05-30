@@ -14,6 +14,7 @@ class Report extends Model
         'user_id',
         'report',
         'status',
+        'filename',
     ];
 
     public function seminar()
