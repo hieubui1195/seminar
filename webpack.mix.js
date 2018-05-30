@@ -38,4 +38,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .styles('resources/assets/css/bootstrap.css', 'public/css/bootstrap.css')
    .styles('resources/assets/css/video.css', 'public/css/video.css')
    .styles('resources/assets/css/search.css', 'public/css/search.css')
+   .styles('resources/assets/css/form.css', 'public/css/form.css')
    .copyDirectory('resources/assets/bower', 'public/bower');

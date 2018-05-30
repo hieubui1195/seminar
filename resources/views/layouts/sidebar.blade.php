@@ -8,7 +8,10 @@
                     <a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">@lang('custom.dashboard')</span></a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('notifications') }}" aria-expanded="false"><i class="fa fa-exclamation"></i><span class="hide-menu">@lang('custom.notifications')</span></a>
+                    <a class="waves-effect waves-dark" href="{{ route('notifications') }}" aria-expanded="false">
+                        <i class="fa fa-exclamation"></i><span class="hide-menu">@lang('custom.notifications')</span>
+                        <span class="pull-right count-notification">10</span>
+                    </a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('user.show', Auth::id()) }}" aria-expanded="false"><i class="fa fa-user-circle"></i><span class="hide-menu">@lang('custom.profile')</span></a>

@@ -78,6 +78,13 @@ return [
     'browse' => 'Browse...',
     'marked_all' => 'Marked All as Read',
     'back_home' => 'Back to Home',
+    'get_editor' => 'Go to Editor',
+    'remember_me' => 'Remember Me',
+    'login' => 'Log in',
+    'forgot_password' => 'Forgot the password?',
+    'register' => 'Register',
+    'Send Password Reset Link' => 'Send Password Reset Link',
+    'Reset Password' => 'Reset Password',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

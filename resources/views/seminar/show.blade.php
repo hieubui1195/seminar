@@ -94,7 +94,6 @@
                             
                         </div>
                     </div> 
-                  
                     @if ($checkValidation)
                         <div class="chat-history">
                             <ul>
@@ -120,10 +119,6 @@
                         @if (\Carbon\Carbon::parse($seminarUser->end)->isPast() == false)
                             <div class="chat-message clearfix">
                                 <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                                        
-                                <i class="fa fa-file"></i> &nbsp;&nbsp;&nbsp;
-                                <i class="fa fa-file-image"></i>
-                                
                                 <button>@lang('custom.send')</button>
 
                             </div>
@@ -131,8 +126,16 @@
                             <h3 class="text-center">@lang('custom.timeout')</h3>
                             @if ($checkPublished && $checkPublished != null)
                                 <h3 style="text-align: center;">
-                                    <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">@lang('custom.show_report')</a>
+                                    <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">
+                                        @lang('custom.show_report')
+                                    </a>
                                 </h3>
+                            @elseif (Auth::id() == $seminarUser->user_id)
+                                <center>
+                                    <a href="{{ route('seminar.editor', $seminarUser->id) }}" class="btn btn-info">
+                                        @lang('custom.get_editor')
+                                    </a>
+                                </center>
                             @endif
                         @endif
                     @else

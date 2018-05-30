@@ -33,7 +33,9 @@ function save(seminarId, report) {
                     result.msgTitle,
                     result.msgContent,
                     'success'
-                )
+                );
+                $('#btn-preview-report').removeAttr('style');
+                $('#btn-publish-report').removeAttr('style');
             }
         },
         error: function(result) {

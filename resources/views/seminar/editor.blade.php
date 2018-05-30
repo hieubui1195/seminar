@@ -1,14 +1,5 @@
 @extends('layouts.app')
 
-@section('style')
-    <style type="text/css">
-
-        /*body {
-            font-family: DejaVu Sans !important;
-        }*/
-    </style>
-@endsection
-
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -19,7 +10,7 @@
                 <h3>@lang('custom.participants'):</h3>
                 <ol>
                     @foreach ($participants as $participant)
-                        {{ $participant->user->name }}
+                        <li>{{ $participant->user->name }}</li>
                     @endforeach
                 </ol>
                 @foreach ($messages as $message)
@@ -31,11 +22,13 @@
         </textarea>
         <div class="form-group" style="margin-top: 15px;">
             <button type="button" class="btn btn-success" id="btn-save-editor">@lang('custom.save')</button>
-            @if ($checkReported != null)
-                <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info">@lang('custom.preview')</a>
-            @endif
+            <a href="{{ route('seminar.preview', $id) }}" class="btn btn-info" id="btn-preview-report" style="{{ $checkReported == true ? '' : 'display: none;' }}">
+                @lang('custom.preview')
+            </a>
             @if (Auth::id() == $seminar->user_id)
-                <button type="button" class="btn btn-warning" id="btn-publish-report">@lang('custom.publish')</button>
+                <button type="button" class="btn btn-warning" id="btn-publish-report" style="{{ $checkReported == true ? '' : 'display: none;' }}">
+                    @lang('custom.publish')
+                </button>
             @endif
             <a href="{{ route('seminar.show', $id) }}" class="btn btn-danger">@lang('custom.back')</a>
             <input type="hidden" id="seminar-id" value="{{ $id }}">
@@ -47,7 +40,6 @@
 
 @section('script')
     {{ Html::script('bower/ckeditor/ckeditor.js') }}
-    {{ Html::script('bower/jquery/dist/jquery.min.js') }}
     {{ Html::script('js/editor.js') }}
     {{ Html::script('js/saveEditor.js') }}
 @endsection

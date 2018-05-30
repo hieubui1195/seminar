@@ -383,3 +383,8 @@ table.dataTable thead .sorting_desc:after {
 .mail-contnet .time {
     float: right;
 }
+.count-notification {
+    padding: 3px;
+    background: red;
+    color: white;
+}

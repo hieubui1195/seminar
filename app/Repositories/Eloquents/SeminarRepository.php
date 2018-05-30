@@ -7,6 +7,7 @@ use App\Models\Seminar;
 use App\Models\Participant;
 use App\Models\Report;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SeminarRepository extends BaseRepository implements SeminarRepositoryInterface
 {

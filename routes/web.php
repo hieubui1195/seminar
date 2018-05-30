@@ -19,7 +19,7 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('welcome');
     Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');
@@ -27,14 +27,14 @@ Route::group(['middleware' => 'locale'], function() {
     Route::resource('seminar', 'SeminarController')->except('destroy');
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
     Route::group(['middleware' => 'checkChairman'], function() {
-        Route::get('/seminar/editor/{id}', 'SeminarController@getEditor');
+        Route::get('/seminar/editor/{id}', 'SeminarController@getEditor')->name('seminar.editor');
         Route::post('/seminar/editor/{id}', 'SeminarController@postEditor');
     });
+    Route::get('/seminar/report/preview/{id}', 'SeminarController@previewReport')
+            ->name('seminar.preview');
     Route::group(['middleware' => 'checkReport'], function() {
         Route::get('/seminar/report/{id}', 'SeminarController@getReport')
                 ->name('seminar.report');
-        Route::get('/seminar/report/preview/{id}', 'SeminarController@previewReport')
-                ->name('seminar.preview');
         Route::post('/seminar/report/publish/{id}','SeminarController@postReport');
         Route::get('/seminar/report/download/{id}', [
             'uses' => 'SeminarController@downloadReport',

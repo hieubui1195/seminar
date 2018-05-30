@@ -77,6 +77,14 @@ return [
     'search' => 'Tìm kiếm',
     'browse' => 'Chọn ảnh',
     'marked_all' => 'Đánh dấu tất cả đã đọc',
+    'back_home' => 'Trở về Trang chủ',
+    'get_editor' => 'Đi đến trình soạn thảo',
+    'remember_me' => 'Ghi nhớ đăng nhập',
+    'login' => 'Đăng nhập',
+    'forgot_password' => 'Quên mật khẩu?',
+    'register' => 'Đăng ký',
+    'Send Password Reset Link' => 'Gửi liên kết đặt lại mật khẩu',
+    'Reset Password' => 'Đặt lại mật khẩu',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',
@@ -86,8 +94,7 @@ return [
     'publish_success' => 'Báo cáo đã được xuất bản',
     'validate_success' => 'Xác thực thành công',
     'validate_error' => 'Xác thực lỗi',
-    'back_home' => 'Trở về Trang chủ',
-
+    
     'mail' => [
         'subject_create_seminar' => 'Lời mời tham dự cuộc họp',
         'invitation' => 'Bạn được mời tham dự cuộc họp :seminar từ :start đến :end. Mã cuộc họp là <b>:code</b>.',
