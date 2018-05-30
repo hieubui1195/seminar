@@ -52,7 +52,8 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::post('/create-call', 'CallController@createCall');
     Route::post('/update-call', 'CallController@updateCall');
-    Route::post('/call/get', 'CallController@getCall');
+    Route::get('/call/get', 'CallController@getCall');
+    Route::post('/call/finish', 'CallController@finishCall');
     Route::post('/call/publish', 'CallController@publishReport');
 
     Route::resource('message', 'MessageController');   

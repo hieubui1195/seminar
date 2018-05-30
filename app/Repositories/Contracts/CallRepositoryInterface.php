@@ -12,4 +12,8 @@ interface CallRepositoryInterface extends BaseRepositoryInterface
     public function approveCall($callerId, $receiverId);
 
     public function getCall($callerId, $receiverId);
+
+    public function finishCall($callerId, $receiverId);
+
+   public function createCall($callerId, $receiverId);
 }

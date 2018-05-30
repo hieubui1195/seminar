@@ -20,7 +20,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->create([
             'email' => $data['email'],
             'name' => $data['name'],
-            'password' => bcrypt(config('custom.defaultPassword')),
+            'password' => bcrypt(config('custom.default_password')),
             'level' => $data['level'],
         ]);
     }

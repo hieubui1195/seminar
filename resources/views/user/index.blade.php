@@ -40,8 +40,6 @@
     {!! Html::script('bower/datatables.net/js/jquery.dataTables.min.js') !!}
     {!! Html::script('js/user.js') !!}
     <script type="text/javascript">
-        if ($('table').length) {
-            $('table').DataTable();
-        }
+        $('table').DataTable();
     </script>
 @endsection

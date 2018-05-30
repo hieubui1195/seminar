@@ -36,10 +36,10 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
     {
         return $this->model->where('report_id', $id)
             ->where('report_type', $reportType)->update([
-            'user_id' => $data['userId'],
-            'report' => $data['report'],
-            'filename' => $data['filename'],
-        ]);
+                'user_id' => $data['userId'],
+                'report' => $data['report'],
+                'filename' => $data['filename'],
+            ]);
     }
 
     public function checkReported($reportId, $reportType)

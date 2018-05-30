@@ -30,7 +30,7 @@
             </td>
             <td>
                 @if (Auth::id() != $user->id)
-                    <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn btn-success">
+                    <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn btn-success call-from-users">
                         <i class="fa fa-phone"></i>
                     </a>
                 @endif

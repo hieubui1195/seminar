@@ -76,6 +76,5 @@
 @endsection
 
 @section('script')
-    {{ Html::script('js/app.js') }}
     {!! Html::script('js/user.js') !!}
 @endsection

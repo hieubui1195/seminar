@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 use App\Repositories\Contracts\CallRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use App\Models\Call;
+use Carbon\Carbon;
 
 class CallRepository extends BaseRepository implements CallRepositoryInterface
 {
@@ -21,6 +22,7 @@ class CallRepository extends BaseRepository implements CallRepositoryInterface
             'caller' => $data['callerId'],
             'receiver' => $data['receiverId'],
             'status' => 0,
+            'start' => Carbon::now(),
         ]);
     }
 
@@ -41,7 +43,19 @@ class CallRepository extends BaseRepository implements CallRepositoryInterface
     {
         return $this->model->where('caller', $callerId)
             ->where('receiver', $receiverId)
-            ->orderBy('created_at', 'desc')
-            ->limit(1);
+            ->latest()
+            ->first();
+    }
+
+    public function finishCall($callerId, $receiverId)
+    {
+        return $this->getCall($callerId, $receiverId)
+            ->update(['end' => Carbon::now()]);
+    }
+
+    public function createCall($callerId, $receiverId)
+    {
+        return $this->getCall($callerId, $receiverId)
+            ->update(['start' => Carbon::now()]);
     }
 }

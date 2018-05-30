@@ -9,6 +9,7 @@ function notifyCall(currentUser) {
         created() {
             Echo.private('call')
                 .listen('NotifyCallEvent', (e) => {
+                    console.log(e);
                     if (currentUser == e['receiverId']) {
                         swal({
                             title: 'Call notification?',
