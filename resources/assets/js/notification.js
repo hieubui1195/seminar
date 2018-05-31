@@ -29,6 +29,6 @@ $('body').on('click', '#marked-all', function(event) {
 
     ajaxMarkedAll.done(function(result) {
         $('#notification-list').html(result);
-        console.log(result);
+        $('.count-notification').remove();
     });
 });

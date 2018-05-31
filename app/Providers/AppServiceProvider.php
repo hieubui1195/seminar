@@ -4,12 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Repositories\Contracts\ParticipantRepositoryInterface;
-use App\Repositories\Eloquents\ParticipantRepository;
-use App\Repositories\Contracts\SeminarRepositoryInterface;
-use App\Repositories\Eloquents\SeminarRepository;
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Repositories\Eloquents\UserRepository;
+use Illuminate\Support\Facades\View;
+use App\Models\Notification;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +18,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer('*', function($view){
+            if (Auth::check()) {
+                $countNotify = Notification::where('user_receive_id', Auth::id())->where('viewed', 0)->count();
+                $view->with('countNotify', $countNotify);
+            }
+        });
     }
 
     /**
