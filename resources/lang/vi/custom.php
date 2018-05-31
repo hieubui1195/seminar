@@ -85,6 +85,12 @@ return [
     'register' => 'Đăng ký',
     'Send Password Reset Link' => 'Gửi liên kết đặt lại mật khẩu',
     'Reset Password' => 'Đặt lại mật khẩu',
+    'About' => 'Về chúng tôi',
+    'About paragraph' => 'Phòng thí nghiệm thông tin vô tuyến (WicomLab) là cơ sở nghiên cứu và hướng dẫn tham gia vào việc thiết kế, tích hợp, phân tích và thử nghiệm các thiết bị truyền thông không dây, các mạch điện tử tương tự, mạch số, vi điều khiển và hệ thống thông tin vô tuyến, thông tin thủy âm. Ngoài ra một số lĩnh vực như Internet of Things và Machine Learning cũng được quan tâm nghiên cứu..',
+    'About App' => 'Về ứng dụng',
+    'About app paragraph' => 'đây là ựng dụng để tạo nên các cuộc họp trực tuyến giữa các thành viên với nhau. ngoài ra còn có thể gọi video giữa hai thành viên.',
+    'laboratory' => 'Phòng thí nghiệm thông tin vô tuyến',
+    'address' => 'Phòng 421, Nhà C9, Đại học Bách Khoa Hà Nội',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

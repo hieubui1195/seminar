@@ -39,17 +39,16 @@
                     ) !!}
                 </div>
                 
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             {!! Html::link('#page-top', Lang::get('custom.welcome'), ['class' => 'page-scroll']) !!}
                         </li>
                         <li>
-                            {!! Html::link('#about', Lang::get('custom.about'), ['class' => 'page-scroll']) !!}
+                            {!! Html::link('#about', Lang::get('custom.About'), ['class' => 'page-scroll']) !!}
                         </li>
                         <li>
-                            {!! Html::link('#portfolio', Lang::get('custom.portfolio'), ['class' => 'page-scroll']) !!}
+                            {!! Html::link('#portfolio', Lang::get('custom.About App'), ['class' => 'page-scroll']) !!}
                         </li>
                         <li>
                             {!! Html::link('#contact', Lang::get('custom.contact'), ['class' => 'page-scroll']) !!}
@@ -67,248 +66,138 @@
                             </li>
                         @endauth
                         <li>
-                            {!! html_entity_decode(
-                                Html::linkRoute(
-                                    'change-language', 
-                                    Html::image('images/en.png') . Lang::get('custom.en'), 
-                                    [
-                                        'lang' => 'en'
-                                    ]
-                                )
-                            ) !!}
+                            {!! html_entity_decode(Html::linkRoute('change-language', Html::image('images/en.png') . Lang::get('custom.en'), ['lang' => 'en'])) !!}
                         </li>
                         <li>
-                            {!! html_entity_decode(
-                                Html::linkRoute(
-                                    'change-language', 
-                                    Html::image('images/vi.png') . Lang::get('custom.vi'), 
-                                    [
-                                        'lang' => 'vi'
-                                    ]
-                                )
-                            ) !!}
+                            {!! html_entity_decode(Html::linkRoute('change-language', Html::image('images/vi.png') . Lang::get('custom.vi'), ['lang' => 'vi'])) !!}
                         </li>
 
                     </ul>
                 </div>
-                <!-- /.navbar-collapse --> 
             </div>
-            <!-- /.container-fluid --> 
         </nav>
-    <!-- Header -->
-    <header id="header">
-      <div class="intro">
-        <div class="container">
-          <div class="row">
-            <div class="intro-text">
-              <h1>@lang('custom.title')</h1>
-              <p>@lang('custom.hardware') • @lang('custom.wireless') • @lang('custom.software')</p>
-              <a href="#about" class="btn btn-custom btn-lg page-scroll">@lang('custom.learn_more')</a> </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- About Section -->
-    <div id="about">
-      <div class="container">
-        <div class="section-title text-center center">
-          <h2>About Me</h2>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-6"> <img src="img/about.jpg" class="img-responsive" alt=""> </div>
-          <div class="col-xs-12 col-md-6">
-            <div class="about-text">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
-              <a href="#portfolio" class="btn btn-default btn-lg page-scroll">My Portfolio</a> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio Section -->
-    <div id="portfolio">
-      <div class="container">
-        <div class="section-title text-center center">
-          <h2>Portfolio</h2>
-          <hr>
-        </div>
-        <div class="categories">
-          <ul class="cat">
-            <li>
-              <ol class="type">
-                <li><a href="#" data-filter="*" class="active">All</a></li>
-                <li><a href="#" data-filter=".web">Web Design</a></li>
-                <li><a href="#" data-filter=".photography">Photography</a></li>
-                <li><a href="#" data-filter=".product">Product Design</a></li>
-              </ol>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="row">
-          <div class="portfolio-items">
-            <div class="col-sm-6 col-md-3 col-lg-3 web">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/01-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 product">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/02-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/02-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 web">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/03-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/03-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 web">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/04-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/04-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 product">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/05-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/05-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 photography">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/06-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/06-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 photography">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/07-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/07-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 web">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/08-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/08-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 product">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/09-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/09-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 photography">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/10-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/10-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 photography">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/11-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/11-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 web">
-              <div class="portfolio-item">
-                <div class="hover-bg"> <a href="img/portfolio/12-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Project Title</h4>
-                  </div>
-                  <img src="img/portfolio/12-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Contact Section -->
-    <div id="contact" class="text-center">
-      <div class="container">
-        <div class="section-title center">
-          <h2>Get In Touch</h2>
-          <hr>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-          <form name="sentMessage" id="contactForm" novalidate>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" id="name" class="form-control" placeholder="Name" required="required">
-                  <p class="help-block text-danger"></p>
+        <!-- Header -->
+        <header id="header">
+            <div class="intro">
+                <div class="container">
+                    <div class="row">
+                        <div class="intro-text">
+                            <h1>@lang('custom.title')</h1>
+                            <p>@lang('custom.hardware') • @lang('custom.wireless') • @lang('custom.software')</p>
+                            <a href="#about" class="btn btn-custom btn-lg page-scroll">@lang('custom.learn_more')</a> 
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="email" id="email" class="form-control" placeholder="Email" required="required">
-                  <p class="help-block text-danger"></p>
+            </div>
+        </header>
+        <!-- About Section -->
+        <div id="about">
+            <div class="container">
+                <div class="section-title text-center center">
+                    <h2>@lang('custom.About')</h2>
+                    <hr>
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6"> <img src="{{ asset('images/WicomLab.png') }}" class="img-responsive" alt=""> </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="about-text">
+                            <p>
+                                @lang('custom.About paragraph')
+                            </p>
+                            <a href="#portfolio" class="btn btn-default btn-lg page-scroll">@lang('custom.About App')</a> 
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-              <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
-              <p class="help-block text-danger"></p>
+        </div>
+        <!-- Portfolio Section -->
+        <div id="portfolio">
+            <div class="container">
+                <div class="section-title text-center center">
+                    <h2>@lang('custom.About App')</h2>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="about-text">
+                            <h4>
+                                @lang('custom.About app paragraph')
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <center>
+                            <h1>
+                                <i class="fa fa-comment"></i>
+                            </h1>
+                            <br>
+                            <h1>
+                                @lang('custom.seminar')
+                            </h1>
+                        </center>
+                    </div>
+                    <div class="col-lg-4">
+                        <center>
+                            <h1>
+                                <i class="fa fa-phone"></i>
+                            </h1>
+                            <br>
+                            <h1>
+                                @lang('custom.call')
+                            </h1>
+                        </center>
+                    </div>
+                    <div class="col-lg-4">
+                        <center>
+                            <h1>
+                                <i class="fa fa-file"></i>
+                            </h1>
+                            <br>
+                            <h1>
+                                @lang('custom.report')
+                            </h1>
+                        </center>
+                    </div>
+                </div>
             </div>
-            <div id="success"></div>
-            <button type="submit" class="btn btn-default btn-lg">Send Message</button>
-          </form>
-          <div class="social">
-            <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
-            </ul>
-          </div>
         </div>
-      </div>
-    </div>
-    <div id="footer">
-      <div class="container text-center">
-        <div class="fnav">
-          <p>Copyright &copy; 2016 Spectrum. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+        <!-- Contact Section -->
+        <div id="contact" class="text-center">
+            <div class="container">
+                <div class="section-title center">
+                    <h2>@lang('custom.contact')</h2>
+                    <hr>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <h4>
+                        @lang('custom.laboratory')
+                    </h4>
+                    <hr>
+                    <h4>
+                        @lang('custom.address')
+                    </h4>
+                    <hr>
+                    <h4>
+                        wicomlab@gmail.com
+                    </h4>
+                    <div class="social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
+        <div id="footer">
+            <div class="container text-center">
+                <div class="fnav">
+                    <p>Copyright &copy; 2016 Spectrum. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+                </div>
+            </div>
+        </div>
 
     {!! Html::script('bower/jquery/dist/jquery.min.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
@@ -317,5 +206,6 @@
     {!! Html::script('js/jqBootstrapValidation.js') !!}
     {!! Html::script('js/contact_me.js') !!}
     {!! Html::script('js/main.js') !!}
+
     </body>
 </html>
