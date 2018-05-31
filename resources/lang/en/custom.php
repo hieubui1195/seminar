@@ -85,6 +85,12 @@ return [
     'register' => 'Register',
     'Send Password Reset Link' => 'Send Password Reset Link',
     'Reset Password' => 'Reset Password',
+    'About' => 'About Us',
+    'About paragraph' => 'The Wireless Communication Laboratory (WicomLab) is a research and training facility that engages in the design, integration, analysis and testing of wireless communications equipment, analog circuits, digital circuits , microcontrollers and radio communication systems, hydrodynamic information. In addition, some areas such as Internet of Things and Machine Learning are also of interest.',
+    'About App' => 'About App',
+    'About app paragraph' => 'This is used to create online meetings between members. There is also a video call between the two members.',
+    'laboratory' => 'Wireless Communication Laboratory',
+    'address' => '421 Room, C9 Building, HaNoi University of Science and Technology',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',
