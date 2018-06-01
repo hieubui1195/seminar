@@ -91,6 +91,7 @@ return [
     'About app paragraph' => 'đây là ựng dụng để tạo nên các cuộc họp trực tuyến giữa các thành viên với nhau. ngoài ra còn có thể gọi video giữa hai thành viên.',
     'laboratory' => 'Phòng thí nghiệm thông tin vô tuyến',
     'address' => 'Phòng 421, Nhà C9, Đại học Bách Khoa Hà Nội',
+    'Time' => 'Thời gian',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

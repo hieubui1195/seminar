@@ -41,6 +41,16 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('change-language', 'en') }}" aria-expanded="false">
+                        <i class="fa"><img src="{{ asset('images/en.png') }}"></i><span class="hide-menu">@lang('custom.en')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('change-language', 'vi') }}" aria-expanded="false">
+                        <i class="fa"><img src="{{ asset('images/vi.png') }}"></i><span class="hide-menu">@lang('custom.vi')</span>
+                    </a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark logout" href="{{ route('logout') }}" aria-expanded="false">
                         <i class="fa fa-sign-out"></i><span class="hide-menu">@lang('custom.logout')</span>
                     </a>

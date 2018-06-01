@@ -28,4 +28,8 @@ interface SeminarRepositoryInterface extends BaseRepositoryInterface
     public function checkCode($id, $inputCode);
 
     public function checkChairman($id, $userId);
+
+    public function newSeminar();
+
+    public function latestSeminar();
 }

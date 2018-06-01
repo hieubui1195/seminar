@@ -91,6 +91,7 @@ return [
     'About app paragraph' => 'This is used to create online meetings between members. There is also a video call between the two members.',
     'laboratory' => 'Wireless Communication Laboratory',
     'address' => '421 Room, C9 Building, HaNoi University of Science and Technology',
+    'Time' => 'Time',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',
