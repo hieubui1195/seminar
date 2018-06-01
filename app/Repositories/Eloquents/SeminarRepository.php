@@ -102,4 +102,20 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
             ['user_id', $userId]
         ])->first();
     }
+
+    public function newSeminar()
+    {
+        return $this->model->latest()
+            ->orderBy('start', 'desc')
+            ->take(4)
+            ->with('user')
+            ->get();
+    }
+
+    public function latestSeminar()
+    {
+        return $this->model->latest()
+            ->with('user')
+            ->first();
+    }
 }

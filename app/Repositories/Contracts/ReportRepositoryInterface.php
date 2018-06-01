@@ -20,4 +20,6 @@ interface ReportRepositoryInterface extends BaseRepositoryInterface
     public function getAllReports();
 
     public function getReportByReportId($reportId);
+
+    public function newReport();
 }
