@@ -17,14 +17,6 @@
     <!-- Column -->
     <div class="col-lg-4">
         <div class="card seminar-list">
-            <div class="card-title">
-                <div class="search">
-                    {!! Form::open(['method' => 'POST', 'id' => 'search-early']) !!}
-                        {!! Form::text('keySeminar', null, ['placeholder' => Lang::get('custom.search'), 'id' => 'search-seminar']) !!}
-                        <i class="fa fa-search"></i>
-                    {!! Form::close() !!}
-                </div>
-            </div>
             <div class="card-body">
                 <ul class="list" id="hits">
                     @foreach ($seminars as $seminar)
@@ -51,8 +43,11 @@
                             </div>
                             @if (($seminar->user_id == Auth::id()) || (Auth::user()->level == 2))
                                 <div class="seminar-option">
-                                    <a class="btn-edit-seminar" href="{{ route('seminar.edit', $seminar->id) }}" data-id="{{ $seminar->id }}">
+                                    <a class="btn-edit-seminar" href="{{ route('seminar.edit', $seminar->id) }}" data-id="{{ $seminar->id }}" title="{{ Lang::get('custom.edit') }}">
                                         <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn-delete-seminar" href="{{ route('seminar.destroy', $seminar->id) }}" data-id="{{ $seminar->id }}" title="{{ Lang::get('custom.delete') }}">
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </div>
                             @endif
@@ -179,7 +174,7 @@
 
                         <dt class="col-sm-3">@lang('custom.chairman')</dt>
                         <dd class="col-sm-9">
-                            <a href="{{ route('user.show', $seminarUser->user_id) }}">
+                            <a href="{{ route('user.show', $seminarUser->user_id) }}" title="{{ Lang::get('custom.detail') }}">
                                 {{ $seminarUser->user->name }}
                             </a>
                         </dd>
@@ -202,7 +197,7 @@
                             <ul style="padding-left: 10px">
                                 @foreach ($members as $member)
                                     <li>
-                                        <a href="{{ route('user.show', $member->user->id) }}">
+                                        <a href="{{ route('user.show', $member->user->id) }}" title="{{ Lang::get('custom.detail') }}">
                                             {{ $member->user->name }}
                                         </a>
                                     </li>

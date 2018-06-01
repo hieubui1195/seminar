@@ -347,7 +347,8 @@ table.dataTable thead .sorting_desc:after {
 .mailbox .message-center {
     overflow-y: auto !important; 
 }
-.btn-edit-seminar {
+.btn-edit-seminar,
+.btn-delete-seminar {
     color: black;
 }
 .btn-delete-seminar {

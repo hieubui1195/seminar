@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ReportRepositoryInterface;
+use App\Repositories\Contracts\SeminarRepositoryInterface;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateSeminarMail;
@@ -14,17 +15,18 @@ use PDF;
 
 class HomeController extends Controller
 {
-    protected $reportRepository;
+    protected $reportRepository, $seminarRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ReportRepositoryInterface $reportRepository)
+    public function __construct(ReportRepositoryInterface $reportRepository,
+        SeminarRepositoryInterface $seminarRepository)
     {
-        $this->middleware('auth');
         $this->reportRepository = $reportRepository;
+        $this->seminarRepository = $seminarRepository;
     }
 
     /**
@@ -34,7 +36,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $newSeminars = $this->seminarRepository->newSeminar();
+        $latestSeminar = $this->seminarRepository->latestSeminar();
+        $newReports = $this->reportRepository->newReport();
+
+        return view('home', compact('newSeminars', 'latestSeminar', 'newReports'));
     }
 
     public function changeLanguage($language)
@@ -42,6 +48,11 @@ class HomeController extends Controller
         Session::put('website_language', $language);
         
         return redirect()->back();
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
     }
 
     public function search()
@@ -58,8 +69,7 @@ class HomeController extends Controller
 
     public function previewReport($id)
     {
-        $html = mb_convert_encoding($this->reportRepository->getReportByReportId($id)->report, 'HTML-ENTITIES', 'UTF-8');
-        $pdf = PDF::loadHTML($html);
+        $pdf = PDF::loadHTML($this->reportRepository->getReportByReportId($id)->report);
         header('Content-Type: application/pdf; charset=utf-8');
         
         return $pdf->stream();

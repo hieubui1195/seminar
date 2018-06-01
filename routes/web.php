@@ -11,20 +11,18 @@
 |
 */
 Route::group(['middleware' => 'locale'], function() {
-    
-    Route::get('change-language/{language}', function($language){
-        Session::put('website_language', $language);
-        return redirect()->back();
-    })->name('change-language');
+    Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('change-language');
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    Route::get('/', 'HomeController@welcome')->name('welcome');
+});
+
+Route::group(['middleware' => 'locale', 'auth'], function() {
+
     Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('seminar', 'SeminarController')->except('destroy');
+    Route::resource('seminar', 'SeminarController');
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
     Route::group(['middleware' => 'checkChairman'], function() {
         Route::get('/seminar/editor/{id}', 'SeminarController@getEditor')->name('seminar.editor');
@@ -56,7 +54,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::post('/call/finish', 'CallController@finishCall');
     Route::post('/call/publish', 'CallController@publishReport');
 
-    Route::resource('message', 'MessageController');   
+    Route::resource('message', 'MessageController')->only(['store']);   
 
     Route::get('/search', 'HomeController@search')->name('search');
 

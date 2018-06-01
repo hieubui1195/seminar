@@ -79,4 +79,13 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
             ->where('status', 1)
             ->first();
     }
+
+    public function newReport()
+    {
+        return $this->model->where('status', 1)
+            ->latest()
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+    }
 }
