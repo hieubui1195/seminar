@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# @lang('custom.Invitation')
 
 @lang('custom.mail.invitation', [
 	'seminar' => $seminar[0]->name,

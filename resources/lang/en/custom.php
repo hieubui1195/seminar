@@ -92,6 +92,7 @@ return [
     'laboratory' => 'Wireless Communication Laboratory',
     'address' => '421 Room, C9 Building, HaNoi University of Science and Technology',
     'Time' => 'Time',
+    'Invitation' => 'Invitation',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

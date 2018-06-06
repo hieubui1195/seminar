@@ -22,7 +22,7 @@ Route::group(['middleware' => 'locale', 'auth'], function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('seminar', 'SeminarController')->except('destroy');
+    Route::resource('seminar', 'SeminarController');
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
     Route::group(['middleware' => 'checkChairman'], function() {
         Route::get('/seminar/editor/{id}', 'SeminarController@getEditor')->name('seminar.editor');

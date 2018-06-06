@@ -92,6 +92,7 @@ return [
     'laboratory' => 'Phòng thí nghiệm thông tin vô tuyến',
     'address' => 'Phòng 421, Nhà C9, Đại học Bách Khoa Hà Nội',
     'Time' => 'Thời gian',
+    'Invitation' => 'Thư mời',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',
