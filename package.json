@@ -27,6 +27,6 @@
         "popper.js": "^1.14.3",
         "pusher-js": "^4.2.2",
         "require": "^2.4.20",
-        "sweetalert2": "^7.19.3"
+        "sweetalert2": "^7.22.0"
     }
 }

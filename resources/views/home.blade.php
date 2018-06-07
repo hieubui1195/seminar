@@ -20,7 +20,9 @@
                     <h5 class="card-title m-b-0">@lang('custom.seminar')</h5>
                 </div>
                 <div class="pull-right">
-                    <a href="{{ route('seminar.show', $latestSeminar->id) }}">@lang('custom.more')</a>
+                    @if ($latestSeminar)
+                        <a href="{{ route('seminar.show', $latestSeminar->id) }}">@lang('custom.more')</a>
+                    @endif
                 </div>
                 <div class="table-responsive m-t-20">
                     <table class="table vm no-th-brd pro-of-month">

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ad21be08e6f336de9581cf9eda29d09",
-    "content-hash": "688af8dd6744224f170798eb51e1b873",
+    "hash": "4544b9a389b92bd11cce837d2153d9fa",
+    "content-hash": "485fec73f774757c36414874ad9fe6cc",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -847,6 +847,56 @@
             "time": "2017-06-15 17:19:42"
         },
         {
+            "name": "fzaninotto/faker",
+            "version": "v1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.0 || ^5.0",
+                "squizlabs/php_codesniffer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2017-08-15 16:48:10"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -1663,7 +1713,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/a85f7fe9fe08d093a4a8583cdd306b553ff918aa",
+                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/8f543ede60386faec9b0012833536de4b6083bb9",
                 "reference": "a85f7fe9fe08d093a4a8583cdd306b553ff918aa",
                 "shasum": ""
             },
@@ -3225,56 +3275,6 @@
             "time": "2017-11-23 18:22:44"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
-                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
-                "squizlabs/php_codesniffer": "^1.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2017-08-15 16:48:10"
-        },
-        {
             "name": "hamcrest/hamcrest-php",
             "version": "v2.0.0",
             "source": {
@@ -3534,72 +3534,6 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2017-03-05 17:38:23"
-        },
-        {
-            "name": "php-junior/laravel-video-chat",
-            "version": "v1.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPJunior/laravel-video-chat.git",
-                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPJunior/laravel-video-chat/zipball/39fd18fdcc6a7247d05645165fe04c755819e5f6",
-                "reference": "39fd18fdcc6a7247d05645165fe04c755819e5f6",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/apache-mime-types": "^1.0",
-                "illuminate/contracts": "^5.5",
-                "illuminate/database": "^5.5",
-                "illuminate/support": "^5.5",
-                "php": ">=7.0",
-                "predis/predis": "^1.1"
-            },
-            "require-dev": {
-                "graham-campbell/testbench": "^4.0",
-                "phpunit/phpunit": "^6.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "PhpJunior\\LaravelVideoChat\\LaravelVideoChatServiceProvider"
-                    ],
-                    "aliases": {
-                        "Chat": "PhpJunior\\LaravelVideoChat\\Facades\\Chat"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpJunior\\LaravelVideoChat\\": "src/"
-                },
-                "files": [
-                    "helper/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nyi Nyi Lwin",
-                    "email": "nyinyilwin1992@hotmail.com"
-                }
-            ],
-            "description": "Laravel Video Chat using Socket.IO and WebRTC",
-            "keywords": [
-                "Socket.io",
-                "WebRTC",
-                "chat",
-                "laravel",
-                "realtime",
-                "video-chat"
-            ],
-            "time": "2017-12-02 15:50:31"
         },
         {
             "name": "phpdocumentor/reflection-common",
