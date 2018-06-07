@@ -93,6 +93,7 @@ return [
     'address' => '421 Room, C9 Building, HaNoi University of Science and Technology',
     'Time' => 'Time',
     'Invitation' => 'Invitation',
+    'Change Role' => 'Change Role',
 
     'add_user_success' => 'The user has been successfully added',
     'delete_user_success' => 'The user has been deleted',

@@ -10,4 +10,6 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
     public function update(array $data);
 
     public function getNameAndId();
+
+    public function changeRole($userId, $role);
 }
