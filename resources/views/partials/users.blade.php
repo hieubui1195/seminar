@@ -14,9 +14,13 @@
     @foreach ($users as $user)
         <tr>
             <td>
-                {!! html_entity_decode(
-                    Html::linkRoute('user.show', '<image src="' . config('custom.path_avatar') . $user->avatar . '" class="user-image">', $user->id, ['title' => Lang::get('custom.detail')])
-                ) !!}
+                <a href="{{ route('user.show', $user->id) }}" title="{{ Lang::get('custom.detail') }}">
+                    @if ($user->avatar == config('custom.default_avatar'))
+                        <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="user-image">
+                    @else
+                        <img src="{{ config("custom.path_avatar") . $user->avatar }}" class="user-image">
+                    @endif
+                </a>
             </td>
             <td>{{ $user->email }}</td>
             <td>
