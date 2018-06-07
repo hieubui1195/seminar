@@ -34,7 +34,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         }
 
         if ($data['avatar']) {
-            $data['avatar']->move(config('custom.path_avatar'), $data['avatar']->getClientOriginalName());
+            $data['avatar']->move(public_path(config('custom.path_avatar')), $data['avatar']->getClientOriginalName());
             $filename = $data['avatar']->getClientOriginalName();
             $this->model->find($data['id'])->update([
                 'avatar' => $filename,

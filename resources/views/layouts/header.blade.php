@@ -15,7 +15,12 @@
                 <li class="nav-item dropdown u-pro">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if (Auth::check())
-                            <img src="{{ url('/') . '/' . config("custom.path_avatar") . Auth::user()->avatar }}" alt="{{ Lang::get('custom.user') }}" class="user-image"> <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span> 
+                            @if (Auth::user()->avatar == config('custom.default_avatar'))
+                                <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="user-image" alt="{{ Lang::get('custom.user') }}">
+                            @else
+                                <img src="{{ config("custom.path_avatar") . Auth::user()->avatar }}" class="user-image" alt="{{ Lang::get('custom.user') }}">
+                            @endif
+                             <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span> 
                         @endif
                     </a>
                 </li>
