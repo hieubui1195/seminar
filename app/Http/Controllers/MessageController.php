@@ -39,4 +39,13 @@ class MessageController extends Controller
             'id' => $message->id,
         ]);
     }
+
+    public function show(Request $request)
+    {
+        return response()->json([
+            $this->messageRepository
+                ->getMessageWithUser($request->messageId)
+                ->get()
+        ]);
+    }
 }
