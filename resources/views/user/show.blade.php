@@ -21,11 +21,11 @@
             </a>
         </div>
     @else
-    <div class="col-md-7 align-self-center">
-        <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn waves-effect waves-light btn-info pull-right hidden-sm-down">
-            <i class="fa fa-phone"></i>
-        </a>
-    </div>
+        <div class="col-md-7 align-self-center">
+            <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn waves-effect waves-light btn-info pull-right hidden-sm-down">
+                <i class="fa fa-phone"></i>
+            </a>
+        </div>
     @endif
 </div>
 
@@ -34,7 +34,12 @@
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-body">
-                <center class="m-t-30"> {!! Html::image(config('custom.path_avatar') . $user->avatar, 'User image', ['class' => 'img-circle user-profile', 'width' => '150']) !!}
+                <center class="m-t-30">
+                    @if (Auth::user()->avatar == config('custom.default_avatar'))
+                        <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img-circle user-image" alt="{{ Lang::get('custom.user') }}" width="150">
+                    @else
+                        <img src="{{ config("custom.path_avatar") . $user->avatar }}" class="img-circle user-image" alt="{{ Lang::get('custom.user') }}" width="150">
+                    @endif
                     <h4 class="card-title m-t-10 profile-title">{{ $user->name }}</h4>
                     <h6>
                         @if ($user->level == config('custom.admin'))
