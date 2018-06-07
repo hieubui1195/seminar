@@ -47,6 +47,7 @@ Route::group(['middleware' => 'locale', 'auth'], function() {
     Route::get('/notifications', 'UserController@getNotifications')->name('notifications');
     Route::post('/notification/view', 'UserController@changeViewed');
     Route::post('/notification/marked', 'UserController@markedAll');
+    Route::post('/user/change-role/{id}', 'UserController@changeRole');
 
     Route::post('/create-call', 'CallController@createCall');
     Route::post('/update-call', 'CallController@updateCall');

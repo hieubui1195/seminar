@@ -183,4 +183,11 @@ class UserController extends Controller
 
         return view('partials.notifications', compact('notifications'));
     }
+
+    public function changeRole($id, Request $request)
+    {
+        $this->userRepository->changeRole($id, $request->role);
+
+        return response()->json($request->all());
+    }
 }

@@ -52,4 +52,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->model->pluck('name', 'id');
     }
+
+    public function changeRole($userId, $role)
+    {
+        return $this->model->find($userId)
+            ->update([
+                'level' => $role,
+            ]);
+    }
 }

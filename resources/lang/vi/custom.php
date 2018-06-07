@@ -93,6 +93,7 @@ return [
     'address' => 'Phòng 421, Nhà C9, Đại học Bách Khoa Hà Nội',
     'Time' => 'Thời gian',
     'Invitation' => 'Thư mời',
+    'Change Role' => 'Thay đổi vai trò',
 
     'add_user_success' => 'Người dùng đã được thêm thành công',
     'delete_user_success' => 'Người dùng đã được xóa',

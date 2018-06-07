@@ -78,49 +78,17 @@ $('body').on('click', '#btn-update', function(event) {
     updateUser(formType, id, name, password, password_confirmation, phone);
 })
 
-function addUser(formType, email, name, level) {
-    $.ajax({
-        url: '/user',
-        type: 'POST',
-        data: {
-            formType: formType,
-            email: email,
-            name: name,
-            level: level
-        },
-        dataType: 'JSON',
-        success: function(result) {
-            if (result.status == 1) {
-                $('#modal-create').modal('hide');
-                swal({
-                    title: 'Success',
-                    text: result.msg,
-                    type: 'success',
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.value) {
-                        location.reload();
-                    }
-                });
-            }
-        },
-        error: function(result)
-        {
-            var errors = JSON.parse(result.responseText);
-            if (errors.errors.email) {
-                var message = $('<span class="text-danger"></span>').html('<b>' + errors.errors.email + '</b>')
-                $('#modal-create input[name="email"]').after(message);
-            }
-
-            if (errors.errors.name) {
-                var message = $('<span class="text-danger"></span>').html('<b>' + errors.errors.name + '</b>')
-                $('#modal-create input[name="name"]').after(message);
-            }
-        }
-    });
-}
+$('body').on('change', 'select.form-control', function(event) {
+    event.preventDefault();
+    var id = $(this).data('id'),
+        currentRole = $(this).data('current-role'),
+        role = $(this).val();
+    if (role == currentRole) {
+        swal('Warning!', 'The selected account is in this role!', 'warning');
+    } else {
+        changeRole(id, role);
+    }
+})
 
 function deleteUser(id) {
     $.ajax({
@@ -154,59 +122,21 @@ function deleteUser(id) {
     })
 }
 
-function updateUser(formType, id, name, password, password_confirmation, phone) {
-    // formData = new FormData();
-    // formData.append('formType', formType);
-    // formData.append('id', id);
-    // formData.append('name', name);
-    // formData.append('password', password);
-    // formData.append('password_confirmation', password_confirmation);
-    // formData.append('avatar', $('#image')[0].files[0]);
-    // for (var pair of formData.entries())
-    // {
-    //  console.log(pair[0]+ ', '+ pair[1]); 
-    // }
-    $.ajax({
-        url: '/user/' + id,
-        type: 'PUT',
+function changeRole(id, role) {
+    var ajaxChangeRole = $.ajax({
+        url: '/user/change-role/' + id,
+        type: 'POST',
         data: {
-            formType: formType,
-            id: id,
-            name: name,
-            password: password,
-            password_confirmation: password_confirmation,
-            phone: phone,
-            // avatar: $('#image')[0].files[0]
+            role: role
         },
-        // enctype: 'multipart/form-data',
-        // processData: false,
-        // contentType: false,
-        dataType: 'JSON',
-        success: function(result) {
-            if (result.status == 1) {
-                $('#modal-update').modal('hide');
-                swal('Success!', result.msg, 'success');
-                $('.profile-title').load(location.href + ' .profile-title');
-                $('.profile-name').load(location.href + ' .profile-name');
-                $('.profile-phone').load(location.href + ' .profile-phone');
-            }
-        },
-        error: function(result) {
-            var errors = JSON.parse(result.responseText);
-            if (errors.errors.name) {
-                var message = $('<span class="text-danger"></span>').html('<b>' + errors.errors.name + '</b>')
-                $('#modal-update input[name="name"]').after(message);
-            }
+        dataType: 'JSON'
+    });
 
-            if (errors.errors.password) {
-                var message = $('<span class="text-danger"></span>').html('<b>' + errors.errors.password + '</b>')
-                $('#modal-update input[name="password"]').after(message);
-            }
+    ajaxChangeRole.done(function(data) {
+        swal('Success!', 'The account has been changed role', 'success');
+    });
 
-            if (errors.errors.phone) {
-                var message = $('<span class="text-danger"></span>').html('<b>' + errors.errors.phone + '</b>')
-                $('#modal-update input[name="phone"]').after(message);
-            }
-        }
+    ajaxChangeRole.fail(function(data) {
+        swal('Error!', 'Something error', 'error');
     });
 }
