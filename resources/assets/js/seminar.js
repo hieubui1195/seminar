@@ -49,7 +49,11 @@ function sendMessage(seminarId, message) {
             }
         },
         error: function(result) {
-            console.log(result);
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         },
         complete: function() {
             var chatHistory = $('body .chat-history');
@@ -72,12 +76,15 @@ function getMessage(messageId, currentUser) {
         data: { messageId: messageId },
         dataType: 'JSON',
         success: function(result) {
-            console.log(result);
             addMessageElement(currentUser, result);
             scrollTop();
         },
         error: function(result) {
-            console.log(result);
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         }
     });
 }
@@ -148,11 +155,11 @@ function validate(seminarId, inputCode) {
             }
         },
         error: function(result) {
-            swal(
-                'Error',
-                result.responseText,
-                'error'
-            );
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         }
     });
 }
@@ -165,15 +172,12 @@ function getSeminarInfo(seminarId) {
         data: {
             seminarId: seminarId
         },
-        success: function(result) {
-            console.log(result);
-        },
         error: function(result) {
-            swal(
-                'Error',
-                result.responseText,
-                'error'
-            );
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         }
     });
 }

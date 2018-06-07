@@ -55,7 +55,7 @@ Route::group(['middleware' => 'locale', 'auth'], function() {
     Route::post('/call/finish', 'CallController@finishCall');
     Route::post('/call/publish', 'CallController@publishReport');
 
-    Route::resource('message', 'MessageController')->only(['store']);   
+    Route::resource('message', 'MessageController')->only(['store', 'show']);   
 
     Route::get('/search', 'HomeController@search')->name('search');
 
