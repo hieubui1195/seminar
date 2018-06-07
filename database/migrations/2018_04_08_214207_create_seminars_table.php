@@ -15,7 +15,7 @@ class CreateSeminarsTable extends Migration
     {
         Schema::create('seminars', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->text('description');
             $table->timestamp('start')->nullable();

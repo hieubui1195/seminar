@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditReportsTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class EditReportsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            $table->renameColumn('seminar_id', 'report_id');
-            $table->string('report_type')->after('report_id');
+        Schema::create('messages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('seminar_id')->unsigned();
+            $table->text('message');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ class EditReportsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn(['report_id', 'report_type']);
-        });
+        Schema::dropIfExists('messages');
     }
 }

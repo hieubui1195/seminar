@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 use App\Models\Notification;
 use Auth;
 
@@ -24,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('countNotify', $countNotify);
             }
         });
+
+        // Force SSL in production
+        if ($this->app->environment() == 'production') {
+            URL::forceScheme('https');
+        }
     }
 
     /**
