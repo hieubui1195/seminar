@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UsersTableSeeder extends Seeder
@@ -13,6 +12,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        DB::table('users')->truncate();
+
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -22,5 +25,7 @@ class UsersTableSeeder extends Seeder
             'level' => 2,
         ]);
         factory(User::class, 50)->create();
+
+        Schema::enableForeignKeyConstraints();
     }
 }

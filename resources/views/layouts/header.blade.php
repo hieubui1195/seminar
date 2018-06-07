@@ -1,7 +1,7 @@
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="{{ route('welcome') }}">
                 <b>
                     <img src="{{ asset('images/WicomLab.png') }}" alt="homepage" class="dark-logo" width="200" />
                 </b>

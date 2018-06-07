@@ -12,6 +12,12 @@ class ParticipantsTableSeeder extends Seeder
      */
     public function run()
     {
+    	Schema::disableForeignKeyConstraints();
+        
+        DB::table('users')->truncate();
+
         factory(Participant::class, 50)->create();
+
+        Schema::enableForeignKeyConstraints();
     }
 }
