@@ -1,6 +1,9 @@
 @extends('layouts.auth')
 
 @section('content')
+    <h3>@lang('custom.title')</h3>
+    <h4>@lang('custom.forgot_password')</h4>
+
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -14,7 +17,7 @@
             <label for="email" class="control-label">@lang('custom.email')</label>
 
             <div class="">
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="{{ Lang::get('custom.email') }}">
 
                 @if ($errors->has('email'))
                     <span class="help-block">

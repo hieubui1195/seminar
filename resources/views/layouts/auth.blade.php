@@ -13,7 +13,7 @@
     <body>
         <div class="container">
             <div class="card card-container">
-                <img id="profile-img" class="profile-img-card" src="{{ asset('images/icon-avatar.png') }}" />
+                <img id="profile-img" src="{{ asset('images/WicomLab.png') }}" width="268" />
 
                 @section('content')
                     @show

@@ -2,6 +2,8 @@
 
 @section('content')
     <h3>@lang('custom.title')</h3>
+    <h4>@lang('custom.register')</h4>
+
     <form class="form-signin" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
 
