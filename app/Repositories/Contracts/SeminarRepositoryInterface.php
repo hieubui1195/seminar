@@ -32,4 +32,8 @@ interface SeminarRepositoryInterface extends BaseRepositoryInterface
     public function newSeminar();
 
     public function latestSeminar();
+
+    public function deleteUseUserId($userId);
+
+    public function delete($id);
 }

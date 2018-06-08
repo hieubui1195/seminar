@@ -389,3 +389,6 @@ table.dataTable thead .sorting_desc:after {
     background: red;
     color: white;
 }
+.card-title {
+    margin-bottom: 0;
+}

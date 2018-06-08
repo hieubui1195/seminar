@@ -50,4 +50,19 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
         return $this->model->where('user_receive_id', Auth::id())
             ->update(['viewed' => 1]);
     }
+
+    public function deleteNotificationsOfUser($userId)
+    {
+        return $this->model->where('user_receive_id', $userId)
+            ->orWhere('user_send_id', $userId)
+            ->delete();
+    }
+
+    public function deleteNotificationsOfSeminar($seminarId)
+    {
+        return $this->model->where([
+            ['notification_type', config('custom.seminar')],
+            ['notification_id', $seminarId],
+        ])->delete();
+    }
 }

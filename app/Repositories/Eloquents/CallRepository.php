@@ -58,4 +58,11 @@ class CallRepository extends BaseRepository implements CallRepositoryInterface
         return $this->getCall($callerId, $receiverId)
             ->update(['start' => Carbon::now()]);
     }
+
+    public function deleteUseUserId($userId)
+    {
+        return $this->model->where('caller', $userId)
+            ->orWhere('receiver', $userId)
+            ->deletle();
+    }
 }

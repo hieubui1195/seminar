@@ -67,4 +67,14 @@ class ParticipantRepository extends BaseRepository implements ParticipantReposit
             ['user_id', $userId],
         ])->delete();
     }
+
+    public function deleteUseUserId($userId)
+    {
+        return $this->model->where('user_id', $userId)->delete();
+    }
+
+    public function deleteUseSeminarId($seminarId)
+    {
+        return $this->model->where('seminar_id', $seminarId)->delete();
+    }
 }

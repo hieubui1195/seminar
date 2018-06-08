@@ -19,7 +19,7 @@ $('body').on('click', '.btn-delete', function(event) {
     var id = $(this).data('id');
     swal({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        text: 'You won\'t be able to revert this!',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -28,9 +28,8 @@ $('body').on('click', '.btn-delete', function(event) {
     }).then((result) => {
         if (result.value) {
             deleteUser(id);
-            
         }
-    })
+    });
 });
 
 $('body').on('click', '#choose-avatar', function() {
@@ -88,7 +87,7 @@ $('body').on('change', 'select.form-control', function(event) {
     } else {
         changeRole(id, role);
     }
-})
+});
 
 function deleteUser(id) {
     $.ajax({
@@ -108,18 +107,20 @@ function deleteUser(id) {
                 confirmButtonText: 'Ok'
             }).then((result) => {
                 if (result.value) {
-                    location.reload();
+                    if (location.protocol != 'https:') {
+                        location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+                    }
                 }
             })
         },
         error: function(result) {
-            swal(
-                'Error!',
-                result.responseText,
-                'error'
-            );
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         }
-    })
+    });
 }
 
 function changeRole(id, role) {

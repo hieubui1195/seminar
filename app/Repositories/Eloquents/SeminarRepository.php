@@ -118,4 +118,15 @@ class SeminarRepository extends BaseRepository implements SeminarRepositoryInter
             ->with('user')
             ->first();
     }
+
+    public function deleteUseUserId($userId)
+    {
+        return $this->model->where('user_id', $userId)
+            ->delete();
+    }
+
+    public function delete($id)
+    {
+        return $this->model->find($id)->delete();
+    }
 }

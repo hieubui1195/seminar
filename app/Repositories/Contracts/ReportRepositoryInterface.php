@@ -22,4 +22,6 @@ interface ReportRepositoryInterface extends BaseRepositoryInterface
     public function getReportByReportId($reportId);
 
     public function newReport();
+
+    public function deleteUseSeminarId($seminarId);
 }

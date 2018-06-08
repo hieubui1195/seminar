@@ -103,6 +103,7 @@ return [
     'publish_success' => 'The report has been published',
     'validate_success' => 'Authentication succeeded',
     'validate_error' => 'Authentication error',
+    'delete_seminar_succes' => 'The seminar has been deleted',
 
     'mail' => [
         'subject_create_seminar' => 'Invitation to attend the meeting',

@@ -39,4 +39,14 @@ class MessageRepository extends BaseRepository implements MessageRepositoryInter
     {
         return $this->model->where('seminar_id', $id)->get();
     }
+
+    public function deleteUseSeminarId($seminarId)
+    {
+        return $this->model->where('seminar_id', $seminarId)->delete();
+    }
+
+    public function deleteUseUserId($userId)
+    {
+        return $this->model->where('user_id', $userId)->delete();
+    }
 }

@@ -32,6 +32,24 @@ $('body').on('submit', '#form-validate', function(event) {
     validate(seminarId, inputCode);
 });
 
+$('body').on('click', '.btn-delete-seminar', function(event) {
+    event.preventDefault();
+    var id = $(this).data('id');
+    swal({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            deleteSeminar(id);
+        }
+    });
+});
+
 function sendMessage(seminarId, message) {
     var userId = $('body input[name="userId"]');
     $.ajax({
@@ -177,6 +195,35 @@ function getSeminarInfo(seminarId) {
                 type: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
+            });
+        }
+    });
+}
+
+function deleteSeminar(seminarId) {
+    var ajaxDeleteSeminar = $.ajax({
+        url: '/seminar/' + seminarId,
+        type: 'DELETE',
+        dataType: 'JSON',
+    });
+
+    ajaxDeleteSeminar.done(function(data) {
+        if (data.status == 1) {
+            swal({
+                title: data.msgTitle,
+                text: data.msgContent,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    var pathname = window.location.pathname,
+                        fullurl = window.location.href,
+                        href = fullurl.replace(pathname, '') + '/seminar';
+                    window.location.href = href;
+                }
             });
         }
     });

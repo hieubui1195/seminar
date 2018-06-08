@@ -88,4 +88,12 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
             ->take(4)
             ->get();
     }
+
+    public function deleteUseSeminarId($seminarId)
+    {
+        return $this->model->where([
+            ['report_id', $seminarId],
+            ['report_type', config('custom.seminar')]
+        ])->delete();
+    }
 }
