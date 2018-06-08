@@ -33,8 +33,8 @@
                     @lang('custom.admin')
                 @endif
             </td>
-            <td>
-                @if (Auth::user()->level== config('custom.admin') && Auth::id() != $user->id)
+            @if (Auth::user()->level== config('custom.admin'))
+                <td>
                     <select class="form-control" data-id={{ $user->id }} data-current-role="{{ $user->level }}">
                         @if ($user->level == 1)
                             <option selected="selected" value="1">@lang('custom.user')</option>
@@ -44,8 +44,8 @@
                             <option selected="selected" value="2">@lang('custom.admin')</option>
                         @endif
                     </select>
-                @endif
-            </td>
+                </td>
+            @endif
             <td>
                 @if (Auth::id() != $user->id)
                     <a href="/user/video/{{ $user->id }}?caller={{ Auth::id() }}&receiver={{ $user->id }}" class="btn btn-success call-from-users" title="{{ Lang::get('custom.call') }}">
