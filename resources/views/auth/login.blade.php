@@ -1,7 +1,8 @@
 @extends('layouts.auth')
 
 @section('content')
-    <h3>@lang('custom.login')</h3>
+    <h3>@lang('custom.title')</h3>
+    <h4>@lang('custom.login')</h4>
     
     <form class="form-signin" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
