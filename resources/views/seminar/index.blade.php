@@ -39,19 +39,15 @@
                     <ul class="list">
                         @foreach ($listActive as $element)
                             <li class="clearfix">
-                                {!! Html::image(config('custom.path_avatar') . $element->user->avatar, 'Avatar', ['class' => 'img img-circle']) !!}
+                                @if ($element->user->avatar == config('custom.default_avatar'))
+                                    <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="user-image img img-circle" width="55" height="55">
+                                @else
+                                    <img src="{{ config("custom.path_avatar") . $element->user->avatar }}" class="user-image img img-circle" width="55" height="55">
+                                @endif
                                 <div class="about">
                                     <div class="name">
                                         <h4>
-                                            {{ Html::linkRoute(
-                                                'seminar.show',
-                                                $element->name,
-                                                $element->id,
-                                                [
-                                                    'class' => 'seminar-link',
-                                                    'title' => Lang::get('custom.detail'),
-                                                ]
-                                            ) }}
+                                            {{ Html::linkRoute('seminar.show', $element->name, $element->id, ['class' => 'seminar-link', 'title' => Lang::get('custom.detail')]) }}
                                         </h4>
                                     </div>
                                     <div class="name">
@@ -88,15 +84,7 @@
                                 <div class="about">
                                     <div class="name">
                                         <h4>
-                                            {{ Html::linkRoute(
-                                                'seminar.show',
-                                                $element->name,
-                                                $element->id,
-                                                [
-                                                    'class' => 'seminar-link',
-                                                    'title' => Lang::get('custom.detail'),
-                                                ]
-                                            ) }}
+                                            {{ Html::linkRoute('seminar.show', $element->name, $element->id, ['class' => 'seminar-link', 'title' => Lang::get('custom.detail')]) }}
                                         </h4>
                                     </div>
                                     <div class="name">
@@ -133,15 +121,7 @@
                                 <div class="about">
                                     <div class="name">
                                         <h4>
-                                            {{ Html::linkRoute(
-                                                'seminar.show',
-                                                $element->name,
-                                                $element->id,
-                                                [
-                                                    'class' => 'seminar-link',
-                                                    'title' => Lang::get('custom.detail'),
-                                                ]
-                                            ) }}
+                                            {{ Html::linkRoute('seminar.show', $element->name, $element->id, ['class' => 'seminar-link', 'title' => Lang::get('custom.detail')]) }}
                                         </h4>
                                     </div>
                                     <div class="name">

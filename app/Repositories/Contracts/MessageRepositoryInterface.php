@@ -12,4 +12,8 @@ interface MessageRepositoryInterface extends BaseRepositoryInterface
     public function getMessageWithUser($id);
 
     public function getAllMessages($id);
+
+    public function deleteUseSeminarId($seminarId);
+
+    public function deleteUseUserId($userId);
 }

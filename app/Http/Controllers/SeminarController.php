@@ -215,6 +215,27 @@ class SeminarController extends Controller
         return redirect()->route('seminar.show', $id);
     }
 
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $this->messageRepository->deleteUseSeminarId($id);
+        $this->notificationRepository->deleteNotificationsOfSeminar($id);
+        $this->participantRepository->deleteUseSeminarId($id);
+        $this->reportRepository->deleteUseSeminarId($id);
+        $this->seminarRepository->delete($id);
+        
+        return response()->json([
+            'status' => 1,
+            'msgTitle' => Lang::get('custom.success'),
+            'msgContent' => Lang::get('custom.delete_seminar_succes'),
+        ]);
+    }
+
     public function getEditor($id)
     {
         $report = '';

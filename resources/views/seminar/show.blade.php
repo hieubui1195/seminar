@@ -21,7 +21,11 @@
                 <ul class="list" id="hits">
                     @foreach ($seminars as $seminar)
                         <li class="clearfix {{ ($seminar->id == $id) ? 'current-seminar' : '' }}">
-                            {!! Html::image(config('custom.path_avatar') . $seminar->user->avatar, 'Avatar', ['class' => 'img img-circle']) !!}
+                            @if ($seminar->user->avatar == config('custom.default_avatar'))
+                                <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img img-circle" alt="{{ Lang::get('custom.user') }}">
+                            @else
+                                <img src="{{ config("custom.path_avatar") . $seminar->user->avatar }}" class="img img-circle" alt="{{ Lang::get('custom.user') }}">
+                            @endif
                             <div class="about">
                                 <div class="name">
                                     <h4>
@@ -64,7 +68,11 @@
                 {!! Form::hidden('userId', Auth::id()) !!}
                 <div class="chat" id="chat">
                     <div class="chat-header clearfix">
-                        {{ Html::image(config('custom.path_avatar') . $seminarUser->user->avatar, 'Avatar', ['class' => 'img img-circle'])}}
+                        @if ($seminarUser->user->avatar == config('custom.default_avatar'))
+                            <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img img-circle" alt="{{ Lang::get('custom.user') }}">
+                        @else
+                            <img src="{{ config("custom.path_avatar") . $seminarUser->user->avatar }}" class="img img-circle" alt="{{ Lang::get('custom.user') }}">
+                        @endif
                         <div class="chat-about">
                             <div class="chat-with">{{ $seminarUser->name }}</div>
                             <div class="status">

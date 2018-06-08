@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\NotificationRepositoryInterface;
 use App\Repositories\Contracts\CallRepositoryInterface;
+use App\Repositories\Contracts\ParticipantRepositoryInterface;
+use App\Repositories\Contracts\SeminarRepositoryInterface;
+use App\Repositories\Contracts\MessageRepositoryInterface;
 use App\Http\Requests\UserRequest;
 use App\Events\NotifyCallEvent;
 use App\Models\Call;
@@ -17,16 +20,27 @@ use Auth;
 class UserController extends Controller
 {
     
-    protected $userRepository, $notificationRepository, $callRepository;
+    protected $userRepository,
+        $notificationRepository,
+        $callRepository,
+        $participantRepository,
+        $seminarRepository,
+        $messageRepository;
 
     public function __construct(UserRepositoryInterface $userRepository,
         NotificationRepositoryInterface $notificationRepository,
-        CallRepositoryInterface $callRepository)
+        CallRepositoryInterface $callRepository,
+        ParticipantRepositoryInterface $participantRepository,
+        SeminarRepositoryInterface $seminarRepository,
+        MessageRepositoryInterface $messageRepository)
     {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
         $this->notificationRepository = $notificationRepository;
         $this->callRepository = $callRepository;
+        $this->participantRepository = $participantRepository;
+        $this->seminarRepository = $seminarRepository;
+        $this->messageRepository = $messageRepository;
     }
 
     /**
@@ -121,6 +135,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
+        $this->notificationRepository->deleteNotificationsOfUser($request->id);
+        $this->participantRepository->deleteUseUserId($request->id);
+        $this->seminarRepository->deleteUseUserId($request->id);
+        $this->messageRepository->deleteUseUserId($reques->id);
+        $this->callRepository->deleteUseUserId($request->id);
         $this->userRepository->delete($request->id);
 
         return response()->json([

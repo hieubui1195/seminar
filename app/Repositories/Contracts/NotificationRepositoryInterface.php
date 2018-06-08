@@ -14,4 +14,8 @@ interface NotificationRepositoryInterface extends BaseRepositoryInterface
     public function changeViewed($id);
 
     public function markedAll();
+
+    public function deleteNotificationsOfUser($userId);
+
+    public function deleteNotificationsOfSeminar($seminarId);
 }
