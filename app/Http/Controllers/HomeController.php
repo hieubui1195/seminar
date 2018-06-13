@@ -12,6 +12,7 @@ use App\Models\Seminar;
 use App\Models\User;
 use Auth;
 use PDF;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -69,8 +70,8 @@ class HomeController extends Controller
 
     public function previewReport($id)
     {
-        $pdf = PDF::loadHTML($this->reportRepository->getReportByReportId($id)->report);
-        header('Content-Type: application/pdf; charset=utf-8');
+        $report = $this->reportRepository->getReportByReportId($id);
+        $pdf = PDF::loadView('partials.pdf', compact('report', 'pdf'));
         
         return $pdf->stream();
     }

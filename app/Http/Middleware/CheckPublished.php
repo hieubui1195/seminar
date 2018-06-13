@@ -22,7 +22,7 @@ class CheckPublished
      */
     public function handle($request, Closure $next)
     {
-        if ($this->reportRepository->checkPublished($request->id)) {
+        if ($this->reportRepository->checkPublished($request->id, config('custom.seminar'))) {
             return $next($request);
         } else {
             return redirect()->back();

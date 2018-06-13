@@ -75,7 +75,7 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
 
     public function getReportByReportId($reportId)
     {
-        return $this->model->where('report_id', $reportId)
+        return $this->model->where('id', $reportId)
             ->where('status', 1)
             ->first();
     }

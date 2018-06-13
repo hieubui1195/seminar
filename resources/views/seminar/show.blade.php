@@ -127,19 +127,20 @@
                             </div>
                         @else
                             <h3 class="text-center">@lang('custom.timeout')</h3>
-                            @if ($checkPublished && $checkPublished != null)
-                                <h3 style="text-align: center;">
-                                    <a href="{{ route('seminar.report', $id) }}" class="btn btn-info">
-                                        @lang('custom.show_report')
-                                    </a>
-                                </h3>
-                            @elseif (Auth::id() == $seminarUser->user_id)
+                            <div class="form-group">
                                 <center>
-                                    <a href="{{ route('seminar.editor', $seminarUser->id) }}" class="btn btn-info">
-                                        @lang('custom.get_editor')
-                                    </a>
+                                    @if (Auth::id() == $seminarUser->user_id)
+                                        <a href="{{ route('seminar.editor', $seminarUser->id) }}" class="btn btn-info">
+                                            @lang('custom.get_editor')
+                                        </a>
+                                    @endif
+                                    @if ($checkPublished && $checkPublished != null)
+                                        <a href="{{ route('seminar.report', $id) }}" class="btn btn-success">
+                                            @lang('custom.show_report')
+                                        </a>
+                                    @endif
                                 </center>
-                            @endif
+                            </div>
                         @endif
                     @else
                         <h3 style="text-align: center; padding: 20px;">

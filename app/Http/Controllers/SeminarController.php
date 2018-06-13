@@ -283,7 +283,8 @@ class SeminarController extends Controller
 
     public function previewReport($id)
     {
-        $pdf = PDF::loadHTML($this->reportRepository->checkReported($id, config('custom.seminar'))->report);
+        $report = $this->reportRepository->checkReported($id, config('custom.seminar'));
+        $pdf = PDF::loadView('partials.pdf', compact('report'));
 
         return $pdf->stream();
     }
@@ -301,8 +302,8 @@ class SeminarController extends Controller
 
     public function downloadReport($id)
     {
-        $report = $this->reportRepository->checkReported($id, $data['reportType']);
-        $pdf = PDF::loadHTML($report->report);
+        $report = $this->reportRepository->checkReported($id, config('custom.seminar'));
+        $pdf = PDF::loadView('partials.pdf', compact('report'));
 
         return $pdf->download($report->filename);
     }

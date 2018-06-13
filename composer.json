@@ -9,7 +9,6 @@
         "algolia/algoliasearch-client-php": "^1.25",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "doctrine/dbal": "^2.7",
-        "dompdf/dompdf": "^0.8.2",
         "fideloper/proxy": "~3.3",
         "fzaninotto/faker": "^1.7",
         "laravel/framework": "5.5.*",
