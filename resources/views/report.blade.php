@@ -26,10 +26,10 @@
                             <li>
                                 <div class="bg-light-danger"><i class="fa fa-phone"></i></div> 
                         @endif
-                            <a href="{{ route('report.preview', $report->report_id) }}">
+                            <a href="{{ route('report.preview', $report->id) }}">
                                 {{ $report->filename }}
                             </a> 
-                            <span class="text-muted">{{ \Carbon\Carbon::parse($report->updated_at)->diffForHumans() }}</span>
+                            <span style="color: black;">{{ \Carbon\Carbon::parse($report->updated_at)->diffForHumans() }}</span>
                         <li>
                     @endforeach
                 </ul>

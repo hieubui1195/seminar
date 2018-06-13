@@ -14,16 +14,18 @@
                 <li class="breadcrumb-item active">@lang('custom.report')</li>
             </ol>
         </div>
+        <div class="col-md-7 align-self-center">
+            <a href="{{ route('seminar.download', $report->id) }}" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="height: 430px; overflow-y: auto;">
                 <div class="card-body">
                     <h3 style="float: left;">
                         @lang('custom.report_of', ['seminar' => $seminar->name])
                     </h3>
-                    <a href="{{ route('seminar.download', $report->id) }}" class="btn btn-info" style="float: right;">@lang('custom.download')</a>
                 </div>
                 <div class="card-body">
                     <article>

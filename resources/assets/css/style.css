@@ -392,3 +392,13 @@ table.dataTable thead .sorting_desc:after {
 .card-title {
     margin-bottom: 0;
 }
+.text-muted {
+    color: black !important
+}
+.mailbox .message-center a .mail-contnet {
+    width: 95%;
+}
+.feeds {
+    height: 317px;
+    overflow-y: auto;
+}

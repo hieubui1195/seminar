@@ -36,9 +36,9 @@
             <div class="card-body">
                 <center class="m-t-30">
                     @if (Auth::user()->avatar == config('custom.default_avatar'))
-                        <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img-circle user-image" alt="{{ Lang::get('custom.user') }}" width="150">
+                        <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img-circle" alt="{{ Lang::get('custom.user') }}" width="150" height="150">
                     @else
-                        <img src="{{ config("custom.path_avatar") . $user->avatar }}" class="img-circle user-image" alt="{{ Lang::get('custom.user') }}" width="150">
+                        <img src="{{ config("custom.path_avatar") . $user->avatar }}" class="img-circle" alt="{{ Lang::get('custom.user') }}" width="150" height="150">
                     @endif
                     <h4 class="card-title m-t-10 profile-title">{{ $user->name }}</h4>
                     <h6>
