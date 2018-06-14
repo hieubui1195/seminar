@@ -16,11 +16,11 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/', 'HomeController@welcome')->name('welcome');
 });
 
+Auth::routes();
+
 Route::group(['middleware' => 'locale', 'auth'], function() {
 
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
     Route::resource('seminar', 'SeminarController');
     Route::post('/seminar/validate/{id}', 'SeminarController@validateCode')->name('seminar.validate');
@@ -57,9 +57,9 @@ Route::group(['middleware' => 'locale', 'auth'], function() {
 
     Route::resource('message', 'MessageController')->only(['store', 'show']);   
 
-    Route::get('/search', 'HomeController@search')->name('search');
+    Route::get('/search', 'HomeController@search')->name('search')->middleware('auth');
 
-    Route::get('/report', 'HomeController@report')->name('report');
-    Route::get('/report/preview/{id}', 'HomeController@previewReport')->name('report.preview');
+    Route::get('/report', 'HomeController@report')->name('report')->middleware('auth');
+    Route::get('/report/preview/{id}', 'HomeController@previewReport')->name('report.preview')->middleware('auth');
 });
 

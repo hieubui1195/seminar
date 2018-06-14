@@ -81,7 +81,7 @@
                                     <td style="width:50px;"><span class="round round-warning">R</span></td>
                                     <td>
                                         <h6>
-                                            <a href="{{ route('report.preview', $report->report_id) }}">
+                                            <a href="{{ route('report.preview', $report->id) }}">
                                                 {{ $report->filename }}
                                             </a> 
                                         </h6>

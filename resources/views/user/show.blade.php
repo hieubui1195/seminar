@@ -35,7 +35,7 @@
         <div class="card">
             <div class="card-body">
                 <center class="m-t-30">
-                    @if (Auth::user()->avatar == config('custom.default_avatar'))
+                    @if ($user->avatar == config('custom.default_avatar'))
                         <img src="{{ config("custom.path_images") . config('custom.default_avatar') }}" class="img-circle" alt="{{ Lang::get('custom.user') }}" width="150" height="150">
                     @else
                         <img src="{{ config("custom.path_avatar") . $user->avatar }}" class="img-circle" alt="{{ Lang::get('custom.user') }}" width="150" height="150">
