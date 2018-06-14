@@ -68,7 +68,7 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
     public function getAllReports()
     {
         return $this->model->where('status', 1)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->with('user')
             ->get();
     }
@@ -83,8 +83,7 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
     public function newReport()
     {
         return $this->model->where('status', 1)
-            ->latest()
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
     }

@@ -23,9 +23,11 @@
         <div class="col-md-12">
             <div class="card" style="height: 430px; overflow-y: auto;">
                 <div class="card-body">
-                    <h3 style="float: left;">
-                        @lang('custom.report_of', ['seminar' => $seminar->name])
-                    </h3>
+                    <center>
+                        <h3>
+                            @lang('custom.report_of', ['seminar' => $seminar->name])
+                        </h3>
+                    </center>
                 </div>
                 <div class="card-body">
                     <article>
